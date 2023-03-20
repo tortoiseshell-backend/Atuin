@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import themeSlice from '../reducers/themeSlice';
-import qnaReducer from '../reducers/qnaSlice.js';
+import themeReducer from '@reducers/themeSlice';
+import qnaReducer from '@reducers/qnaSlice';
 
 const store = configureStore({
   reducer: {
-    theme: themeSlice.reducers,
+    theme: themeReducer,
     qna: qnaReducer,
   },
 });
