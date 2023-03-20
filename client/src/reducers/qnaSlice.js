@@ -6,7 +6,7 @@ const initialState = {
   query: ''
 }
 
-const qnaSlice = createSlice({
+export const qnaSlice = createSlice({
   name: 'qna',
   initialState,
   reducers: {

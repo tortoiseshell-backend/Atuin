@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack --mode development --watch & npx tailwindcss -i ./client/src/css/input.css -o ./client/dist/output.css --watch",
     "build": "webpack --mode production",
+    "react-dev": "webpack serve",
     "test": "jest",
     "prepare": "husky install"
   },
