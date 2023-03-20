@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./client/src/components/*"],
+      "@assets/*": ["./client/src/assets/*"],
+      "@reducers/*": ["./client/src/reducers/*"],
+      "@fonts/*": ["./client/src/assets/fonts/*"],
+      "@icons/*": ["./client/src/assets/icons/*"],
+      "@images/*": ["./client/src/assets/images/*"],
+      "@css/*": ["./client/src/css/*"],
+      "@store": ["./client/src/store/store.js"]
+    },
+  },
+  "exclude": ["node_modules"]
+}
