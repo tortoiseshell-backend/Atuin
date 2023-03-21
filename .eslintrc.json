@@ -1,12 +1,20 @@
 {
   "extends": "airbnb",
-  "ignorePatterns": ["bundle.js", "tailwind.config.js"],
-  "no-param-reassign": ["error", {
-    "props": true,
-    "ignorePropertyModificationsFor": [
-      "state"
+  "ignorePatterns": [
+    "bundle.js",
+    "tailwind.config.js"
+  ],
+  "rules": {
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
     ]
-  }],
+  },
   "env": {
     "browser": true,
     "node": true
@@ -15,16 +23,43 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@components", "./client/src/components"],
-          ["@assets", "./client/src/assets"],
-          ["@reducers", "./client/src/reducers"],
-          ["@fonts", "./client/src/assets/fonts"],
-          ["@icons", "./client/src/assets/icons"],
-          ["@images", "./client/src/assets/images"],
-          ["@css", "./client/src/css"],
-          ["@store", "./client/src/store/store.js"]
+          [
+            "@components",
+            "./client/src/components"
+          ],
+          [
+            "@assets",
+            "./client/src/assets"
+          ],
+          [
+            "@reducers",
+            "./client/src/reducers"
+          ],
+          [
+            "@fonts",
+            "./client/src/assets/fonts"
+          ],
+          [
+            "@icons",
+            "./client/src/assets/icons"
+          ],
+          [
+            "@images",
+            "./client/src/assets/images"
+          ],
+          [
+            "@css",
+            "./client/src/css"
+          ],
+          [
+            "@store",
+            "./client/src/store/store.js"
+          ]
         ],
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     }
   }
