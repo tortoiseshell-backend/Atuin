@@ -14,11 +14,11 @@ function RatingsReviews() {
           <RatingsBreakdown />
           <ProductBreakdown />
         </div>
-        <div id="reviews" className="md:w-6/10 flex flex-col">
+        <div id="reviews" className="md:w-6/10 flex flex-col max-w-full">
           <div className="flex-none flex justify-start">
             <SortOptions />
           </div>
-          <div className="flex-auto">
+          <div style={{ maxWidth: 'max-content' }} className="flex-auto max-w-full overflow-x-auto">
             <ReviewList />
           </div>
         </div>
