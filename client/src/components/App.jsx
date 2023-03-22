@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductOverview from './productOverview';
 import RatingsReviews from './ratingsReviews';
-import QuestionsAnswers from './questionsAnswers/index.jsx';
+import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
 const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto';

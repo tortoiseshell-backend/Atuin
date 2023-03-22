@@ -17,8 +17,8 @@ function ImageGallery({ temp }) {
     if (viewState === 'expanded') {
       if (document.getElementById('product-overview')) {
         const expandedWidth = document.getElementById('product-overview').clientWidth;
-        imageGalleryStyle = `transition-[width] duration-300 relative w-[${expandedWidth}px] h-full mx-auto z-10 bg-gray-100`;
-        console.log(viewState);
+        imageGalleryStyle = `transition-[width] duration-300 relative w-[${Number(expandedWidth)}px] h-full mx-auto z-10 bg-gray-100`;
+        console.log(expandedWidth);
         return;
       }
     }

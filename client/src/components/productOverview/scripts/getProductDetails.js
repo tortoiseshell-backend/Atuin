@@ -4,7 +4,7 @@ const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 const productID = 40344;
 const getConfig = {
   headers: {
-    Authorization: process.env.AUTH_SECRET,
+    Authorization: "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", //process.env.AUTH_SECRET,
   },
 };
 

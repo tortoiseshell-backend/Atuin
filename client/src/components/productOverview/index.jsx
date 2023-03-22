@@ -7,6 +7,7 @@ import ImageGallery from './subComponents/imageGallery';
 const productOverviewStyle = 'standard-grid';
 
 function ProductOverview() {
+  console.log(process.env.AUTH_SECRET)
   const [temp, useTemp] = useState({ results: [{ photos: [{ url: '' }] }], features: [] });
   useEffect(() => {
     async function getData() {
