@@ -21,9 +21,7 @@ function ReviewList() {
   return (
     <div>
       Review List
-      {console.log('reviewOBJ: ', reviews)}
       {reviews.map((review) => {
-        console.log(review);
         return (
           <ReviewListTile review={review} key={review.review_id} />
         );
