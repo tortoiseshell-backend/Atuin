@@ -1,7 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
@@ -44,11 +43,6 @@ module.exports = {
     new Dotenv(),
   ],
   resolve: {
-    fallback: {
-      fs: false,
-      os: false,
-      path: false,
-    },
     extensions: ['.js', '.jsx'],
     alias: {
       '@components': path.resolve(

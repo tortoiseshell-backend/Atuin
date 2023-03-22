@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StarRatingView from '@components/StarRatingView';
 
 function ReviewListTile({ review }) {
   const date = new Date(review.date);
@@ -13,20 +14,17 @@ function ReviewListTile({ review }) {
         {review.summary}
         <div className="flex flex-row flex-wrap">
 
-          {'Stars: '}
-          {review.rating}
-
-          <p>{' . . . . . . . '}</p>
-
-          {outputDateString}
-
+          <StarRatingView averageRating={review.rating} />
+          <div className="flex items-center">
+            {outputDateString}
+          </div>
         </div>
         <div className="w-full break-words">
           {'Body, 250 chars: '}
           {review.body}
         </div>
         <div className="flex flex-row flex-wrap">
-          {review.photos.map((photo) => <img className="w-1/6 h-auto p-1" src={photo.url} alt={photo.id} />)}
+          {review.photos.map((photo) => <img className="w-1/6 h-auto p-1" src={photo.url} key={photo.id} alt={photo.id} />)}
         </div>
         <div>
           {review.response !== null ? (
@@ -66,7 +64,7 @@ ReviewListTile.propTypes = {
     recommend: PropTypes.bool.isRequired,
     response: PropTypes.string,
     body: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.string.isRequired,
     reviewer_name: PropTypes.string.isRequired,
     helpfulness: PropTypes.number.isRequired,
     photos: PropTypes.arrayOf(PropTypes.shape({

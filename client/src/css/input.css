@@ -5,6 +5,7 @@
 /* Import your component CSS files here */
 /* e.g. These can include classes with grouped tailwind code */
 /* @import "XXX.css"; */
+@import './stars.css';
 
 @layer components {
   * {
