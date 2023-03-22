@@ -4,7 +4,7 @@ import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
-const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
+const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto';
 
 function App() {
   return (
