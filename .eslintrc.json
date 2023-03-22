@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "eslint:recommended", "plugin:jest/recommended"],
   "ignorePatterns": [
     "bundle.js",
     "tailwind.config.js"
@@ -17,8 +17,10 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
+  "plugins": ["jest"],
   "settings": {
     "import/resolver": {
       "alias": {
