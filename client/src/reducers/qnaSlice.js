@@ -3,10 +3,12 @@ import questions from '../components/questionsAnswers/subComponents/initialData'
 
 const initialState = {
   getProductId: '',
-  getQData: [],
-  allQuestions: questions.results,
-  viewQuestions: questions.results,
   query: '',
+  getQData: [],
+  allQuestions: [],
+  viewQuestions: [],
+  qViewLength: 2,
+  aViewExpanded: {},
 };
 
 export const qnaSlice = createSlice({
@@ -17,8 +19,7 @@ export const qnaSlice = createSlice({
       const data = action.payload;
       state.getProductId = data.product_id;
       state.allQuestions = data.results;
-      state.viewQuestions = data.results;
-      console.log(state.allQuestions);
+      state.viewQuestions = data.results.slice(0, state.qViewLength);
     },
     search: (state, action) => {
       const query = action.payload.toLowerCase();
@@ -30,8 +31,17 @@ export const qnaSlice = createSlice({
         );
       }
     },
+    loadMoreQuestions: (state) => {
+      state.qViewLength += 2;
+      state.viewQuestions = state.allQuestions.slice(0, state.qViewLength);
+    },
+    expandAnswers: (state, action) => {
+      state.aViewExpanded[action.payload.qId] = action.payload.opened;
+    },
   },
 });
 
 export default qnaSlice.reducer;
-export const { search, saveGetResults } = qnaSlice.actions;
+export const {
+  search, saveGetResults, moreViewQuestions, expandAnswers,
+} = qnaSlice.actions;
