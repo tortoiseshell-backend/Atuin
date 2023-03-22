@@ -6,8 +6,8 @@ import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers/index.jsx';
 import RelatedItems from './relatedItems';
 
-// const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
-const appStyles = 'container min-w-max mx-auto';
+const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
+// const appStyles = 'container min-w-max mx-auto';
 
 function App() {
   return (
