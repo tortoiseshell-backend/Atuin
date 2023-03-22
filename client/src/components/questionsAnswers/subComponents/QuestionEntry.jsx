@@ -3,7 +3,7 @@ import AnswersList from './AnswersList';
 
 function QuestionEntry({ q }) {
   return (
-    <div className="grid grid-cols-[35px_626px_275px] p-4">
+    <div id="qEntry" className="grid grid-cols-[35px_626px_275px] p-4">
       <h3 className="font-semibold text-gray-500">Q: </h3>
       <h3 className="inline font-semibold text-gray-500">{q.question_body}</h3>
       <div className="ml-5">

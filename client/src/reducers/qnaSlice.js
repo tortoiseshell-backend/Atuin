@@ -18,6 +18,7 @@ export const qnaSlice = createSlice({
       state.getProductId = data.product_id;
       state.allQuestions = data.results;
       state.viewQuestions = data.results;
+      console.log(state.allQuestions);
     },
     search: (state, action) => {
       const query = action.payload.toLowerCase();
