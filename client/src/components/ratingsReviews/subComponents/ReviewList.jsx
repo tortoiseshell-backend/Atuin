@@ -21,11 +21,9 @@ function ReviewList() {
   return (
     <div>
       Review List
-      {reviews.map((review) => {
-        return (
-          <ReviewListTile review={review} key={review.review_id} />
-        );
-      })}
+      {reviews.map((review) => (
+        <ReviewListTile review={review} key={review.review_id} />
+      ))}
     </div>
   );
 }
