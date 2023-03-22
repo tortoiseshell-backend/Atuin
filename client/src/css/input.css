@@ -6,6 +6,7 @@
 /* e.g. These can include classes with grouped tailwind code */
 /* @import "XXX.css"; */
 @import "productOverview.css";
+@import './stars.css';
 
 @layer components {
   #root {

@@ -1,7 +1,6 @@
 const path = require('path');
-require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
@@ -47,11 +46,7 @@ module.exports = {
       title: 'Atelier',
       template: path.resolve(__dirname, '/templates/template.html'),
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        AUTH_SECRET: JSON.stringify(process.env.AUTH_SECRET),
-      },
-    }),
+    new Dotenv(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

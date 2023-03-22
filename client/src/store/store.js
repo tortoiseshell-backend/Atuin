@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import themeSlice from '@reducers/themeSlice';
+import themeReducer from '@reducers/themeSlice';
+import qnaReducer from '@reducers/qnaSlice';
+import sortReducer from '@reducers/sortSlice';
+import reviewsReducer from '@reducers/reviewSlice';
 
 const store = configureStore({
   reducer: {
-    theme: themeSlice.reducers,
+    theme: themeReducer,
+    qna: qnaReducer,
+    sort: sortReducer,
+    reviews: reviewsReducer,
   },
 });
 

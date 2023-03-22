@@ -1,0 +1,43 @@
+[class^="star"] {
+  display: inline-block;
+  position: relative;
+  font-size: 100px;
+  color: #ddd;
+}
+
+.starFull:after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #f80;
+}
+.star1:after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #f80;
+}
+.star2:after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f80;
+}
+.star3:after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 75%;
+  overflow: hidden;
+  color: #f80;
+}
