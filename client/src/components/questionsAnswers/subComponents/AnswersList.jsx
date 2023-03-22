@@ -1,17 +1,18 @@
 import React from 'react';
-import AnswerEntry from './AnswerEntry.jsx';
+import AnswerEntry from './AnswerEntry';
 
-const AnswersList = ({answers}) => {
-  console.log('answers: ', answers);
-  for (let a in answers) {
-    console.log('a: ', a);
-    return (
-      <div>
-        AnswerList
-        <AnswerEntry />
-      </div>
-    )
+function AnswersList({ answersObj }) {
+  const answers = [];
+
+  for (const a in answersObj) {
+    answers.push(answersObj[a]);
   }
+
+  return (
+    <div className="max-w-3xl">
+      {answers.map((a) => <AnswerEntry answerData={a} key={a.id} />)}
+    </div>
+  );
 }
 
 export default AnswersList;
