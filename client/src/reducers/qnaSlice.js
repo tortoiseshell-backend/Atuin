@@ -1,25 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
-import questions from '../components/questionsAnswers/subComponents/initialData.jsx';
+import questions from '../components/questionsAnswers/subComponents/initialData';
 
 const initialState = {
-  questions: questions.results,
-  query: ''
-}
+  getProductId: '',
+  getQData: [],
+  allQuestions: questions.results,
+  viewQuestions: questions.results,
+  query: '',
+};
 
 export const qnaSlice = createSlice({
   name: 'qna',
   initialState,
   reducers: {
-    setQuery: (state, action) => {
-      state.query = action.payload;
+    saveGetResults: (state, action) => {
+      const data = action.payload;
+      state.getProductId = data.product_id;
+      state.allQuestions = data.results;
+      state.viewQuestions = data.results;
     },
     search: (state, action) => {
-      state.questions = state.questions.filter((q) => {
-        return q.question_body.includes(action.payload);
-      })
-    }
-  }
-})
+      const query = action.payload.toLowerCase();
+      if (query.length < 3) {
+        state.viewQuestions = state.allQuestions;
+      } else {
+        state.viewQuestions = state.allQuestions.filter(
+          (q) => (q.question_body).toLowerCase().includes(query),
+        );
+      }
+    },
+  },
+});
 
 export default qnaSlice.reducer;
-export const { setQuery, search } = qnaSlice.actions;
+export const { search, saveGetResults } = qnaSlice.actions;
