@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StarRatingView from '@components/StarRatingView';
+import StarRatingView from '@modular/StarRatingView';
 
 function ReviewListTile({ review }) {
   const date = new Date(review.date);

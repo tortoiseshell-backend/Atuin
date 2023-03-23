@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggle } from '@reducers/modalSlice';
+import Modal from '@modular/Modal';
 import ReviewList from './subComponents/ReviewList';
 import SortOptions from './subComponents/SortOptions';
 import RatingsBreakdown from './subComponents/RatingsBreakdown';
@@ -6,6 +9,12 @@ import ProductBreakdown from './subComponents/ProductBreakdown';
 import NewReviewModal from './subComponents/NewReviewModal';
 
 function RatingsReviews() {
+  const dispatch = useDispatch();
+  const rendered = useSelector((state) => state.modal.show);
+  const toggleModal = () => {
+    dispatch(toggle());
+  };
+
   return (
     <div className="p-5 border-solid border-2 border-sky-500 justify-center max-w-screen-lg mx-auto">
       <h3 className="text-gray-600">RATINGS & REVIEWS</h3>
@@ -23,7 +32,11 @@ function RatingsReviews() {
           </div>
         </div>
       </div>
-      <NewReviewModal className="flex-none" />
+      <div>
+        <h1>Not a modal</h1>
+        <button type="button" onClick={toggleModal}>Show Modal</button>
+        {rendered ? <Modal content={<NewReviewModal />} /> : null}
+      </div>
     </div>
   );
 }
