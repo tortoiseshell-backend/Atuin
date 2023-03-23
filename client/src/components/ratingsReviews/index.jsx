@@ -34,7 +34,7 @@ function RatingsReviews() {
       </div>
       <div>
         <h1>Not a modal</h1>
-        <button type="button" onClick={toggleModal}>Show Modal</button>
+        <button type="button" onClick={toggleModal}>Write a review</button>
         {rendered ? <Modal content={<NewReviewModal />} /> : null}
       </div>
     </div>

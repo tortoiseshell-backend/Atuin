@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveGetResults } from '../../reducers/qnaSlice';
+import { saveGetResults } from '@reducers/qnaSlice';
 import Search from './subComponents/Search';
 import QuestionsList from './subComponents/QuestionsList';
 import MoreAnsweredQuestions from './subComponents/MoreAnsweredQuestions';
