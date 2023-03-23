@@ -83,6 +83,10 @@ module.exports = {
         __dirname,
         './client/src/store/store.js',
       ),
+      '@modular': path.resolve(
+        __dirname,
+        './client/src/components/modular',
+      ),
     },
   },
 };

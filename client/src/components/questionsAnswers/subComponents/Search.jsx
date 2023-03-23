@@ -11,12 +11,12 @@ function Search() {
   };
 
   return (
-    <div className="m-5">
+    <div id="searchbar" className="m-5">
       <form className="flex border-solid border-[3px] border-violet-700">
         <div className="grow">
-          <input type="search" className="ml-4 w-full h-10 outline-none text-gray-500" placeholder="Have a question? Search for answers..." onChange={handleChange} />
+          <input type="text" className="ml-4 w-full h-10 outline-none text-gray-500" placeholder="Have a question? Search for answers..." onChange={handleChange} />
         </div>
-        <button type="button" className="rounded-full border-solid bg-violet-700 text-white px-2">Search</button>
+        <i className="fa-solid fa-magnifying-glass my-auto text-violet-700 px-3" />
       </form>
     </div>
   );

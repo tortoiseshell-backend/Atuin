@@ -9,7 +9,8 @@
       "@icons/*": ["./client/src/assets/icons/*"],
       "@images/*": ["./client/src/assets/images/*"],
       "@css/*": ["./client/src/css/*"],
-      "@store": ["./client/src/store/store.js"]
+      "@store": ["./client/src/store/store.js"],
+      "@modular/*": ["./client/src/components/modular/*"]
     },
   },
   "exclude": ["node_modules"]

@@ -10,12 +10,12 @@ function ReviewList() {
 
   const reviews = useSelector((state) => state.reviews.data);
   const page = useSelector((state) => state.reviews.page);
-  const sort = useSelector((state) => state.sort.sortBy);
+  // const sort = useSelector((state) => state.sort.sortBy);
   // const prodId = useSelector((state) => state.product.id);
 
   useEffect(() => {
     // dispatch(getReviewsAsync(page, sort, prodId));
-    dispatch(getReviewsAsync(1, 'relevant', 40435));
+    dispatch(getReviewsAsync(page, 'relevant', 40435));
   }, []);
 
   return (
