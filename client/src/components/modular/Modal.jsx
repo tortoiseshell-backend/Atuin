@@ -44,6 +44,7 @@ function Modal({ content }) {
   return (
     <>
       <div
+        data-testid="modal"
         className="relative rounded-b-xl rounded-t-lg"
         style={{
           ...modalStyles, padding: '0px', paddingTop: '27px',
@@ -80,7 +81,7 @@ function Modal({ content }) {
             borderRight: '0px',
           }}
         >
-          <div style={{ overflow: 'auto', height: '100%' }}>{content}</div>
+          <div data-testid="content" style={{ overflow: 'auto', height: '100%' }}>{content}</div>
         </div>
       </div>
       <button
