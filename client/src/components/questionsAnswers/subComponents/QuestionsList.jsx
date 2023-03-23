@@ -4,6 +4,7 @@ import QuestionEntry from './QuestionEntry';
 
 function QuestionsList() {
   const { viewQuestions } = useSelector((state) => state.qna);
+
   return (
     <div id="questionsList">
       {viewQuestions.length === 0
