@@ -11,12 +11,13 @@ const modalStyles = {
   zIndex: 9999,
   backgroundColor: '#FFF',
   padding: '50px',
-  borderRadius: '5px',
   boxShadow: '0px 0px 30px 5px rgba(0, 0, 0, 0.2)',
   width: '90%',
   height: '90%',
   maxWidth: '90%',
   maxHeight: '90%',
+  overflow: 'hidden',
+  borderRight: '0px',
 };
 const backdropStyles = {
   position: 'fixed',
@@ -43,7 +44,8 @@ function Modal({ content }) {
   return (
     <>
       <div
-        className="relative"
+        data-testid="modal"
+        className="relative rounded-b-xl rounded-t-lg"
         style={{
           ...modalStyles, padding: '0px', paddingTop: '27px',
         }}
@@ -55,6 +57,7 @@ function Modal({ content }) {
           className="fa fa-window-close bg-inherent absolute top-0 right-0 focus:outline-none"
           style={{
             color: '#e30606',
+            paddingRight: '4px',
             fontSize: '25px',
             transition: 'background-color 0.2s ease-in-out',
           }}
@@ -68,8 +71,17 @@ function Modal({ content }) {
           }}
         />
         <div style={{ borderTop: 'outset' }} />
-        <div className="rounded-b-md" style={{ height: '99.5%', overflow: 'auto', padding: '20px' }}>
-          {content}
+        <div
+          className="rounded-b-2xl"
+          style={{
+            border: '.5',
+            height: '99.5%',
+            overflow: 'hidden',
+            padding: '0px',
+            borderRight: '0px',
+          }}
+        >
+          <div data-testid="content" style={{ overflow: 'auto', height: '100%' }}>{content}</div>
         </div>
       </div>
       <button
