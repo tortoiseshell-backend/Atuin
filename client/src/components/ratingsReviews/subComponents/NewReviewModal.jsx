@@ -1,11 +1,10 @@
 import React from 'react';
+import ReviewList from './ReviewList';
 
-const NewReviewModal = () => {
+function NewReviewModal() {
   return (
-    <div>
-      NewReviewModal
-    </div>
-  )
+    <ReviewList />
+  );
 }
 
 export default NewReviewModal;

@@ -2,24 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function StarRatingView({ averageRating }) {
-
-  // Only to test partial stars
-
-  const randomNum = Math.random() * 3;
-  let result;
-
-  if (randomNum < 1) {
-    result = 0.25;
-  } else if (randomNum < 2) {
-    result = 0.5;
-  } else {
-    result = 0.75;
-  }
-
-  averageRating += result;
-
-  //
-
   const filledStars = Math.floor(averageRating);
   const filledQuarters = Math.floor((averageRating - filledStars) * 4);
 

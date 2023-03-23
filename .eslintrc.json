@@ -56,6 +56,10 @@
           [
             "@store",
             "./client/src/store/store.js"
+          ],
+          [
+            "@modular",
+            "./client/src/components/modular"
           ]
         ],
         "extensions": [
