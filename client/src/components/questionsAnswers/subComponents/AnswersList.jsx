@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { expandAnswers } from '../../../reducers/qnaSlice';
+import { expandAnswers } from '@reducers/qnaSlice';
 import AnswerEntry from './AnswerEntry';
 
 function AnswersList({ answersObj, qId }) {
