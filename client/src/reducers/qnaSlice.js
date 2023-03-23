@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import questions from '../components/questionsAnswers/subComponents/initialData';
 
 const initialState = {
   getProductId: '',
@@ -24,7 +23,7 @@ export const qnaSlice = createSlice({
     search: (state, action) => {
       const query = action.payload.toLowerCase();
       if (query.length < 3) {
-        state.viewQuestions = state.allQuestions;
+        state.viewQuestions = state.allQuestions.slice(0, 2);
       } else {
         state.viewQuestions = state.allQuestions.filter(
           (q) => (q.question_body).toLowerCase().includes(query),

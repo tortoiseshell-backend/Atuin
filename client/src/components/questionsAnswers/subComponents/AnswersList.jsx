@@ -31,7 +31,7 @@ function AnswersList({ answersObj, qId }) {
   return (
     <div>
       <div className="max-w-3xl">
-        {answers.map((a) => <AnswerEntry answerData={a} key={a.id} />)}
+        {answers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
       </div>
       <button type="button" className="text-gray-500 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button>
     </div>
