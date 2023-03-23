@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const styleSelectorStyle = 'style-unselected rounded-full bg-gray-100 h-14 w-14';
 
@@ -17,3 +18,9 @@ function StyleSelector({ style }) {
 }
 
 export default StyleSelector;
+
+StyleSelector.propTypes = {
+  style: PropTypes.shape({
+    style_id: PropTypes.number.isRequired,
+  }).isRequired,
+};

@@ -1,12 +1,12 @@
 @layer components {
   .style-unselected {
-    @apply border-1 border-secondary-200 border-solid;
+    @apply border-2 border-secondary-200 border-solid;
   }
   .style-unselected:hover {
-    @apply border-4 border-secondary-200 border-double;
+    @apply border-2 border-secondary-200 border-solid ring ring-white ring-offset-2 ring-offset-secondary-300/25;
   }
   .style-selected {
-    @apply border-3 border-secondary-300 border-solid;
+    @apply border-3 border-secondary-300 border-solid ring ring-secondary-300/25 ring-offset-2 ring-offset-secondary-300/50;
   }
   .view-standard {
     @apply w-full;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import StyleSelector from './styleSelector';
 import AddToCart from './addToCart';
 
@@ -10,8 +11,12 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 
 const productShopperStyle = 'grid auto-rows-max gap-2 p-4';
 
-function ProductShopper({ temp }) {
-  const styleSelectorList = temp.results.map((style) => (
+function ProductShopper() {
+  const styles = useSelector((state) => state.product.styles);
+  const name = useSelector((state) => state.product.name);
+  const category = useSelector((state) => state.product.category);
+  const defaultPrice = useSelector((state) => state.product.default_price);
+  const styleSelectorList = styles.map((style) => (
     <StyleSelector style={style} key={style.style_id} />
   ));
 
@@ -21,13 +26,13 @@ function ProductShopper({ temp }) {
         Read all reviews
       </div>
       <div className="row-span-1 text-sm">
-        {(temp.category || 'CATEGORY').toUpperCase()}
+        {(category || 'CATEGORY').toUpperCase()}
       </div>
       <div className="row-span-1 text-4xl font-extrabold">
-        {temp.name}
+        {name}
       </div>
       <div className="row-span-1 text-md mt-1 mb-1">
-        {currencyFormatter.format(temp.default_price)}
+        {currencyFormatter.format(defaultPrice)}
       </div>
       <div className="row-span-1">
         <div className="mb-2">

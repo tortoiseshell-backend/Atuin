@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import imageErrorHandler from '../scripts/imageErrorHandler';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  toggleViewState,
+} from '@reducers/productSlice';
+import defaultImage from '@images/place-holder.jpg';
+import checkValidImage from '../scripts/checkValidImage';
 
-let imageGalleryStyle = 'transition-[width] duration-300 relative h-full mx-auto z-10 bg-gray-100';
-
-function ImageGallery({ temp }) {
-  const [viewState, setViewState] = useState('standard');
-  function toggleViewState() {
-    if (viewState === 'standard') {
-      setViewState('expanded');
-      return;
-    }
-    setViewState('standard');
-  }
+function ImageGallery() {
+  const dispatch = useDispatch();
+  const isExpandedView = useSelector((state) => state.product.isExpandedView);
+  let photoURL = useSelector((state) => {
+    if (state.product.styles.length === 0) return '';
+    return state.product.styles[0].photos[0].url;
+  });
 
   useEffect(() => {
-    if (viewState === 'expanded') {
-      if (document.getElementById('product-overview')) {
-        const expandedWidth = document.getElementById('product-overview').clientWidth;
-        imageGalleryStyle = `transition-[width] duration-300 relative w-[${Number(expandedWidth)}px] h-full mx-auto z-10 bg-gray-100`;
-        console.log(expandedWidth);
-        return;
+    checkValidImage(photoURL, (isValid) => {
+      if (!isValid) { photoURL = defaultImage; }
+      if (document.getElementById('app')) {
+        document.getElementById('main-image').style.backgroundImage = `url("${photoURL}")`;
       }
-    }
-    console.log(viewState);
-    imageGalleryStyle = 'transition-[width] duration-300 relative w-full h-full mx-auto z-10 bg-gray-100';
-  }, [viewState]);
+    });
+  }, [photoURL]);
 
-  const photoURL = temp.results[2].photos[0].url;
-  const imageViewer = <img src={photoURL} alt="" className="w-full max-w-[600px] mx-auto" onError={(e) => imageErrorHandler(e)} />;
-  const expandButton = <button type="button" aria-label="expand" className="absolute top-2 right-2 z-20 h-7 w-7 rounded-full justify-center items-center bg-white text-black" onClick={toggleViewState}>+</button>;
+  function viewStateHandler() {
+    dispatch(toggleViewState());
+  }
+
+  let imageGalleryStyle = 'transition-[width] duration-300 relative w-full h-full max-v-screen mx-auto z-10 bg-gray-100';
+  if (isExpandedView) {
+    const expandedWidth = document.getElementById('app').clientWidth;
+    imageGalleryStyle = `transition-[width] duration-300 relative w-[${expandedWidth}px] h-full max-v-screen mx-auto z-10 bg-gray-100`;
+  }
+
+  const imageViewer = (
+    <div id="main-image" className="w-full h-full bg-no-repeat bg-contain bg-center" />
+  );
+  const expandButton = <button type="button" aria-label="expand image view" className="absolute top-2 right-2 z-20 h-7 w-7 rounded-full justify-center items-center bg-white text-black" onClick={viewStateHandler}>+</button>;
 
   return (
     <div className={imageGalleryStyle}>

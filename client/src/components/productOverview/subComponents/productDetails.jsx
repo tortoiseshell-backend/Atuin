@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ProductFeature from './productFeature';
 
 const productDetailsStyle = 'standard-grid';
 
-function ProductDetails({ slogan, description, features }) {
+function ProductDetails() {
+  const slogan = useSelector((state) => state.product.slogan);
+  const description = useSelector((state) => state.product.description);
+  const features = useSelector((state) => state.product.features);
   const productFeatures = features.map((feature) => (
     <ProductFeature feature={feature} key={feature.feature} />
   ));

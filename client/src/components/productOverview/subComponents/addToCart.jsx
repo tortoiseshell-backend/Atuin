@@ -1,8 +1,26 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  toggleFavorite,
+} from '@reducers/productSlice';
 
 const addToCartStyle = 'grid grid-rows-2';
 
 function AddToCart() {
+  const dispatch = useDispatch();
+  const isFavorited = useSelector((state) => state.product.isFavorited);
+
+  function favoriteHandler() {
+    dispatch(toggleFavorite());
+  }
+
+  let favoriteIcon = 'text-md text-left font-semibold text-secondary-300';
+  let favoriteButton = 'w-full h-14 p-2 px-3 standard-border flex justify-center items-center bg-white hover:bg-secondary-300/10';
+  if (isFavorited) {
+    favoriteIcon = 'text-md text-left font-semibold text-white';
+    favoriteButton = 'w-full h-14 p-2 px-3 standard-border flex justify-center items-center bg-secondary-300 hover:bg-secondary-300/95';
+  }
+
   const sizeSelector = (
     <div className="col-span-1 pt-2 pb-2">
       <select name="productSizes" id="productSizes" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300">
@@ -31,14 +49,14 @@ function AddToCart() {
       </div>
       <div className="col-span-1 grid grid-cols-[1fr_3.5rem] gap-4">
         <div className="col-span-1 pt-2 pb-2">
-          <button type="button" className="w-full h-14 p-2 px-3 standard-border flex justify-between items-center bg-secondary-300">
+          <button type="button" className="w-full h-14 p-2 px-3 standard-border flex justify-between items-center bg-secondary-300 hover:bg-secondary-300/95">
             <span className="text-sm text-left font-semibold text-white">ADD TO CART</span>
             <span className="text-sm text-left font-semibold text-white">+</span>
           </button>
         </div>
         <div className="col-span-1 pt-2 pb-2">
-          <button type="button" className="w-full h-14 p-2 px-3 standard-border flex justify-center items-center">
-            <span className="text-md text-left font-semibold text-secondary-300">&#9734;</span>
+          <button type="button" className={favoriteButton} onClick={favoriteHandler}>
+            <span className={favoriteIcon}>&#9734;</span>
           </button>
         </div>
       </div>
