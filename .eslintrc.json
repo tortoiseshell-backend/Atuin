@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "eslint:recommended", "plugin:jest/recommended"],
+  "extends": ["airbnb"],
   "ignorePatterns": [
     "bundle.js",
     "tailwind.config.js"
@@ -56,6 +56,10 @@
           [
             "@store",
             "./client/src/store/store.js"
+          ],
+          [
+            "@modular",
+            "./client/src/components/modular"
           ]
         ],
         "extensions": [
