@@ -3,12 +3,12 @@ import AnswersList from './AnswersList';
 
 function QuestionEntry({ q }) {
   return (
-    <div id="qEntry" className="grid grid-cols-[35px_626px_275px] p-4">
+    <div className="questionEntry grid grid-cols-[35px_1fr_275px] p-4">
       <h3 className="font-semibold text-gray-500">Q: </h3>
       <h3 className="inline font-semibold text-gray-500">{q.question_body}</h3>
       <div className="ml-5">
         <div className="flex justify-end">
-          <small className="text-gray-500 border border-solid border-r-gray-500">
+          <small className="text-gray-500 border-r border-solid border-r-gray-500">
             Helpful? &nbsp;&nbsp;
             <span className="underline text-violet-700">
               Yes
@@ -27,7 +27,7 @@ function QuestionEntry({ q }) {
       </div>
       <h3 className="mt-4 font-semibold text-gray-500">A: </h3>
       <div className="mt-4">
-        <AnswersList answersObj={q.answers} />
+        <AnswersList className="answersList" answersObj={q.answers} qId={q.question_id} />
       </div>
     </div>
   );
