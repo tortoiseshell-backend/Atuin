@@ -6,12 +6,3 @@
 /* e.g. These can include classes with grouped tailwind code */
 /* @import "XXX.css"; */
 @import './stars.css';
-
-@layer components {
-  * {
-    @apply border-2 border-slate-100 border-dashed;
-  }
-  *:hover {
-    @apply border-2 border-slate-800 border-solid;
-  }
-}

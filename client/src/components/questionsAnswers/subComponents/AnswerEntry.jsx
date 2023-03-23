@@ -11,14 +11,14 @@ function AnswerEntry({ answerData }) {
   return (
     <div className="mb-4">
       <p className="break-words text-gray-500">{answerData.body}</p>
-      <small className="text-gray-500 border border-solid border-r-gray-500">
+      <small className="text-gray-500">
         by &nbsp;
         {answererName}
         , &nbsp;
         {formattedDate}
         &nbsp;&nbsp;
       </small>
-      <small className="text-gray-500 border border-solid border-r-gray-500">
+      <small className="text-gray-500 border-x border-solid border-gray-500">
         &nbsp;&nbsp; Helpful? &nbsp;
         <span className="underline text-violet-700">Yes </span>
         &nbsp; (
