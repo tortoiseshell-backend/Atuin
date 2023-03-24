@@ -10,7 +10,7 @@
       "@images/*": ["./client/src/assets/images/*"],
       "@css/*": ["./client/src/css/*"],
       "@store": ["./client/src/store/store.js"],
-      "@modular/*": ["./client/src/components/modular/*"]
+      "@modular/*": ["./client/src/modular/*"]
     },
   },
   "exclude": ["node_modules"]
