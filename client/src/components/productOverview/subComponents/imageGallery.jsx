@@ -4,6 +4,7 @@ import {
   toggleViewState,
 } from '@reducers/productSlice';
 import defaultImage from '@images/place-holder.jpg';
+import ThumbnailCarousel from './thumbnailCarousel';
 import checkValidImage from '../scripts/checkValidImage';
 
 function ImageGallery() {
@@ -41,6 +42,7 @@ function ImageGallery() {
   return (
     <div className={imageGalleryStyle}>
       {expandButton}
+      <ThumbnailCarousel />
       {imageViewer}
     </div>
   );

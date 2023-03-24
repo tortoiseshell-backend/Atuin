@@ -16,9 +16,15 @@ function ProductShopper() {
   const name = useSelector((state) => state.product.name);
   const category = useSelector((state) => state.product.category);
   const defaultPrice = useSelector((state) => state.product.default_price);
-  const styleSelectorList = styles.map((style) => (
-    <StyleSelector style={style} key={style.style_id} />
-  ));
+  const selectedStyle = useSelector((state) => state.product.selectedStyleID);
+  let styleText = null;
+
+  const styleSelectorList = styles.map((style) => {
+    if (selectedStyle === style.style_id) {
+      styleText = style.name;
+    }
+    return <StyleSelector style={style} key={style.style_id} />;
+  });
 
   return (
     <div className={productShopperStyle}>
@@ -37,7 +43,7 @@ function ProductShopper() {
       <div className="row-span-1">
         <div className="mb-2">
           <span className="text-sm font-extrabold">STYLE &gt; </span>
-          <span className="text-sm">SELECTED STYLE</span>
+          <span className="text-sm">{styleText}</span>
         </div>
         <div className="grid grid-cols-4 grid-flow-row gap-3 w-0 min-w-max">
           {styleSelectorList}
