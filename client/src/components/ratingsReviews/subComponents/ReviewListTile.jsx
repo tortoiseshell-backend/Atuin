@@ -1,8 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
+import ImageTile from '@modular/ImageTile';
 
 function ReviewListTile({ review }) {
+  const dispatch = useDispatch();
+  const toggleModal = (photo) => {
+    dispatch(setModalProps({ photo }));
+    dispatch(setModalType('ImageTile'));
+    dispatch(toggle());
+  };
   const date = new Date(review.date);
   const outputDateString = (new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' })).format(date).replace(/\d+/, date.getDate().toString().padStart(2, '0'));
 
@@ -23,9 +32,16 @@ function ReviewListTile({ review }) {
           {'Body, 250 chars: '}
           {review.body}
         </div>
-        <div className="flex flex-row flex-wrap">
-          {review.photos.map((photo) => <img className="w-1/6 h-auto p-1" src={photo.url} key={photo.id} alt={photo.id} />)}
+        <div className={`grid grid-cols-${review.photos.length} gap-2`}>
+          {review.photos.map((photo) => (
+            <React.Fragment key={photo.id}>
+              <button type="button" onClick={() => toggleModal(photo)}>
+                <ImageTile photo={photo} />
+              </button>
+            </React.Fragment>
+          ))}
         </div>
+
         <div>
           {review.response !== null ? (
             <div>

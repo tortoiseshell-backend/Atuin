@@ -82,7 +82,7 @@ module.exports = {
       ),
       '@modular': path.resolve(
         __dirname,
-        './client/src/components/modular',
+        './client/src/modular',
       ),
     },
   },

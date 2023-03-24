@@ -59,7 +59,7 @@
           ],
           [
             "@modular",
-            "./client/src/components/modular"
+            "./client/src/modular"
           ]
         ],
         "extensions": [
