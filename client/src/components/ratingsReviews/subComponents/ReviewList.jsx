@@ -15,7 +15,7 @@ function ReviewList() {
 
   useEffect(() => {
     // dispatch(getReviewsAsync(page, sort, prodId));
-    dispatch(getReviewsAsync(page, 'relevant', 40435));
+    dispatch(getReviewsAsync(page, 'newest', 40435));
   }, []);
 
   return (

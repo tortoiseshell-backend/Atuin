@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle } from '@reducers/modalSlice';
-import PropTypes from 'prop-types';
+import ImageTile from '@modular/ImageTile';
+import NewReviewModal from '@components/ratingsReviews/subComponents/NewReviewModal';
 
 const modalStyles = {
   position: 'fixed',
@@ -29,16 +32,27 @@ const backdropStyles = {
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
 };
 
-function Modal({ content }) {
+function Modal() {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state) => state.modal.show);
+  const isOpen = useSelector((state) => state.modal.modalOpen);
+  const ModalComponent = useSelector((state) => state.modal.componentType);
+  const componentProps = useSelector((state) => state.modal.componentProps);
 
   function closeModal() {
-    dispatch(toggle());
+    dispatch(toggle([null, []]));
   }
 
   if (!isOpen) {
     return null;
+  }
+  function renderComponent() {
+    switch (ModalComponent) {
+      case 'NewReviewModal': return <NewReviewModal />;
+      case 'ImageTile': return <ImageTile photo={componentProps.photo} />;
+        // case '3': return <ComponentThree/>;
+        // case '4': return <ComponentFour/>;
+      default: return null;
+    }
   }
 
   return (
@@ -81,7 +95,9 @@ function Modal({ content }) {
             borderRight: '0px',
           }}
         >
-          <div data-testid="content" style={{ overflow: 'auto', height: '100%' }}>{content}</div>
+          <div data-testid="content" style={{ overflow: 'auto', height: '100%' }}>
+            {renderComponent()}
+          </div>
         </div>
       </div>
       <button
@@ -94,8 +110,5 @@ function Modal({ content }) {
     </>
   );
 }
-Modal.propTypes = {
-  content: PropTypes.element.isRequired,
-};
 
 export default Modal;

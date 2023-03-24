@@ -12,6 +12,6 @@ module.exports = {
     '^@images(.*)$': '<rootDir>/client/src/assets/images$1',
     '^@css(.*)$': '<rootDir>/client/src/css$1',
     '^@store$': '<rootDir>/client/src/store/store.js',
-    '^@modular(.*)$': '<rootDir>/client/src/components/modular$1',
+    '^@modular(.*)$': '<rootDir>/client/src/modular$1',
   },
 };
