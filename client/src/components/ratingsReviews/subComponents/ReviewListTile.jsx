@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
-import ImageTile from '@modular/ImageTile';
 
 function ReviewListTile({ review }) {
   const dispatch = useDispatch();
