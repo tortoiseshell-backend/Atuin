@@ -8,8 +8,8 @@ module.exports = {
   plugins: [],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
+      sm: '640px',
+      md: '800px',
       lg: '976px',
       xl: '1440px',
     },
@@ -33,6 +33,10 @@ module.exports = {
       spacing: {
         '128': '32rem',
         '144': '36rem',
+      },
+      borderWidth: {
+        '1': '1px',
+        '3': '3px',
       },
       borderRadius: {
         '4xl': '2rem',
