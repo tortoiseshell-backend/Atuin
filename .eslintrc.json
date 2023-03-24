@@ -10,7 +10,8 @@
       {
         "props": true,
         "ignorePropertyModificationsFor": [
-          "state"
+          "state",
+          "event"
         ]
       }
     ]
@@ -59,7 +60,7 @@
           ],
           [
             "@modular",
-            "./client/src/components/modular"
+            "./client/src/modular"
           ]
         ],
         "extensions": [
