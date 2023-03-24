@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: DIST_DIR,
     filename: 'bundle.js',
+    assetModuleFilename: 'images/[hash][ext][query]',
   },
   mode: 'development',
   module: {
@@ -31,7 +32,12 @@ module.exports = {
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ['file-loader'],
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images',
+          emitFile: true,
+        },
       },
     ],
   },

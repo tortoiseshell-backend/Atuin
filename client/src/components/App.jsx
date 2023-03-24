@@ -1,13 +1,14 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import Modal from '@modular/Modal';
 import { useSelector } from 'react-redux';
 import ProductOverview from './productOverview';
 import RatingsReviews from './ratingsReviews';
-import QuestionsAnswers from './questionsAnswers/index.jsx';
+import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
-const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
+const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto';
+
+// const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
 // const appStyles = 'container min-w-max mx-auto';
 function App() {
   const rendered = useSelector((state) => state.modal.modalOpen);

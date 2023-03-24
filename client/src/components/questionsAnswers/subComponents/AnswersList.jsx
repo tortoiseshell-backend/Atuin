@@ -10,12 +10,22 @@ function AnswersList({ answersObj, qId }) {
   let isOpen = aViewExpanded[qId] || false;
   const buttonText = aViewExpanded[qId] ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS';
 
-  const aViewLength = isOpen ? Object.keys(answersObj).length : 2;
-  const answers = [];
   const answerKeys = Object.keys(answersObj);
+  const allAnswers = [];
+  for (let i = 0; i < answerKeys.length; i += 1) {
+    allAnswers.push(answersObj[answerKeys[i]]);
+  }
+  const sortedAnswers = allAnswers.sort((a, b) => { if (a.answerer_name.toLowerCase() === 'seller' && b.answerer_name.toLowerCase() !== 'seller') { return -1; } if (b.answerer_name.toLowerCase() === 'seller' && a.answerer_name.toLowerCase() !== 'seller') { return 1; } return b.helpfulness - a.helpfulness; });
 
-  for (let i = 0; i < aViewLength; i += 1) {
-    answers.push(answersObj[answerKeys[i]]);
+  const viewAnswers = [];
+  if (answerKeys.length) {
+    let aViewLength = 1;
+    if (answerKeys.length > 1) {
+      aViewLength = isOpen ? answerKeys.length : 2;
+    }
+    for (let j = 0; j < aViewLength; j += 1) {
+      viewAnswers.push(sortedAnswers[j]);
+    }
   }
 
   function handleClick(e) {
@@ -31,9 +41,9 @@ function AnswersList({ answersObj, qId }) {
   return (
     <div>
       <div className="max-w-3xl">
-        {answers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
+        {viewAnswers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
       </div>
-      <button type="button" className="text-gray-500 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button>
+      {answerKeys.length > 2 ? <button type="button" className="text-gray-500 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
     </div>
   );
 }
