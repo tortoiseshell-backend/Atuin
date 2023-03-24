@@ -1,8 +1,8 @@
-import ImageGallery from '@components/productOverview/subComponents/ImageGallery';
+import ImageGallery from '@components/productOverview/subComponents/imageGallery';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import product from './testdata/product';
+// import product from './testdata/product';
 
 test('renders a div with id "tile"', () => {
   // render your component or app here
