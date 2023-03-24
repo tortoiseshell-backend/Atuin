@@ -1,7 +1,7 @@
 import React from 'react';
 
 function AnswerEntry({ answerData }) {
-  const answererName = answerData.answerer_name === 'Seller'
+  const answererName = answerData.answerer_name.toLowerCase() === 'Seller'
     ? <span className="font-semibold text-violet-700">Seller</span>
     : <span>{answerData.answerer_name}</span>;
 
