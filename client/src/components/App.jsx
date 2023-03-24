@@ -7,7 +7,7 @@ import QuestionsAnswers from './questionsAnswers/index.jsx';
 import RelatedItems from './relatedItems';
 
 const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
-// const appStyles = 'container min-w-max mx-auto';
+// const appStyles = 'container min-w-[400px] max-w-[900px] mx-auto';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <ProductOverview />
       </div>
       <div className="row-span-1">
-        <RatingsReviews />
+        {/* <RatingsReviews /> */}
       </div>
       <div className="row-span-1">
         <QuestionsAnswers />

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function AnswerEntry({ answerData }) {
   const answererName = answerData.answerer_name.toLowerCase() === 'Seller'
@@ -10,7 +11,9 @@ function AnswerEntry({ answerData }) {
 
   return (
     <div className="mb-4">
-      <p className="break-words text-gray-500">{answerData.body}</p>
+      <div>
+        <p className="inline-flex break-words text-gray-500">{answerData.body}</p>
+      </div>
       <small className="text-gray-500">
         by &nbsp;
         {answererName}
@@ -32,5 +35,15 @@ function AnswerEntry({ answerData }) {
     </div>
   );
 }
+
+AnswerEntry.propTypes = {
+  answerData: PropTypes.shape({
+    answerer_name: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    helpfulness: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default AnswerEntry;

@@ -11,7 +11,7 @@ const axios = require('axios');
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions';
 const API_CONFIG = {
   params: {
-    product_id: 40425, // TODO: replace with global product_id variable
+    product_id: 40435, // TODO: replace with global product_id variable
     page: 1,
     count: 5,
   },
@@ -34,11 +34,11 @@ function QuestionsAnswers() {
   }, []);
 
   return (
-    <div className="mx-auto min-w-max max-w-min p-5">
+    <div className="mx-auto p-5">
       <h3 className="text-gray-600">QUESTIONS & ANSWERS</h3>
       <Search />
       <QuestionsList />
-      <div className="flex">
+      <div>
         <MoreAnsweredQuestions />
         <AddQuestion />
       </div>

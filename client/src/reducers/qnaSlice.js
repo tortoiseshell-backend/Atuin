@@ -19,6 +19,8 @@ export const qnaSlice = createSlice({
       state.getProductId = data.product_id;
       state.allQuestions = data.results;
 
+      console.log('allQuestions: ', state.allQuestions);
+
       const sortedQuestions = Object.values(data.results).sort(
         (a, b) => b.question_helpfulness - a.question_helpfulness,
       );
@@ -47,5 +49,5 @@ export const qnaSlice = createSlice({
 
 export default qnaSlice.reducer;
 export const {
-  search, saveGetResults, moreViewQuestions, expandAnswers,
+  search, saveGetResults, moreViewQuestions, loadMoreQuestions, expandAnswers,
 } = qnaSlice.actions;
