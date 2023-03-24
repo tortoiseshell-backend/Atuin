@@ -18,12 +18,17 @@ export const qnaSlice = createSlice({
       const data = action.payload;
       state.getProductId = data.product_id;
       state.allQuestions = data.results;
-      state.viewQuestions = data.results.slice(0, state.qViewLength);
+
+      const sortedQuestions = Object.values(data.results).sort(
+        (a, b) => b.question_helpfulness - a.question_helpfulness,
+      );
+
+      state.viewQuestions = sortedQuestions.slice(0, state.qViewLength);
     },
     search: (state, action) => {
       const query = action.payload.toLowerCase();
       if (query.length < 3) {
-        state.viewQuestions = state.allQuestions.slice(0, 2);
+        state.viewQuestions = state.allQuestions.slice(0, state.qViewLength);
       } else {
         state.viewQuestions = state.allQuestions.filter(
           (q) => (q.question_body).toLowerCase().includes(query),

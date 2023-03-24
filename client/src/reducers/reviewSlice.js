@@ -23,25 +23,31 @@ export const reviewSlice = createSlice({
     nextPage: (state) => {
       state.page += 1;
     },
+    resetPage: (state) => {
+      state.page = 1;
+    },
   },
 });
 
-export const getReviewsAsync = (page, sortedBy, productId) => async (dispatch) => {
+export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
-    const response = await axios.get(`${API_URL}/?page=${page}&count=${10}&sort=${sortedBy}&product_id=${productId}`, API_CONFIG);
+    const state = getState();
+    const { sortedBy } = state.sort;
+    const prodId = state.product.id;
+    const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${10}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
+    console.log(response);
     dispatch(reviewSlice.actions.getReviews(response.data));
-    dispatch(reviewSlice.actions.nextPage());
+    // dispatch(reviewSlice.actions.nextPage());
   } catch (err) {
     console.error(err);
     throw new Error(err);
   }
 };
 
-export const addReviewAsync = (data, productId) => async (dispatch, getState) => {
+export const addReviewAsync = (data) => async (dispatch) => {
   try {
     await axios.post(API_URL, data, API_CONFIG);
-    const state = getState();
-    dispatch(getReviewsAsync(state.reviews.page, 10, 'newest', productId));
+    dispatch(getReviewsAsync());
   } catch (err) {
     console.error(err);
     throw new Error(err);
@@ -49,4 +55,4 @@ export const addReviewAsync = (data, productId) => async (dispatch, getState) =>
 };
 
 export default reviewSlice.reducer;
-export const { getReviews, nextPage } = reviewSlice.actions;
+export const { getReviews, nextPage, resetPage } = reviewSlice.actions;

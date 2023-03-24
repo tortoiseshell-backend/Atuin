@@ -46,7 +46,10 @@ module.exports = {
       title: 'Atelier',
       template: path.resolve(__dirname, '/templates/template.html'),
     }),
-    new Dotenv(),
+    new Dotenv({
+      path: './.env',
+      systemvars: true,
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -85,7 +88,7 @@ module.exports = {
       ),
       '@modular': path.resolve(
         __dirname,
-        './client/src/components/modular',
+        './client/src/modular',
       ),
     },
   },
