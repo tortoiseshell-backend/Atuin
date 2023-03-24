@@ -17,8 +17,7 @@ function ReviewListTile({ review }) {
 
   return (
     <div data-testid="tile" className="flex-col w-full">
-      ~-ReviewListTile-~
-      <div className="w-full max-w-lg overflow-x-auto">
+      <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full">
         {'Summary, 60 chars: '}
         {review.summary}
         <div className="flex flex-row flex-wrap">
@@ -32,13 +31,13 @@ function ReviewListTile({ review }) {
           {'Body, 250 chars: '}
           {review.body}
         </div>
-        <div className={`grid grid-cols-${review.photos.length} gap-2`}>
+        <div className="grid grid-cols-5 gap-2">
           {review.photos.map((photo) => (
-            <React.Fragment key={photo.id}>
-              <button type="button" onClick={() => toggleModal(photo)}>
-                <ImageTile photo={photo} />
-              </button>
-            </React.Fragment>
+            <button key={photo.id} type="button" onClick={() => toggleModal(photo)} style={{ flexGrow: 1 }}>
+              <div className="relative max-h-75px" style={{ paddingBottom: '100%' }}>
+                <img className="absolute top-0 left-0 w-full h-full object-cover" src={photo.url} alt={`Review ${photo.id}`} />
+              </div>
+            </button>
           ))}
         </div>
 

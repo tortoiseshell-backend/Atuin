@@ -15,13 +15,11 @@ const modalStyles = {
   backgroundColor: '#FFF',
   padding: '50px',
   boxShadow: '0px 0px 30px 5px rgba(0, 0, 0, 0.2)',
-  width: '90%',
-  height: '90%',
-  maxWidth: '90%',
-  maxHeight: '90%',
-  overflow: 'hidden',
+  maxWidth: '90vw',
+  maxHeight: '95vh',
   borderRight: '0px',
 };
+
 const backdropStyles = {
   position: 'fixed',
   top: '0',
@@ -49,8 +47,8 @@ function Modal() {
     switch (ModalComponent) {
       case 'NewReviewModal': return <NewReviewModal />;
       case 'ImageTile': return <ImageTile photo={componentProps.photo} />;
-        // case '3': return <ComponentThree/>;
-        // case '4': return <ComponentFour/>;
+      // case '3': return <ComponentThree/>;
+      // case '4': return <ComponentFour/>;
       default: return null;
     }
   }
@@ -72,6 +70,7 @@ function Modal() {
           style={{
             color: '#e30606',
             paddingRight: '4px',
+            paddingTop: '2px',
             fontSize: '25px',
             transition: 'background-color 0.2s ease-in-out',
           }}
@@ -86,7 +85,7 @@ function Modal() {
         />
         <div style={{ borderTop: 'outset' }} />
         <div
-          className="rounded-b-2xl"
+          className="rounded-b-xl"
           style={{
             border: '.5',
             height: '99.5%',
@@ -95,7 +94,7 @@ function Modal() {
             borderRight: '0px',
           }}
         >
-          <div data-testid="content" style={{ overflow: 'auto', height: '100%' }}>
+          <div data-testid="content" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
             {renderComponent()}
           </div>
         </div>
