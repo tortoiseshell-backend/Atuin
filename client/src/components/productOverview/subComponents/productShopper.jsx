@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import StyleSelector from './styleSelector';
 import AddToCart from './addToCart';
+import SocialMedia from './socialMedia';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -53,7 +54,7 @@ function ProductShopper() {
         <AddToCart />
       </div>
       <div className="row-span-1">
-        socialMedia
+        <SocialMedia />
       </div>
     </div>
   );

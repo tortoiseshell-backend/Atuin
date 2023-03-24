@@ -1,35 +1,40 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectStyle,
-} from '@reducers/productSlice';
-import defaultImage from '@images/place-holder.jpg';
-import checkValidImage from '../scripts/checkValidImage';
+import { selectImage } from '@reducers/productSlice';
+import scrollCarousel from '../scripts/scrollCarousel';
 
-function ThumbnailCard({ thumbnail }) {
+function ThumbnailCard({ thumbnail, index }) {
   const dispatch = useDispatch();
-  const thumbnailURL = thumbnail[1];
-  // const selectedStyle = useSelector((state) => state.product.selectedStyleID);
-  let thumbnailCardStyle = `style-unselected rounded-full bg-[url("${thumbnailURL}")] h-14 w-14`;
-  // if (selectedStyle === style.style_id) {
-  //   thumbnailImage = 'style-selected rounded-full bg-gray-100 h-14 w-14';
-  // }
+  const thumbnailURL = thumbnail[2];
+  const selectedImage = useSelector((state) => state.product.selectedImage);
+
+  let thumbnailCardStyle = 'object-cover rounded-md bg-gray-300 h-14 w-14';
+  if (selectedImage[2] === thumbnailURL) {
+    thumbnailCardStyle += ' image-selected';
+    scrollCarousel(index - 3, true);
+  }
+  const thumbnailRender = <img alt="thumbnail selector" src={thumbnailURL} className={thumbnailCardStyle} />;
 
   function selectImageHandler() {
+    dispatch(selectImage(thumbnail));
   }
 
   return (
-    <div>
-      <button type="button" aria-label={thumbnail[0]} className={thumbnailCardStyle} onClick={selectImageHandler} />
+    <div className="snap-always snap-start">
+      <button type="button" aria-label={thumbnail[0]} onClick={selectImageHandler}>
+        {thumbnailRender}
+      </button>
     </div>
   );
 }
 
 export default ThumbnailCard;
 
-// ThumbnailCard.propTypes = {
-//   style: PropTypes.shape({
-//     style_id: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
+ThumbnailCard.propTypes = {
+  thumbnail: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ])).isRequired,
+  index: PropTypes.number.isRequired,
+};

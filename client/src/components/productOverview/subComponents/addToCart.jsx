@@ -1,9 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  toggleFavorite,
-  selectSize,
-} from '@reducers/productSlice';
+import { toggleFavorite, selectSize } from '@reducers/productSlice';
 
 const addToCartStyle = 'grid grid-rows-2';
 

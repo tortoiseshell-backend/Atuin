@@ -15,8 +15,8 @@ const productSlice = createSlice({
     description: 'Laboris laborum eiusmod in labore laboris anim laborum id id occaecat laborum nulla nisi ullamco. Quis duis ullamco laboris dolor culpa eu. Cillum ipsum voluptate est qui.',
     features: [],
     styles: [],
-    selectedStyleID: 0,
-    selectedPhotoID: 0,
+    selectedStyleID: [],
+    selectedImage: [],
     selectedSKU: 0,
     isExpandedView: false,
     isFavorited: false,
@@ -34,7 +34,8 @@ const productSlice = createSlice({
       state.styles = action.payload.results;
       state.selectedStyleID = state.styles[0].style_id;
       state.selectedSKU = Object.keys(state.styles[0].skus)[0];
-      state.selectedPhotoID = 0;
+      const photo = state.styles[0].photos[0];
+      state.selectedImage = [state.selectedStyleID, 0, photo.thumbnail_url, photo.url];
     },
     selectStyle(state, action) {
       const prevStyleData = state.styles
@@ -51,6 +52,9 @@ const productSlice = createSlice({
     },
     selectSize(state, action) {
       state.selectedSKU = action.payload;
+    },
+    selectImage(state, action) {
+      state.selectedImage = action.payload;
     },
     toggleViewState(state) {
       state.isExpandedView = !state.isExpandedView;
@@ -73,4 +77,5 @@ export const {
   toggleFavorite,
   selectStyle,
   selectSize,
+  selectImage,
 } = productSlice.actions;

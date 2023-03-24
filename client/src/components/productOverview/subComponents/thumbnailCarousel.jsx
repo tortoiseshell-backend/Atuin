@@ -1,28 +1,36 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  toggleViewState,
-} from '@reducers/productSlice';
+import { useSelector } from 'react-redux';
 import ThumbnailCard from './thumbnailCard';
-
-const thumbnailCarouselStyle = 'absolute w-16 h-full overflow-y-auto top-6 left-6 border-2';
+import scrollCarousel from '../scripts/scrollCarousel';
 
 function ThumbnailCarousel() {
-  // const dispatch = useDispatch();
   let thumbnailList = [];
+  const thumbnailCarouselStyle = 'absolute top-4 left-2';
+  const galleryStyle = 'w-24 h-[435px] overflow-y-hidden snap-y p-2';
   useSelector((state) => state.product.styles).forEach((style) => {
-    thumbnailList = thumbnailList.concat(style.photos
-      .map((photo) => [style.style_id, photo.thumbnail_url]));
+    thumbnailList = thumbnailList.concat(style.photos.map((photo, index) => (
+      [style.style_id, index, photo.thumbnail_url, photo.url])));
   });
 
-  const thumbnailCards = thumbnailList.map((thumbnail) => {
-    return <ThumbnailCard thumbnail={thumbnail} key={thumbnail[1]} />;
-  });
+  function scrollUpHandler() { scrollCarousel(-7, false); }
+  function scrollDownHandler() { scrollCarousel(7, false); }
+
+  const thumbnailCards = thumbnailList
+    .map((thumbnail, index) => (
+      <ThumbnailCard
+        thumbnail={thumbnail}
+        index={index}
+        key={thumbnail[2]}
+      />
+    ));
+
   return (
     <div className={thumbnailCarouselStyle}>
-      <button type="button" aria-label="scroll up">up</button>
-      {thumbnailCards}
-      <button type="button" aria-label="scroll up">down</button>
+      <button type="button" aria-label="scroll up" className="mx-7" onClick={scrollUpHandler}><i className="fa-solid fa-caret-up text-3xl text-secondary-100 hover:text-secondary-200" /></button>
+      <div id="carousel-body" className={galleryStyle}>
+        {thumbnailCards}
+      </div>
+      <button type="button" aria-label="scroll up" className="mx-7" onClick={scrollDownHandler}><i className="fa-solid fa-caret-down text-3xl text-secondary-100 hover:text-secondary-200" /></button>
     </div>
   );
 }
