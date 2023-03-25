@@ -184,7 +184,7 @@ function ReviewListTile({ review }) {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.textShadow = '0 0 6px #FF7F00, 0 0 3px #300e7f, 0 0 6px #FF7F00';
+                  e.target.style.textShadow = '0 0 1px #ff5733, 0 0 4px #300e7f, 0 0 6px #6120d8';
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.textShadow = '';
@@ -209,7 +209,7 @@ function ReviewListTile({ review }) {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.textShadow = '0 0 6px #a4d8ff, 0 0 3px #300e7f, 0 0 6px #a4d8ff';
+                  e.target.style.textShadow = '0 0 1px #a4d8ff, 0 0 4px #300e7f, 0 0 6px #6120d8';
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.textShadow = '';
