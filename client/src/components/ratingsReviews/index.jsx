@@ -16,17 +16,16 @@ function RatingsReviews() {
 
   return (
     <div className="p-5 border-solid border-2 border-sky-500 justify-center max-w-screen-lg mx-auto">
-      <h3 className="text-gray-600">RATINGS & REVIEWS</h3>
-      <div id="container" className="flex flex-col md:flex-row">
-        <div id="breakdown" className="md:w-4/10 flex flex-col">
+      <div className="flex flex-col md:flex-row">
+        <div id="breakdown" className="w-full md:w-2/5">
           <RatingsBreakdown />
           <ProductBreakdown />
         </div>
-        <div id="reviews" className="md:w-6/10 flex flex-col max-w-full">
-          <div className="flex-none flex justify-start">
+        <div id="reviews" className="w-full md:w-3/5  mr-1em">
+          <div className="flex justify-between">
             <SortOptions />
           </div>
-          <div style={{ maxWidth: 'max-content' }} className="flex-auto max-w-full overflow-x-auto">
+          <div className="w-full max-w-full overflow-x-auto">
             <ReviewList />
           </div>
         </div>
@@ -36,6 +35,7 @@ function RatingsReviews() {
         <button type="button" onClick={toggleModal}>Write a review</button>
       </div>
     </div>
+
   );
 }
 

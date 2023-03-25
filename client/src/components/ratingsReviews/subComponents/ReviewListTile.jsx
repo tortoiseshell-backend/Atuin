@@ -1,8 +1,12 @@
-import React from 'react';
+/* eslint-disable no-param-reassign */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-nested-ternary */
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
+import markAsHelpful from '../scripts/markAsHelpful';
 
 function ReviewListTile({ review }) {
   const dispatch = useDispatch();
@@ -13,26 +17,76 @@ function ReviewListTile({ review }) {
   };
   const date = new Date(review.date);
   const outputDateString = (new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' })).format(date).replace(/\d+/, date.getDate().toString().padStart(2, '0'));
+  const [showFullReview, setShowFullReview] = useState(false);
+  const [showFullResponse, setShowFullResponse] = useState(false);
+  const [helpfulClicked, setHelpfulClicked] = useState(null);
+
+  const handleLikeClick = () => {
+    setHelpfulClicked('like');
+    markAsHelpful(review.review_id);
+  };
+
+  const handleDislikeClick = () => {
+    setHelpfulClicked('dislike');
+  };
 
   return (
-    <div data-testid="tile" className="flex-col w-full">
-      <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full">
-        {'Summary, 60 chars: '}
-        {review.summary}
+    <div
+      data-testid="tile"
+      className="flex-col w-full"
+      style={{
+        margin: '0.25em', padding: '0.5em', border: '1px solid grey',
+      }}
+    >
+      <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full -mr-5">
+        <div id="summary" className="font-bold">
+          {review.summary}
+        </div>
         <div className="flex flex-row flex-wrap">
 
           <StarRatingView averageRating={review.rating} />
-          <div className="flex items-center">
+          <div
+            style={{
+              margin: ' 0 0 0 0.5em',
+            }}
+            className="flex items-center"
+          >
             {outputDateString}
           </div>
         </div>
-        <div className="w-full break-words">
+        <div id="body" className="w-full break-words overflow-hidden text-overflow-ellipsis white-space-nowrap">
           {'Body, 250 chars: '}
-          {review.body}
+          {review.body.length <= 250 ? review.body : (showFullReview ? review.body : `${review.body.slice(0, 250)}... `)}
+          {review.body.length > 250 && (
+            <span
+              role="button"
+              tabIndex={0}
+              className="text-blue-500 cursor-pointer"
+              onClick={() => setShowFullReview(!showFullReview)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  setShowFullReview(!showFullReview);
+                }
+              }}
+            >
+              {showFullReview ? '  Show less' : 'Show more'}
+            </span>
+          )}
         </div>
-        <div className="grid grid-cols-5 gap-2">
+        <div id="photos" className="grid grid-cols-5 gap-2 mb-2 mt-2">
           {review.photos.map((photo) => (
-            <button key={photo.id} type="button" onClick={() => toggleModal(photo)} style={{ flexGrow: 1 }}>
+            <button
+              id="photo"
+              key={photo.id}
+              type="button"
+              onClick={() => toggleModal(photo)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  toggleModal(photo);
+                }
+              }}
+              style={{ flexGrow: 1 }}
+            >
               <div className="relative max-h-75px" style={{ paddingBottom: '100%' }}>
                 <img className="absolute top-0 left-0 w-full h-full object-cover" src={photo.url} alt={`Review ${photo.id}`} />
               </div>
@@ -40,21 +94,59 @@ function ReviewListTile({ review }) {
           ))}
         </div>
 
-        <div>
+        <div
+          style={{
+            margin: '0 0.5em 0 0',
+          }}
+        >
           {review.response !== null ? (
-            <div>
-              {'Response from seller: '}
-              {review.response}
+            <div
+              style={{
+                margin: '0 0.5em 0 0',
+              }}
+            >
+              {review.response !== null ? (
+                <div
+                  id="response"
+                  className="break-words overflow-hidden text-overflow-ellipsis white-space-nowrap"
+                  style={{
+                    margin: '0.25em',
+                    padding: '0.5em',
+                    border: '1px dotted grey',
+                    display: 'inline-block',
+                    maxWidth: '100%',
+                  }}
+                >
+                  {'Response from seller: '}
+                  {review.response.length <= 100 ? review.response : (showFullResponse ? review.response : `${review.response.slice(0, 100)}... `)}
+                  {(review.response.length > 100) && (
+                    <span
+                      role="button"
+                      tabIndex={0}
+                      className="text-blue-500 cursor-pointer"
+                      onClick={() => setShowFullResponse(!showFullResponse)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          setShowFullResponse(!showFullResponse);
+                        }
+                      }}
+                    >
+                      {showFullResponse ? '  Show less' : 'Show more'}
+                    </span>
+                  )}
+                </div>
+              )
+                : null}
             </div>
-          )
-            : null}
+
+          ) : null}
         </div>
-        <div>
-          {'User: '}
+
+        <div id="user">
+          {'Submitted by: '}
           {review.reviewer_name}
-          {'\t\tverified?'}
         </div>
-        <div>
+        <div id="recommend">
           {review.recommend ? (
             <div className="text-green-600">
               I recommend this product
@@ -62,9 +154,69 @@ function ReviewListTile({ review }) {
           )
             : null}
         </div>
-        <div>
+        <span className="mt-2">
           {review.helpfulness}
           {'\tusers found this helpful'}
+        </span>
+        <div id="helpful" className="grid grid-rows justify-center items-center">
+          <div className="mt-2 font-semibold">
+            Was this review helpful?
+          </div>
+          <div
+            id="helpfulButts"
+            className="flex justify-center gap-8 mt-2"
+          >
+            {helpfulClicked !== 'like' && (
+              <i
+                className="fa fa-duotone fa-thumbs-up fa-rotate-180"
+                aria-label="dislike button"
+                style={{
+                  color: '#300e7f',
+                  opacity: '0.8',
+                  cursor: 'pointer',
+                  fontSize: '2em',
+                  padding: '3px',
+                }}
+                onClick={handleDislikeClick}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    handleDislikeClick();
+                  }
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.textShadow = '0 0 6px #FF7F00, 0 0 3px #300e7f, 0 0 6px #FF7F00';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.textShadow = '';
+                }}
+              />
+            )}
+            {helpfulClicked !== 'dislike' && (
+              <i
+                className="fa fa-duotone fa-thumbs-up"
+                aria-label="like button"
+                style={{
+                  color: '#300e7f',
+                  opacity: '0.8',
+                  cursor: 'pointer',
+                  fontSize: '2em',
+                  padding: '3px',
+                }}
+                onClick={handleLikeClick}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    handleLikeClick();
+                  }
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.textShadow = '0 0 6px #a4d8ff, 0 0 3px #300e7f, 0 0 6px #a4d8ff';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.textShadow = '';
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

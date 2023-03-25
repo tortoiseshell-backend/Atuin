@@ -7,7 +7,7 @@ const productSlice = createSlice({
   name: 'product',
   initialState: {
     value: {},
-    id: 40435,
+    id: 40346,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
     default_price: 0,

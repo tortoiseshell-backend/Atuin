@@ -33,7 +33,7 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
     const { sortedBy } = state.sort;
-    const prodId = state.product.id;
+    const prodId = 40435; // state.product.id;  40344
     const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${10}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
     console.log(response);
     dispatch(reviewSlice.actions.getReviews(response.data));
