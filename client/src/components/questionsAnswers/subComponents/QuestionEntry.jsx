@@ -43,9 +43,9 @@ function QuestionEntry({ q }) {
           </small>
           <small>
             &nbsp;&nbsp;
-            <a href={markHelpful} className="underline text-violet-700">
+            <button type="button" className="underline text-violet-700" onClick={markHelpful}>
               Add Answer
-            </a>
+            </button>
           </small>
         </div>
       </div>

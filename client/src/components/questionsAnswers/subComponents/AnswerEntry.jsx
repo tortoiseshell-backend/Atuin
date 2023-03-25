@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function AnswerEntry({ answerData }) {
   const answererName = answerData.answerer_name.toLowerCase() === 'Seller'
     ? <span className="font-semibold text-violet-700">Seller</span>
-    : <span>{answerData.answerer_name}</span>;
+    : <span className="text-gray-500">{answerData.answerer_name}</span>;
 
   const date = new Date(answerData.date);
   const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -23,7 +23,7 @@ function AnswerEntry({ answerData }) {
       </small>
       <small className="text-gray-500 border-x border-solid border-gray-500">
         &nbsp;&nbsp; Helpful? &nbsp;
-        <span className="underline text-violet-700">Yes </span>
+        <span className="underline text-violet-700">Yes</span>
         &nbsp; (
         {answerData.helpfulness}
         ) &nbsp;&nbsp;

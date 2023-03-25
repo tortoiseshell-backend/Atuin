@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveGetResults } from '@reducers/qnaSlice';
+import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import Search from './subComponents/Search';
 import QuestionsList from './subComponents/QuestionsList';
 import MoreAnsweredQuestions from './subComponents/MoreAnsweredQuestions';
-import AddQuestion from './subComponents/AddQuestion';
+import AddQForm from './subComponents/AddQForm';
+
+// import AddQuestion from './subComponents/AddQuestion';
 
 const axios = require('axios');
 
@@ -22,6 +25,11 @@ const API_CONFIG = {
 
 function QuestionsAnswers() {
   const dispatch = useDispatch();
+  const toggleModal = () => {
+    dispatch(setModalProps(<AddQForm />));
+    dispatch(setModalType('AddQuestionForm'));
+    dispatch(toggle());
+  };
 
   useEffect(() => {
     axios.get(API_URL, API_CONFIG)
@@ -38,9 +46,9 @@ function QuestionsAnswers() {
       <h3 className="text-gray-600">QUESTIONS & ANSWERS</h3>
       <Search />
       <QuestionsList />
-      <div>
+      <div className="flex">
         <MoreAnsweredQuestions />
-        <AddQuestion />
+        <button type="button" className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4" onClick={toggleModal}>ADD A QUESTION</button>
       </div>
     </div>
   );
