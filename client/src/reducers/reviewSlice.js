@@ -15,29 +15,36 @@ export const reviewSlice = createSlice({
   initialState: {
     data: [],
     page: 1,
+    hasMore: true,
   },
   reducers: {
     getReviews: (state, action) => {
-      state.data = action.payload.results;
+      const reviews = action.payload.results;
+      state.hasMore = reviews.length === 100;
+      state.data = [...state.data, ...reviews];
+    },
+    resetReviews: (state) => {
+      state.data = [];
+      state.page = 1;
+      state.hasMore = true;
     },
     nextPage: (state) => {
       state.page += 1;
     },
-    resetPage: (state) => {
-      state.page = 1;
-    },
   },
 });
+
+export const { getReviews, resetReviews } = reviewSlice.actions;
 
 export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
     const { sortedBy } = state.sort;
     const prodId = 40435; // state.product.id;  40344
-    const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${10}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
-    console.log(response);
-    dispatch(reviewSlice.actions.getReviews(response.data));
-    // dispatch(reviewSlice.actions.nextPage());
+    console.log(state.reviews.page);
+    const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${100}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
+    dispatch(getReviews(response.data));
+    dispatch(reviewSlice.actions.nextPage());
   } catch (err) {
     console.error(err);
     throw new Error(err);
@@ -55,4 +62,3 @@ export const addReviewAsync = (data) => async (dispatch) => {
 };
 
 export default reviewSlice.reducer;
-export const { getReviews, nextPage, resetPage } = reviewSlice.actions;

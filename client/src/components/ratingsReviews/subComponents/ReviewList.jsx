@@ -1,100 +1,91 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getReviewsAsync,
+  resetReviews,
 } from '@reducers/reviewSlice';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
   const dispatch = useDispatch();
 
-  // const reviews = [
-  //   {
-  //     review_id: 1275619,
-  //     rating: 2,
-  //     summary: 'jhvk dshkjgh lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiui',
-  //     recommend: true,
-  //     response: 'This isf sduoifhg ;ohg dsiufdbvs ludfhlgiu hs;doifihg os;ofihg ;os hdf;go hsdfgoiuh sd;fuhg sdpuihg; ifudshg;ou hsdf;ogh ;souifdhg;osi hfg;uoshgn ;uhfdg ; ouhsfdg;ubis h;dfuhg ;sfdgh ;sodfhg ;ohdsfg;o hdsf;goh;sodfhgi ;dsofh  df;oigj ;sdfh g;sodf h ;osd',
-  //     body: 'jhvk dshkjgh udshgvlubdlfguivb lfuyibg ludsbfgl isbfdliug blsdifugb lusidfgb lsdfo yblig bludsifb g lifdbg ldsbfgl udsfb gl fudsb gl isdfbog bdsflgiu bl lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiu f lb lsdbfl kubsdflukgb lsudfbgl sbdflu h fsludf blsudfbv lsdfbv hkblsuifb ljksdfb luksdfh lkblfkbv ljskdfbvl usdhf dbf jhylifuv slfdlihsf ;ui h;iuhfd ldufh bl uhfd dsuihd l;iuhfd uih   iuhf',
-  //     date: '2022-07-18T00:00:00.000Z',
-  //     reviewer_name: 'ibraheeeeeem',
-  //     helpfulness: 0,
-  //     photos: [
-  //       {
-  //         id: 2459491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     review_id: 1295619,
-  //     rating: 2,
-  //     summary: 'jhvk dshkjgh lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiui',
-  //     recommend: true,
-  //     response: 'This isf sduoifhg ;ohg dsiufdbvs ludfhlgiu hs;doifihg os;ofihg ;os hdf;go hsdfgoiuh sd;fuhg sdpuihg; ifudshg;ou hsdf;ogh ;souifdhg;osi hfg;uoshgn ;uhfdg ; ouhsfdg;ubis h;dfuhg ;sfdgh ;sodfhg ;ohdsfg;o hdsf;goh;sodfhgi ;dsofh  df;oigj ;sdfh g;sodf h ;osd',
-  //     body: 'jhvk dshkjgh udshgvlubdlfguivb lfuyibg ludsbfgl isbfdliug blsdifugb lusidfgb lsdfo yblig bludsifb g lifdbg ldsbfgl udsfb gl fudsb gl isdfbog bdsflgiu bl lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiu f lb lsdbfl kubsdflukgb lsudfbgl sbdflu h fsludf blsudfbv lsdfbv hkblsuifb ljksdfb luksdfh lkblfkbv ljskdfbvl usdhf dbf jhylifuv slfdlihsf ;ui h;iuhfd ldufh bl uhfd dsuihd l;iuhfd uih   iuhf',
-  //     date: '2022-07-18T00:00:00.000Z',
-  //     reviewer_name: 'ibraheeeeeem',
-  //     helpfulness: 0,
-  //     photos: [
-  //       {
-  //         id: 2955491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //       {
-  //         id: 2955491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //       {
-  //         id: 2955491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //       {
-  //         id: 2955491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //       {
-  //         id: 2955491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     review_id: 1278619,
-  //     rating: 2,
-  //     summary: 'jhvk dshkjgh lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiui',
-  //     recommend: true,
-  //     response: 'This isf sduoifhg ;ohg dsiufdbvs ludfhlgiu hs;doifihg os;ofihg ;os hdf;go hsdfgoiuh sd;fuhg sdpuihg; ifudshg;ou hsdf;ogh ;souifdhg;osi hfg;uoshgn ;uhfdg ; ouhsfdg;ubis h;dfuhg ;sfdgh ;sodfhg ;ohdsfg;o hdsf;goh;sodfhgi ;dsofh  df;oigj ;sdfh g;sodf h ;osd',
-  //     body: 'jhvk dshkjgh udshgvlubdlfguivb lfuyibg ludsbfgl isbfdliug blsdifugb lusidfgb lsdfo yblig bludsifb g lifdbg ldsbfgl udsfb gl fudsb gl isdfbog bdsflgiu bl lguh lshudfg luhflgfuhubihsdflub lb ub luhlgiu f lb lsdbfl kubsdflukgb lsudfbgl sbdflu h fsludf blsudfbv lsdfbv hkblsuifb ljksdfb luksdfh lkblfkbv ljskdfbvl usdhf dbf jhylifuv slfdlihsf ;ui h;iuhfd ldufh bl uhfd dsuihd l;iuhfd uih   iuhf',
-  //     date: '2022-07-18T00:00:00.000Z',
-  //     reviewer_name: 'ibraheeeeeem',
-  //     helpfulness: 0,
-  //     photos: [
-  //       {
-  //         id: 2459491,
-  //         url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const reviews = useSelector((state) => state.reviews.data);
+  const hasMoreToFetch = useSelector((state) => state.reviews.hasMore);
+  const [renderedReviews, setRenderedReviews] = useState([]);
+  const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
+  const [scrollLocation, setScrollLocation] = useState([0, 5]);
 
   useEffect(() => {
+    dispatch(resetReviews());
     dispatch(getReviewsAsync());
-    // dispatch(getReviewsAsync(page, 'newest', 40435));
   }, []);
+
+  useEffect(() => {
+    if (displayMoreReviewsButton) setRenderedReviews(reviews.slice(0, 2));
+  }, [reviews]);
+
+  useEffect(() => {
+    setRenderedReviews(reviews.slice(scrollLocation[0], scrollLocation[1]));
+    console.log(reviews.slice(scrollLocation[0] - 5, scrollLocation[1] + 5));
+  }, [scrollLocation]);
+
+  const handleMoreReviews = () => {
+    dispatch(getReviewsAsync());
+  };
+
+  const buttonStyle = {
+    display: 'block',
+    margin: '0 auto',
+  };
+
+  const handleScroll = (e) => {
+    const percentScrolled = e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight);
+    const pastMiddle = percentScrolled >= 0.9;
+    if (pastMiddle) {
+      if ((reviews.length < scrollLocation[1] + 5) && hasMoreToFetch) {
+        dispatch(getReviewsAsync());
+      }
+      setScrollLocation((current) => [current[1], current[1] + 5]);
+    }
+  };
 
   return (
     <div
-      style={{
-        paddingRight: '10px',
-      }}
+      style={{ paddingRight: '10px' }}
     >
-      Review List
-      {reviews.map((review) => (
-        <ReviewListTile review={review} key={review.review_id} />
-      ))}
+      <div
+        id="reviewList"
+        style={{ maxHeight: 'auto' }}
+        onScroll={handleScroll}
+      >
+        <style>
+          {`
+      #reviewList::-webkit-scrollbar {
+        background: transparent;
+        width: 0;
+      }
+    `}
+        </style>
+        {renderedReviews.map((review) => (
+          <ReviewListTile review={review} key={review.review_id} />
+        ))}
+      </div>
+      {displayMoreReviewsButton && (
+        <button
+          type="button"
+          style={buttonStyle}
+          onClick={() => {
+            const list = document.getElementById('reviewList');
+            list.style.maxHeight = '65em';
+            list.style.overflow = 'scroll';
+            list.style.paddingRight = '10px';
+            setDisplayMoreReviewsButton(false);
+            handleMoreReviews();
+          }}
+        >
+          More Reviews
+        </button>
+      )}
     </div>
   );
 }
