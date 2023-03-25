@@ -9,7 +9,7 @@ function QuestionsList() {
     <div id="questionsList">
       {viewQuestions.length === 0
         ? (
-          <div className="w-[976px] text-gray-600">
+          <div className="text-gray-600">
             No results available.
           </div>
         )
