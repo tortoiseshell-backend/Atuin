@@ -23,7 +23,7 @@ function ReviewListTile({ review }) {
 
   const handleLikeClick = () => {
     setHelpfulClicked('like');
-    markAsHelpful(review.review_id);
+    if (helpfulClicked === null) markAsHelpful(review.review_id);
   };
 
   const handleDislikeClick = () => {
@@ -184,10 +184,15 @@ function ReviewListTile({ review }) {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.textShadow = '0 0 1px #ff5733, 0 0 4px #300e7f, 0 0 6px #6120d8';
+                  if (helpfulClicked === null) {
+                    e.target.style.textShadow = '0 0 1px #ff5733, 0 0 4px #300e7f, 0 0 6px #6120d8';
+                  } else {
+                    e.target.style.cursor = 'not-allowed';
+                  }
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.textShadow = '';
+                  e.target.style.cursor = 'auto';
                 }}
               />
             )}
@@ -209,10 +214,15 @@ function ReviewListTile({ review }) {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.textShadow = '0 0 1px #a4d8ff, 0 0 4px #300e7f, 0 0 6px #6120d8';
+                  if (helpfulClicked === null) {
+                    e.target.style.textShadow = '0 0 1px #a4d8ff, 0 0 4px #300e7f, 0 0 6px #6120d8';
+                  } else {
+                    e.target.style.cursor = 'not-allowed';
+                  }
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.textShadow = '';
+                  e.target.style.cursor = 'auto';
                 }}
               />
             )}
