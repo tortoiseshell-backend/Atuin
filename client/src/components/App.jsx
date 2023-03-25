@@ -8,8 +8,6 @@ import RelatedItems from './relatedItems';
 
 const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto';
 
-// const appStyles = 'grid grid-flow-row auto-rows-max mx-auto w-0 min-w-max';
-// const appStyles = 'container min-w-max mx-auto';
 function App() {
   const rendered = useSelector((state) => state.modal.modalOpen);
   return (

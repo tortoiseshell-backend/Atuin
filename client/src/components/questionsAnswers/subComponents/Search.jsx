@@ -12,7 +12,7 @@ function Search() {
 
   return (
     <div id="searchbar" className="m-5">
-      <form className="flex border-solid border-[3px] border-violet-700">
+      <form className="flex bg-white border-solid border-[3px] border-violet-700">
         <div className="grow">
           <input type="text" className="ml-4 w-full h-10 outline-none text-gray-500" placeholder="Have a question? Search for answers..." onChange={handleChange} />
         </div>

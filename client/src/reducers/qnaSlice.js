@@ -47,5 +47,5 @@ export const qnaSlice = createSlice({
 
 export default qnaSlice.reducer;
 export const {
-  search, saveGetResults, moreViewQuestions, expandAnswers,
+  search, saveGetResults, moreViewQuestions, loadMoreQuestions, expandAnswers,
 } = qnaSlice.actions;
