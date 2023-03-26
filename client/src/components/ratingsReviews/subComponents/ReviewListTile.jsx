@@ -38,6 +38,7 @@ function ReviewListTile({ review }) {
         margin: '0.25em', padding: '0.5em', border: '1px solid grey',
       }}
     >
+
       <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full -mr-5">
         <div id="summary" className="font-bold">
           {review.summary}

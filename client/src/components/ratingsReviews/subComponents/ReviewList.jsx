@@ -4,7 +4,6 @@ import {
   getReviewsAsync,
   resetReviews,
 } from '@reducers/reviewSlice';
-import $ from 'jquery';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
@@ -14,7 +13,7 @@ function ReviewList() {
   const hasMoreToFetch = useSelector((state) => state.reviews.hasMore);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
-  const [scrollLocation, setScrollLocation] = useState([0, 20]);
+  const [scrollLocation, setScrollLocation] = useState([0, 5]);
 
   useEffect(() => {
     dispatch(resetReviews());
@@ -26,7 +25,8 @@ function ReviewList() {
   }, [reviews]);
 
   useEffect(() => {
-    setRenderedReviews(reviews.slice(...scrollLocation));
+    setRenderedReviews(reviews.slice(scrollLocation[0], scrollLocation[1]));
+    console.log(reviews.slice(scrollLocation[0] - 5, scrollLocation[1] + 5));
   }, [scrollLocation]);
 
   const handleMoreReviews = () => {
@@ -39,17 +39,13 @@ function ReviewList() {
   };
 
   const handleScroll = (e) => {
-    const bottom = e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight;
-    const div = $(e.target);
-    console.log('--------------------\ne.target.scrollTop: ', e.target.scrollTop);
-    console.log('e.target.scrollHeight: ', e.target.scrollHeight);
-    console.log('e.target.scrollBottom: ', e.target.clientBottom);
-    console.log('e.target.height: ', div);
-    if (bottom) {
-      if ((reviews.length < scrollLocation[1] + 20) && hasMoreToFetch) {
+    const percentScrolled = e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight);
+    const pastMiddle = percentScrolled >= 0.9;
+    if (pastMiddle) {
+      if ((reviews.length < scrollLocation[1] + 5) && hasMoreToFetch) {
         dispatch(getReviewsAsync());
       }
-      setScrollLocation((current) => [current[1], current[1] + 20]);
+      setScrollLocation((current) => [current[1], current[1] + 5]);
     }
   };
 
@@ -62,6 +58,14 @@ function ReviewList() {
         style={{ maxHeight: 'auto' }}
         onScroll={handleScroll}
       >
+        <style>
+          {`
+      #reviewList::-webkit-scrollbar {
+        background: transparent;
+        width: 0;
+      }
+    `}
+        </style>
         {renderedReviews.map((review) => (
           <ReviewListTile review={review} key={review.review_id} />
         ))}
@@ -73,7 +77,8 @@ function ReviewList() {
           onClick={() => {
             const list = document.getElementById('reviewList');
             list.style.maxHeight = '65em';
-            list.style.overflowY = 'scroll';
+            list.style.overflow = 'scroll';
+            list.style.paddingRight = '10px';
             setDisplayMoreReviewsButton(false);
             handleMoreReviews();
           }}
