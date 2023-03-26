@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getReviewsAsync,
-  resetReviews,
-} from '@reducers/reviewSlice';
+import { getReviewsAsync, resetReviews } from '@reducers/reviewSlice';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
@@ -13,7 +11,7 @@ function ReviewList() {
   const hasMoreToFetch = useSelector((state) => state.reviews.hasMore);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
-  const [scrollLocation, setScrollLocation] = useState([0, 5]);
+  const elementPointerRef = useRef(null);
 
   useEffect(() => {
     dispatch(resetReviews());
@@ -21,66 +19,74 @@ function ReviewList() {
   }, []);
 
   useEffect(() => {
-    if (displayMoreReviewsButton) setRenderedReviews(reviews.slice(0, 2));
-  }, [reviews]);
+    console.log('elementPointerRef', elementPointerRef.current);
+  }, [renderedReviews]);
 
   useEffect(() => {
-    setRenderedReviews(reviews.slice(scrollLocation[0], scrollLocation[1]));
-    console.log(reviews.slice(scrollLocation[0] - 5, scrollLocation[1] + 5));
-  }, [scrollLocation]);
+    if (displayMoreReviewsButton) {
+      setRenderedReviews(reviews.slice(0, 2));
+    } else if (!displayMoreReviewsButton) {
+      setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
+    }
+  }, [reviews]);
 
-  const handleMoreReviews = () => {
-    dispatch(getReviewsAsync());
-  };
-
-  const buttonStyle = {
-    display: 'block',
-    margin: '0 auto',
+  const isElementOnScreen = (element, container) => {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    return (
+      elementRect.bottom > containerRect.top
+      && elementRect.top < containerRect.bottom
+    );
   };
 
   const handleScroll = (e) => {
-    const percentScrolled = e.target.scrollTop / (e.target.scrollHeight - e.target.clientHeight);
-    const pastMiddle = percentScrolled >= 0.9;
-    if (pastMiddle) {
-      if ((reviews.length < scrollLocation[1] + 5) && hasMoreToFetch) {
-        dispatch(getReviewsAsync());
-      }
-      setScrollLocation((current) => [current[1], current[1] + 5]);
+    e.preventDefault();
+    const list = e.target;
+    const elementPointer = elementPointerRef.current;
+    const scrolledToBottom = list.scrollTop + list.clientHeight >= (list.scrollHeight - 100);
+
+    if (scrolledToBottom && hasMoreToFetch) {
+      dispatch(getReviewsAsync());
+    }
+
+    if (isElementOnScreen(elementPointer, list)) {
+      setRenderedReviews((rendered) => reviews.slice(0, rendered.length + 5));
     }
   };
 
   return (
-    <div
-      style={{ paddingRight: '10px' }}
-    >
-      <div
-        id="reviewList"
-        style={{ maxHeight: 'auto' }}
-        onScroll={handleScroll}
-      >
+    <div id="listContainer" style={{ paddingRight: '10px' }}>
+      <div id="reviewList" style={{ maxHeight: 'auto' }} onScroll={handleScroll}>
         <style>
           {`
-      #reviewList::-webkit-scrollbar {
-        background: transparent;
-        width: 0;
-      }
-    `}
+            #reviewList::-webkit-scrollbar {
+              background: transparent;
+              width: 0;
+            }
+            scroll-behavior: smooth;
+          `}
         </style>
-        {renderedReviews.map((review) => (
-          <ReviewListTile review={review} key={review.review_id} />
+        {renderedReviews.map((review, idx) => (
+          <div
+            ref={idx === (renderedReviews.length - 5) ? elementPointerRef : null}
+            key={review.id}
+            id={`review-${idx}`}
+          >
+            <ReviewListTile review={review} />
+          </div>
         ))}
       </div>
-      {displayMoreReviewsButton && (
+      {displayMoreReviewsButton && reviews.length > 2 && (
         <button
           type="button"
-          style={buttonStyle}
+          style={{ display: 'block', margin: '0 auto' }}
           onClick={() => {
             const list = document.getElementById('reviewList');
-            list.style.maxHeight = '65em';
+            list.style.maxHeight = '45em';
             list.style.overflow = 'scroll';
             list.style.paddingRight = '10px';
             setDisplayMoreReviewsButton(false);
-            handleMoreReviews();
+            setRenderedReviews(reviews.slice(0, 10));
           }}
         >
           More Reviews
