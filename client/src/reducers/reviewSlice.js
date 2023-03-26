@@ -20,7 +20,7 @@ export const reviewSlice = createSlice({
   reducers: {
     getReviews: (state, action) => {
       const reviews = action.payload.results;
-      state.hasMore = reviews.length === 100;
+      state.hasMore = reviews.length === 10;
       state.data = [...state.data, ...reviews];
     },
     resetReviews: (state) => {
@@ -40,9 +40,9 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
     const { sortedBy } = state.sort;
-    const prodId = 40435; // state.product.id;  40344
+    const prodId = 40435; // state.product.id; 40344
     console.log(state.reviews.page);
-    const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${100}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
+    const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${10}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
     dispatch(getReviews(response.data));
     dispatch(reviewSlice.actions.nextPage());
   } catch (err) {
