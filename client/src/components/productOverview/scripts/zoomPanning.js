@@ -11,7 +11,8 @@ export default function ZoomPanning(event) {
   }
 
   function boundScroll(scroll, ratio) {
-    let result = scroll;
+    let result = scroll - 0.5;
+    result *= -Math.max(ratio * 250, 150);
     result = Math.max(result, -ratio * 100);
     result = Math.min(result, ratio * 100);
     return result;
@@ -19,22 +20,32 @@ export default function ZoomPanning(event) {
 
   getPhotoDimensions(imageURL, (err, img) => {
     if (err) return;
-    const aspectRatio = img.width / img.height;
-    const adjustmentRatioX = aspectRatio / 2;
-    const adjustmentRatioY = (1 / aspectRatio) / 2;
-    // console.log(aspectRatio, img.width, img.height)
+    const imageScaleRatio = Math.min(
+      container.offsetWidth / img.width,
+      container.offsetHeight / img.height,
+    );
 
-    const actualImageWidth = container.offsetWidth;
-    const actualImageHeight = container.offsetHeight;
-    const zoomScale = 2.5;
+    const imageDimensions = {
+      width: img.width * imageScaleRatio * 2.5,
+      height: img.height * imageScaleRatio * 2.5,
+    };
 
-    const percentXScroll = boundScroll(((event.clientX - container.getBoundingClientRect().x)
-      / (actualImageWidth) - 0.5) * -200, adjustmentRatioX);
-    const percentYScroll = boundScroll(((event.clientY - container.getBoundingClientRect().y)
-      / (actualImageHeight) - 0.5) * -200, adjustmentRatioY);
+    const scrollLimit = {
+      x: (imageDimensions.width - container.offsetWidth) / (2 * container.offsetWidth),
+      y: (imageDimensions.height - container.offsetHeight) / (2 * container.offsetHeight),
+    };
 
-    // console.log(img.width * zoomScale, img.height * zoomScale);
-    console.log(image.clientWidth, image.clientHeight, percentXScroll, percentYScroll);
-    image.style.transform = `translate(${percentXScroll}%, ${percentYScroll}%) scale(${zoomScale})`;
+    const xScroll = boundScroll(
+      (event.clientX - container.getBoundingClientRect().x)
+      / container.offsetWidth,
+      scrollLimit.x,
+    );
+    const yScroll = boundScroll(
+      (event.clientY - container.getBoundingClientRect().y)
+      / container.offsetHeight,
+      scrollLimit.y,
+    );
+
+    image.style.transform = `translate(${xScroll}%, ${yScroll}%) scale(${2.5})`;
   });
 }
