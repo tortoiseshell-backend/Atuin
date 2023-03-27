@@ -4,9 +4,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
+import { getReviewsAsync } from '@reducers/reviewSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
-import markAsHelpful from '../scripts/markAsHelpful';
+import markAsHelpful from '../scripts/API_Helper';
 
 function ReviewListTile({ review }) {
   const dispatch = useDispatch();
@@ -23,11 +24,28 @@ function ReviewListTile({ review }) {
 
   const handleLikeClick = () => {
     setHelpfulClicked('like');
-    if (helpfulClicked === null) markAsHelpful(review.review_id);
+    if (helpfulClicked === null) {
+      markAsHelpful(review.review_id);
+      dispatch(getReviewsAsync());
+    }
   };
 
   const handleDislikeClick = () => {
     setHelpfulClicked('dislike');
+  };
+
+  const sanitize = (text) => {
+    text = String(text);
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '/': '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return text.replace(reg, (match) => (map[match]));
   };
 
   return (
@@ -39,12 +57,12 @@ function ReviewListTile({ review }) {
       }}
     >
 
-      <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full -mr-5">
-        <div id="summary" className="font-bold">
-          {review.summary}
+      <div className="flex flex-col w-full max-w-lg overflow-x-auto h-full">
+        <div id="summary" className="font-bold w-full break-words overflow-hidden text-overflow-ellipsis white-space-nowrap">
+          {review.summary.slice(0, 60)}
         </div>
-        <div className="flex flex-row flex-wrap">
 
+        <div className="flex flex-row flex-wrap">
           <StarRatingView averageRating={review.rating} />
           <div
             style={{
@@ -56,8 +74,7 @@ function ReviewListTile({ review }) {
           </div>
         </div>
         <div id="body" className="w-full break-words overflow-hidden text-overflow-ellipsis white-space-nowrap">
-          {'Body, 250 chars: '}
-          {review.body.length <= 250 ? review.body : (showFullReview ? review.body : `${review.body.slice(0, 250)}... `)}
+          {review.body.length <= 250 ? review.body : (showFullReview ? sanitize(review.body) : `${sanitize(review.body.slice(0, 250))}... `)}
           {review.body.length > 250 && (
             <span
               role="button"
@@ -74,11 +91,12 @@ function ReviewListTile({ review }) {
             </span>
           )}
         </div>
-        <div id="photos" className="grid grid-cols-5 gap-2 mb-2 mt-2">
-          {review.photos.map((photo) => (
+        <div id="photos" className="grid grid-cols-5 gap-2 my-2">
+          {review.photos.map((photo, idx) => (
             <button
               id="photo"
-              key={photo.id}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${review.review_id}-${sanitize(photo.id)}-${idx}`}
               type="button"
               onClick={() => toggleModal(photo)}
               onKeyDown={(event) => {
@@ -89,7 +107,7 @@ function ReviewListTile({ review }) {
               style={{ flexGrow: 1 }}
             >
               <div className="relative max-h-75px" style={{ paddingBottom: '100%' }}>
-                <img className="absolute top-0 left-0 w-full h-full object-cover" src={photo.url} alt={`Review ${photo.id}`} />
+                <img className="absolute top-0 left-0 w-full h-full object-cover" src={photo.url} alt={`Review ${sanitize(photo.id)}`} />
               </div>
             </button>
           ))}
@@ -119,7 +137,7 @@ function ReviewListTile({ review }) {
                   }}
                 >
                   {'Response from seller: '}
-                  {review.response.length <= 100 ? review.response : (showFullResponse ? review.response : `${review.response.slice(0, 100)}... `)}
+                  {review.response.length <= 100 ? sanitize(review.response) : (showFullResponse ? sanitize(review.response) : `${sanitize(review.response.slice(0, 100))}... `)}
                   {(review.response.length > 100) && (
                     <span
                       role="button"
@@ -145,7 +163,7 @@ function ReviewListTile({ review }) {
 
         <div id="user">
           {'Submitted by: '}
-          {review.reviewer_name}
+          {sanitize(review.reviewer_name)}
         </div>
         <div id="recommend">
           {review.recommend ? (

@@ -20,7 +20,7 @@ function ThumbnailCarousel() {
       <ThumbnailCard
         thumbnail={thumbnail}
         index={index}
-        key={thumbnail[2]}
+        key={`Carousel-${thumbnail[0]}-${thumbnail[1]}`}
       />
     ));
 

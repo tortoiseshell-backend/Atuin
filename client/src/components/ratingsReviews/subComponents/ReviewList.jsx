@@ -1,25 +1,26 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReviewsAsync, resetReviews } from '@reducers/reviewSlice';
+import { getReviewsAsync } from '@reducers/reviewSlice';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
   const dispatch = useDispatch();
 
   const reviews = useSelector((state) => state.reviews.data);
-  const hasMoreToFetch = useSelector((state) => state.reviews.hasMore);
+  const sort = useSelector((state) => state.sort.sortedBy);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
+  const [reachedBottom, setReachedBottom] = useState(false);
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(resetReviews());
     dispatch(getReviewsAsync());
   }, []);
 
   useEffect(() => {
-    console.log('elementPointerRef', elementPointerRef.current);
+    if (elementPointerRef.current) console.log('elementPointerRef', elementPointerRef.current);
   }, [renderedReviews]);
 
   useEffect(() => {
@@ -30,6 +31,10 @@ function ReviewList() {
     }
   }, [reviews]);
 
+  useEffect(() => {
+    document.getElementById('reviewList').scrollTo(0, 0);
+  }, [sort]);
+
   const isElementOnScreen = (element, container) => {
     const elementRect = element.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
@@ -39,18 +44,23 @@ function ReviewList() {
     );
   };
 
+  const { characteristics } = useSelector((state) => state.reviews.metaData);
   const handleScroll = (e) => {
     e.preventDefault();
-    const list = e.target;
-    const elementPointer = elementPointerRef.current;
-    const scrolledToBottom = list.scrollTop + list.clientHeight >= (list.scrollHeight - 100);
 
-    if (scrolledToBottom && hasMoreToFetch) {
-      dispatch(getReviewsAsync());
-    }
+    if (!reachedBottom) {
+      const list = e.target;
+      const elementPointer = elementPointerRef.current;
+      const scrolledToBottom = (reviews.length - 5) === Number(elementPointer.getAttribute('data'));
 
-    if (isElementOnScreen(elementPointer, list)) {
-      setRenderedReviews((rendered) => reviews.slice(0, rendered.length + 5));
+      if (isElementOnScreen(elementPointer, list)) {
+
+        console.log('characteristics ', characteristics)
+        setRenderedReviews((rendered) => reviews.slice(0, rendered.length + 5));
+        if (scrolledToBottom) {
+          setReachedBottom(true);
+        }
+      }
     }
   };
 
@@ -69,12 +79,18 @@ function ReviewList() {
         {renderedReviews.map((review, idx) => (
           <div
             ref={idx === (renderedReviews.length - 5) ? elementPointerRef : null}
-            key={review.id}
+            key={`review-${review.id}-${idx}`}
             id={`review-${idx}`}
+            data={idx}
           >
-            <ReviewListTile review={review} />
+            <ReviewListTile key={`review-${review.id}-${idx}`} review={review} />
           </div>
         ))}
+        {reachedBottom && (
+          <span className="flex justify-center items-center">
+            All caught up!
+          </span>
+        )}
       </div>
       {displayMoreReviewsButton && reviews.length > 2 && (
         <button
