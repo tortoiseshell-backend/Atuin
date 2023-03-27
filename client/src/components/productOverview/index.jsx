@@ -14,7 +14,6 @@ function ProductOverview() {
   const dispatch = useDispatch();
   const productID = useSelector((state) => state.product.id);
   const productVAL = useSelector((state) => state.product.value);
-  if (Object.values(productVAL).length > 1) console.log(productVAL);
 
   useEffect(() => {
     dispatch(getProductDetailsAsync(productID));
