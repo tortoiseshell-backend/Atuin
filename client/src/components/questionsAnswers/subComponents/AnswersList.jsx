@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { expandAnswers } from '@reducers/qnaSlice';
+import PropTypes from 'prop-types';
 import AnswerEntry from './AnswerEntry';
 
 function AnswersList({ answersObj, qId }) {
@@ -15,7 +16,11 @@ function AnswersList({ answersObj, qId }) {
   for (let i = 0; i < answerKeys.length; i += 1) {
     allAnswers.push(answersObj[answerKeys[i]]);
   }
-  const sortedAnswers = allAnswers.sort((a, b) => { if (a.answerer_name.toLowerCase() === 'seller' && b.answerer_name.toLowerCase() !== 'seller') { return -1; } if (b.answerer_name.toLowerCase() === 'seller' && a.answerer_name.toLowerCase() !== 'seller') { return 1; } return b.helpfulness - a.helpfulness; });
+  const sortedAnswers = allAnswers.sort((a, b) => {
+    if (a.answerer_name.toLowerCase() === 'seller' && b.answerer_name.toLowerCase() !== 'seller') { return -1; }
+    if (b.answerer_name.toLowerCase() === 'seller' && a.answerer_name.toLowerCase() !== 'seller') { return 1; }
+    return b.helpfulness - a.helpfulness;
+  });
 
   const viewAnswers = [];
   if (answerKeys.length) {
@@ -47,5 +52,16 @@ function AnswersList({ answersObj, qId }) {
     </div>
   );
 }
+
+AnswersList.propTypes = {
+  answersObj: PropTypes.shape({
+    answerer_name: PropTypes.string,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    helpfulness: PropTypes.number,
+    id: PropTypes.number,
+  }).isRequired,
+  qId: PropTypes.number.isRequired,
+};
 
 export default AnswersList;

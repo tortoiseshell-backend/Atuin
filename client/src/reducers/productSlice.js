@@ -7,8 +7,8 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 const productSlice = createSlice({
   name: 'product',
   initialState: {
-    productList: [],
-    id: 40435,
+    value: {},
+    id: 40346,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
     default_price: 0,
