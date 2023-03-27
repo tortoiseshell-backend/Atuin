@@ -20,7 +20,7 @@ function AnswerEntry({ answerData }) {
   return (
     <div className="mb-4">
       <div>
-        <p className="inline-flex break-words text-gray-500">{answerData.body}</p>
+        <p className="inline-flex break-all text-gray-500">{answerData.body}</p>
       </div>
       <div className="">
         <small className="inline-block text-gray-500">
