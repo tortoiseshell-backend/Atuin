@@ -12,7 +12,7 @@ function MoreAnsweredQuestions() {
   };
 
   if (viewQuestions.length < allQuestions.length) {
-    return <button type="button" className="mt-3 mr-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4" onClick={handleClick}>MORE ANSWERED QUESTIONS</button>;
+    return <button type="button" className="mt-3 mr-3 border-solid border-[3px] border-violet-700 hover:bg-white text-violet-700 font-semibold p-4" onClick={handleClick}>MORE ANSWERED QUESTIONS</button>;
   }
 }
 
