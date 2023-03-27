@@ -35,7 +35,7 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
     const { sortedBy } = state.sort;
     const prodId = state.product.id;
     const response = await axios.get(`${API_URL}/?page=${state.reviews.page}&count=${10}&sort=${sortedBy}&product_id=${prodId}`, API_CONFIG);
-    console.log(response);
+    // console.log(response);
     dispatch(reviewSlice.actions.getReviews(response.data));
     // dispatch(reviewSlice.actions.nextPage());
   } catch (err) {

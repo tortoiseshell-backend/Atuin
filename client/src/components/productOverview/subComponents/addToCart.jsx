@@ -35,21 +35,27 @@ function AddToCart() {
 
   const sizeSelector = (
     <div className="col-span-1 pt-2 pb-2">
-      <select name="productSizes" id="productSizes" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300 hover:bg-secondary-300/5" value={selectedSKU} onChange={sizeChangeHandler}>
-        {listSKUs.map((indivSKU) => (
-          <option value={indivSKU} key={indivSKU}>{selectedStyle.skus[indivSKU].size}</option>
-        ))}
-      </select>
+      <label htmlFor="productSizes">
+        <span className="text-xs font-semibold">SIZE:</span>
+        <select name="productSizes" id="productSizes" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300 hover:bg-secondary-300/5" value={selectedSKU} onChange={sizeChangeHandler}>
+          {listSKUs.map((indivSKU) => (
+            <option value={indivSKU} key={indivSKU}>{selectedStyle.skus[indivSKU].size}</option>
+          ))}
+        </select>
+      </label>
     </div>
   );
 
   const quantitySelector = (
     <div className="col-span-1 pt-2 pb-2">
-      <select name="productQuantities" id="productQuantities" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300 hover:bg-secondary-300/5">
-        {sizeArray.map((quantity) => (
-          <option value={quantity} key={quantity}>{quantity}</option>
-        ))}
-      </select>
+      <label htmlFor="productSizes">
+        <span className="text-xs font-semibold">QUANTITY:</span>
+        <select name="productQuantities" id="productQuantities" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300 hover:bg-secondary-300/5">
+          {sizeArray.map((quantity) => (
+            <option value={quantity} key={quantity}>{quantity}</option>
+          ))}
+        </select>
+      </label>
     </div>
   );
 

@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getProductDetails from './scripts/getProductDetails';
+import getProductList from './scripts/getProductList';
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
 const productSlice = createSlice({
   name: 'product',
   initialState: {
-    value: {},
+    productList: [],
     id: 40435,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
@@ -22,8 +23,10 @@ const productSlice = createSlice({
     isFavorited: false,
   },
   reducers: {
+    setProductList(state, action) {
+      state.productList = action.payload;
+    },
     setProduct(state, action) {
-      state.value = action.payload;
       state.product_id = action.payload.id;
       state.name = action.payload.name;
       state.category = action.payload.category;
@@ -70,6 +73,11 @@ export const getProductDetailsAsync = (productID) => async (dispatch) => {
   dispatch(productSlice.actions.setProduct(responseData));
 };
 
+export const getProductListAsync = () => async (dispatch) => {
+  const responseData = await getProductList(API_URL);
+  dispatch(productSlice.actions.setProductList(responseData));
+};
+
 export default productSlice.reducer;
 export const {
   setProduct,
@@ -78,4 +86,6 @@ export const {
   selectStyle,
   selectSize,
   selectImage,
+  setProductID,
+  setProductList,
 } = productSlice.actions;
