@@ -42,6 +42,10 @@ export default StyleSelector;
 StyleSelector.propTypes = {
   style: PropTypes.shape({
     style_id: PropTypes.number.isRequired,
-    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+    photos: PropTypes.arrayOf(
+      PropTypes.shape({
+        thumbnail_url: PropTypes.string.isRequired,
+      }).isRequired,
+    ).isRequired,
   }).isRequired,
 };

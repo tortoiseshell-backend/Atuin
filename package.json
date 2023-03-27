@@ -10,8 +10,7 @@
     "test-PO": "jest -- client/src/components/productOverview/__tests__/productOverview.test.jsx",
     "test-RR": "jest -- client/src/components/ratingsReviews/__tests__/ratingsReviews.test.jsx",
     "test-QA": "jest -- client/src/components/questionsAnswers/__tests__/questionsAnswers.test.jsx",
-    "test-RI": "jest -- client/src/components/relatedItems/__tests__/relatedItems.test.jsx",
-    "prepare": "husky install"
+    "test-RI": "jest -- client/src/components/relatedItems/__tests__/relatedItems.test.jsx"
   },
   "main": "client/dist/bundle.js",
   "repository": {
