@@ -9,6 +9,6 @@ const API_CONFIG = {
 
 export default async function markAsHelpful(reviewId) {
   const response = await axios.put(`${API_URL}/${reviewId}/helpful`, {}, API_CONFIG);
-  console.log(response);
+  console.log(response.status);
   // return;
 }
