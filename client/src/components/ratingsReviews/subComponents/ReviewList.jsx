@@ -9,6 +9,7 @@ function ReviewList() {
   const dispatch = useDispatch();
 
   const reviews = useSelector((state) => state.reviews.data);
+  const sort = useSelector((state) => state.sort.sortedBy);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
   const [reachedBottom, setReachedBottom] = useState(false);
@@ -26,10 +27,13 @@ function ReviewList() {
     if (displayMoreReviewsButton) {
       setRenderedReviews(reviews.slice(0, 2));
     } else if (!displayMoreReviewsButton) {
-      document.getElementById('reviewList').scrollTo(0, 0);
       setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
     }
   }, [reviews]);
+
+  useEffect(() => {
+    document.getElementById('reviewList').scrollTo(0, 0);
+  }, [sort]);
 
   const isElementOnScreen = (element, container) => {
     const elementRect = element.getBoundingClientRect();
