@@ -3,7 +3,7 @@ import {
   render, fireEvent, screen, act, cleanup,
 } from '@testing-library/react';
 import React from 'react';
-import RatingsReviews from '@components/ratingsReviews/index';
+import App from '@components/ratingsReviews/index';
 import { Provider } from 'react-redux';
 import store from '@store';
 import axios from 'axios';

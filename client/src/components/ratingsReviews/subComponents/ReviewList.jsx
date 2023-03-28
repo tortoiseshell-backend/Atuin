@@ -1,27 +1,23 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
+import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getReviewsAsync } from '@reducers/reviewSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
   const dispatch = useDispatch();
-
-  const reviews = useSelector((state) => state.reviews.data);
-  const sort = useSelector((state) => state.sort.sortedBy);
-  const [renderedReviews, setRenderedReviews] = useState([]);
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
+  const { characteristics } = useSelector((state) => state.reviews.metaData);
+  const [renderedReviews, setRenderedReviews] = useState([]);
+  const reviews = useSelector((state) => state.reviews.data);
   const [reachedBottom, setReachedBottom] = useState(false);
+  const sort = useSelector((state) => state.sort.sortedBy);
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(getReviewsAsync());
-  }, []);
-
-  useEffect(() => {
-    if (elementPointerRef.current) console.log('elementPointerRef', elementPointerRef.current);
-  }, [renderedReviews]);
+    document.getElementById('reviewList').scrollTo(0, 0);
+  }, [sort]);
 
   useEffect(() => {
     if (displayMoreReviewsButton) {
@@ -30,10 +26,6 @@ function ReviewList() {
       setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
     }
   }, [reviews]);
-
-  useEffect(() => {
-    document.getElementById('reviewList').scrollTo(0, 0);
-  }, [sort]);
 
   const isElementOnScreen = (element, container) => {
     const elementRect = element.getBoundingClientRect();
@@ -44,7 +36,12 @@ function ReviewList() {
     );
   };
 
-  const { characteristics } = useSelector((state) => state.reviews.metaData);
+  const toggleModal = () => {
+    dispatch(setModalProps({}));
+    dispatch(setModalType('NewReviewModal'));
+    dispatch(toggle());
+  };
+
   const handleScroll = (e) => {
     e.preventDefault();
 
@@ -54,8 +51,6 @@ function ReviewList() {
       const scrolledToBottom = (reviews.length - 5) === Number(elementPointer.getAttribute('data'));
 
       if (isElementOnScreen(elementPointer, list)) {
-
-        console.log('characteristics ', characteristics)
         setRenderedReviews((rendered) => reviews.slice(0, rendered.length + 5));
         if (scrolledToBottom) {
           setReachedBottom(true);
@@ -92,22 +87,34 @@ function ReviewList() {
           </span>
         )}
       </div>
-      {displayMoreReviewsButton && reviews.length > 2 && (
-        <button
-          type="button"
-          style={{ display: 'block', margin: '0 auto' }}
-          onClick={() => {
-            const list = document.getElementById('reviewList');
-            list.style.maxHeight = '45em';
-            list.style.overflow = 'scroll';
-            list.style.paddingRight = '10px';
-            setDisplayMoreReviewsButton(false);
-            setRenderedReviews(reviews.slice(0, 10));
-          }}
-        >
-          More Reviews
-        </button>
-      )}
+      <div className="flex justify-center">
+        {displayMoreReviewsButton && reviews.length > 2 && (
+          <button
+            className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"
+            type="button"
+            onClick={() => {
+              const list = document.getElementById('reviewList');
+              list.style.maxHeight = '45em';
+              list.style.overflow = 'scroll';
+              list.style.paddingRight = '10px';
+              setDisplayMoreReviewsButton(false);
+              setRenderedReviews(reviews.slice(0, 10));
+            }}
+          >
+            More Reviews
+          </button>
+        )}
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"
+            onClick={toggleModal}
+          >
+            Write a review
+          </button>
+        </div>
+      </div>
+
     </div>
   );
 }
