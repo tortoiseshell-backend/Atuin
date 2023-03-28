@@ -32,7 +32,6 @@ function App() {
           }
         `}
       </style>
-      I am the App div
       <div className="row-span-1">
         <HeaderBar />
       </div>

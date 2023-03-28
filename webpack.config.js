@@ -87,9 +87,13 @@ module.exports = {
         __dirname,
         './client/src/store/store.js',
       ),
+      '@lib': path.resolve(
+        __dirname,
+        './client/src/lib/',
+      ),
       '@modular': path.resolve(
         __dirname,
-        './client/src/modular',
+        './client/src/modular/',
       ),
     },
   },

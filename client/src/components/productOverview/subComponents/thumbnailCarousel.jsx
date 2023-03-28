@@ -17,7 +17,7 @@ function ThumbnailCarousel() {
 
   const thumbnailCards = thumbnailList
     .map((thumbnail, index) => {
-      const key = `${thumbnail[0]}-${thumbnail[1]}`;
+      const key = `Carousel-${thumbnail[0]}-${thumbnail[1]}`;
       return (
         <ThumbnailCard
           thumbnail={thumbnail}
