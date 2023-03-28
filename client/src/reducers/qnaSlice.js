@@ -42,10 +42,15 @@ export const qnaSlice = createSlice({
     expandAnswers: (state, action) => {
       state.aViewExpanded[action.payload.qId] = action.payload.opened;
     },
+    updateQAndA: (state, action) => {
+      console.log('payload: ', action.payload);
+      state.allQuestions = [...state.allQuestions].push(action.payload);
+      console.log('allQuestions: ', state.allQuestions);
+    },
   },
 });
 
 export default qnaSlice.reducer;
 export const {
-  search, saveGetResults, moreViewQuestions, loadMoreQuestions, expandAnswers,
+  search, saveGetResults, moreViewQuestions, loadMoreQuestions, expandAnswers, updateQAndA,
 } = qnaSlice.actions;
