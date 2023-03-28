@@ -84,7 +84,7 @@ function NewReviewModal() {
 
   return (
     <div className="px-1 w-[min-content]">
-      <form>
+      <form onSubmit={(e) => { e.preventDefault(); console.log(e); }}>
 
         <div id="freeContent" className="grid grid-rows-3 gap-2 mt-4">
           {/* Stars */}
@@ -281,7 +281,7 @@ function NewReviewModal() {
 
 
         <div className="flex justify-end mt-10">
-          <button type="submit" onClick={(e) => { e.preventDefault(); console.log(e); }} className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Question</button>
+          <button type="submit" className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Question</button>
         </div>
       </form>
     </div>
