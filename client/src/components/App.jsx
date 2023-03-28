@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '@modular/Modal';
 import { useSelector } from 'react-redux';
+import HeaderBar from './headerBar';
 import ProductOverview from './productOverview';
 import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
@@ -33,7 +34,7 @@ function App() {
       </style>
       I am the App div
       <div className="row-span-1">
-        Header here
+        <HeaderBar />
       </div>
       <div className="row-span-1">
         <ProductOverview />

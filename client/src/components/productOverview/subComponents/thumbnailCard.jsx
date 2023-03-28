@@ -10,11 +10,12 @@ function ThumbnailCard({ thumbnail, index }) {
   const selectedImage = useSelector((state) => state.product.selectedImage);
 
   let thumbnailCardStyle = 'object-cover rounded-md bg-gray-300 h-14 w-14';
-  if (selectedImage[2] === thumbnailURL) {
+  if (selectedImage[0] === thumbnail[0] && selectedImage[1] === thumbnail[1]) {
     thumbnailCardStyle += ' image-selected';
     scrollCarousel(index - 3, true);
   }
-  const thumbnailRender = <img alt="thumbnail selector" src={thumbnailURL} className={thumbnailCardStyle} />;
+
+  const thumbnailRender = <img alt="" src={thumbnailURL} className={thumbnailCardStyle} />;
 
   function selectImageHandler() {
     dispatch(selectImage(thumbnail));

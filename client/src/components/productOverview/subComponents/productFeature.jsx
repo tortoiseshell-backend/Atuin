@@ -19,6 +19,6 @@ export default ProductFeatures;
 ProductFeatures.propTypes = {
   feature: PropTypes.shape({
     feature: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
   }).isRequired,
 };
