@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggle } from '@reducers/modalSlice';
 import ImageTile from '@modular/ImageTile';
 import NewReviewModal from '@components/ratingsReviews/subComponents/NewReviewModal';
-import AddQForm from '@components/questionsAnswers/subComponents/AddQForm';
+import AddQuestionForm from '@components/questionsAnswers/subComponents/AddQuestionForm';
+import AddAnswerForm from '@components/questionsAnswers/subComponents/AddAnswerForm';
 
 const modalStyles = {
   position: 'fixed',
@@ -48,9 +49,10 @@ function Modal() {
     switch (ModalComponent) {
       case 'NewReviewModal': return <NewReviewModal />;
       case 'ImageTile': return <ImageTile photo={componentProps.photo} />;
-      case 'AddQuestionForm': return <AddQForm />;
-      // case '3': return <ComponentThree/>;
-      // case '4': return <ComponentFour/>;
+      case 'AddQuestionForm': return <AddQuestionForm />;
+      case 'AddAnswerForm': return <AddAnswerForm qBodyId={componentProps.qBodyId} />;
+      // case '5': return <ComponentThree/>;
+      // case '6': return <ComponentFour/>;
       default: return null;
     }
   }

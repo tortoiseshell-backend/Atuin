@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '@modular/Modal';
 import { useSelector } from 'react-redux';
+import HeaderBar from './headerBar';
 import ProductOverview from './productOverview';
 import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
@@ -14,26 +15,26 @@ function App() {
     <div id="app" className={appStyles}>
       <style>
         {`
-        body::-webkit-scrollbar {
-          width: 2vh;
-          height: 2vh;
-        }
-        body::-webkit-scrollbar-thumb {
-          background-color: rgb(97 32 216);
-          border-radius: 6px;
-        }
-        body::-webkit-scrollbar-button {
-          display: none;
-        }
-        body::-webkit-scrollbar-track {
-          background-color: #e5f4ff;
-          border-radius: 6px;
-        }
-      `}
+          body::-webkit-scrollbar {
+            width: 2vh;
+            height: 2vh;
+          }
+          body::-webkit-scrollbar-thumb {
+            background-color: rgb(97 32 216);
+            border-radius: 6px;
+          }
+          body::-webkit-scrollbar-button {
+            display: none;
+          }
+          body::-webkit-scrollbar-track {
+            background-color: #e5f4ff;
+            border-radius: 6px;
+          }
+        `}
       </style>
       I am the App div
       <div className="row-span-1">
-        Header here
+        <HeaderBar />
       </div>
       <div className="row-span-1">
         <ProductOverview />

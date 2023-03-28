@@ -46,7 +46,7 @@ function ProductShopper() {
           <span className="text-sm font-extrabold">STYLE &gt; </span>
           <span className="text-sm">{styleText}</span>
         </div>
-        <div className="grid grid-cols-4 grid-flow-row gap-3 w-0 min-w-max">
+        <div className="grid grid-cols-4 grid-flow-row gap-x-2 w-0 min-w-max">
           {styleSelectorList}
         </div>
       </div>
