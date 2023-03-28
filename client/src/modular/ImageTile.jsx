@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 function ImageTile({ photo }) {
   return (
-    <div style={{
-      maxHeight: 'calc(95vh + 50px)', display: 'flex', justifyContent: 'baseline', alignItems: 'center', height: '100%',
-    }}
+    <div
+      data-testid="image-container"
+      style={{
+        maxHeight: 'calc(95vh + 50px)', display: 'flex', justifyContent: 'baseline', alignItems: 'center', height: '100%',
+      }}
     >
       <img
+        data-testid="image"
         style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
         src={photo.url}
         key={photo.id}

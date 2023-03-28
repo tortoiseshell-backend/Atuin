@@ -1,5 +1,6 @@
 module.exports = {
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
+  // setupFilesAfterEnv: ['./setupJest.js'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },

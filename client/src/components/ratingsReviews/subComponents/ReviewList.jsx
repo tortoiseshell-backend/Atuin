@@ -16,7 +16,7 @@ function ReviewList() {
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    document.getElementById('reviewList').scrollTo(0, 0);
+    //document.getElementById('reviewList').scrollTo(0, 0);
   }, [sort]);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function ReviewList() {
   };
 
   return (
-    <div id="listContainer" style={{ paddingRight: '10px' }}>
+    <div data-testid="listContainer" style={{ paddingRight: '10px' }}>
       <div id="reviewList" style={{ maxHeight: 'auto' }} onScroll={handleScroll}>
         <style>
           {`
