@@ -6,7 +6,9 @@ import {
 } from '@reducers/productSlice';
 import {
   getCartDataAsync,
+  initializeProductData,
 } from '@reducers/cartSlice';
+import { renderCart, hideCart } from '@lib/cartRender';
 import logoImage from '@images/ADIDA_logo_white.png';
 import CartDisplay from './subComponents/cartDisplay';
 
@@ -16,15 +18,13 @@ function HeaderBar() {
 
   useEffect(() => {
     dispatch(getProductListAsync());
+    dispatch(initializeProductData());
     dispatch(getCartDataAsync());
+    hideCart();
   }, []);
 
   function productChangeHandler(event) {
     dispatch(getProductDetailsAsync(event.target.value));
-  }
-
-  function toggleCartRender() {
-    document.getElementById('cart-list').style.display = 'none';
   }
 
   function renderProductList() {
@@ -48,7 +48,7 @@ function HeaderBar() {
   );
 
   return (
-    <>
+    <div id="header-bar">
       <div className="header-bar fixed w-full max-w-[950px] z-40 overflow-visible">
         <div className="header-bar w-full max-w-[950px] bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between p-2 pl-4 gap-x-4">
           <div className="my-auto max-w-[40%]">
@@ -56,13 +56,13 @@ function HeaderBar() {
           </div>
           <div className="max-w-[60%] flex my-auto">
             {productSelector}
-            <button type="button" aria-label="link to cart" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={toggleCartRender} onMouseLeave={toggleCartRender} /></button>
+            <button type="button" aria-label="link to cart" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>
           </div>
         </div>
-        {/* {CartDisplay} */}
+        <CartDisplay />
       </div>
       <div className="header-bar w-full max-w-[950px] h-14 bg-gradient-to-r from-primary-300 to-secondary-300" />
-    </>
+    </div>
   );
 }
 

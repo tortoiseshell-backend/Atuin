@@ -20,7 +20,7 @@ function ProductOverview() {
   }, [productID]);
 
   return (
-    <div className={productOverviewStyle}>
+    <div id="product-overview" className={productOverviewStyle}>
       <div id="gallery-container" className="row-span-1 col-span-1 bg-gray-100">
         <ImageGallery />
       </div>

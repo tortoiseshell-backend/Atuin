@@ -49,7 +49,7 @@ function ImageGallery() {
 
   const imageViewer = (
     <div id="main-image-container" className="w-full h-full overflow-hidden">
-      <div id="main-image" className="w-full h-full min-h-[530px] bg-no-repeat bg-contain bg-center" onMouseMove={zoomHandler} onMouseLeave={zoomHandler} onDoubleClick={zoomHandler} />
+      <div id="main-image" className="w-full h-full min-h-[530px] bg-no-repeat bg-contain bg-center" data-testid="main-image" onMouseMove={zoomHandler} onMouseLeave={zoomHandler} onDoubleClick={zoomHandler} />
     </div>
   );
 

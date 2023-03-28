@@ -14,8 +14,8 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 const productShopperStyle = 'grid auto-rows-max gap-2 p-4';
 
 function ProductShopper() {
-  const avgRating = useSelector((state) => state.reviews.metaData);
-  console.log(avgRating);
+  // const avgRating = useSelector((state) => state.reviews.metaData);
+  // console.log(avgRating);
   const styles = useSelector((state) => state.product.styles);
   const name = useSelector((state) => state.product.name);
   const category = useSelector((state) => state.product.category);

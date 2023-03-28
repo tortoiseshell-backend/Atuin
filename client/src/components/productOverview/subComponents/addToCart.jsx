@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite, selectSize } from '@reducers/productSlice';
-import { addCartItem } from '@reducers/cartSlice';
+import { addCartItem, getCartDataAsync } from '@reducers/cartSlice';
+import { renderCart, hideCart } from '@lib/cartRender';
 
 const addToCartStyle = 'grid grid-rows-2';
 
@@ -26,7 +27,10 @@ function AddToCart() {
   }
   function addToCartHandler() {
     const quantity = Number(document.getElementById('productQuantities').value);
-    addCartItem(productID, Number(selectedSKU), quantity);
+    dispatch(addCartItem(productID, Number(selectedSKU), quantity));
+    dispatch(getCartDataAsync());
+    renderCart();
+    setTimeout(hideCart, 3000);
   }
   function favoriteHandler() {
     dispatch(toggleFavorite());
