@@ -16,5 +16,6 @@ module.exports = {
     '^@css(.*)$': '<rootDir>/client/src/css$1',
     '^@store$': '<rootDir>/client/src/store/store.js',
     '^@modular(.*)$': '<rootDir>/client/src/modular$1',
+    '^@lib(.*)$': '<rootDir>/client/src/lib$1',
   },
 };

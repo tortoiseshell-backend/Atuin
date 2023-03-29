@@ -59,6 +59,10 @@
             "./client/src/store/store.js"
           ],
           [
+            "@lib",
+            "./client/src/lib"
+          ],
+          [
             "@modular",
             "./client/src/modular"
           ]

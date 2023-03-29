@@ -19,6 +19,7 @@ const productSlice = createSlice({
     selectedStyleID: [],
     selectedImage: [],
     selectedSKU: 0,
+    sale_price: null,
     isExpandedView: false,
     isFavorited: false,
   },
@@ -37,6 +38,7 @@ const productSlice = createSlice({
       state.styles = action.payload.results;
       state.selectedStyleID = state.styles[0].style_id;
       state.selectedSKU = Object.keys(state.styles[0].skus)[0];
+      state.sale_price = state.styles[0].sale_price;
       const photo = state.styles[0].photos[0];
       state.selectedImage = [state.selectedStyleID, 0, photo.thumbnail_url, photo.url];
     },
@@ -45,13 +47,13 @@ const productSlice = createSlice({
         .find((style) => style.style_id === state.selectedStyleID);
 
       const selectedSize = prevStyleData.skus[state.selectedSKU].size;
-
       state.selectedStyleID = action.payload;
       const styleData = state.styles
         .find((style) => style.style_id === state.selectedStyleID);
       state.selectedSKU = Object.keys(styleData.skus)
         .find((sku) => styleData.skus[sku].size === selectedSize)
         || Object.keys(styleData.skus)[0];
+      state.sale_price = styleData.sale_price;
     },
     selectSize(state, action) {
       state.selectedSKU = action.payload;
