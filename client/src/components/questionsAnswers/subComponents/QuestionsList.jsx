@@ -14,7 +14,7 @@ function QuestionsList() {
           </div>
         )
         : (
-          <div>
+          <div data-testid="qEntries">
             {viewQuestions.map((q) => (
               <QuestionEntry q={q} key={q.question_id} />
             ))}

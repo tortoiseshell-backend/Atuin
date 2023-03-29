@@ -52,7 +52,7 @@ function QuestionEntry({ q }) {
       </div>
       <div className="helpfulAddAnswer border-l border-l-gray-300">
         <div className="flex flex-col items-end">
-          <small className="mb-2 text-end text-gray-500">
+          <small className="mb-2 text-end text-gray-400">
             Helpful?&nbsp;&nbsp;
             <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markHelpful}>
               Yes

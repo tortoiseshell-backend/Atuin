@@ -32,7 +32,7 @@ function AddQuestionForm() {
   };
 
   return (
-    <div className="m-5">
+    <div id="addQuestion" className="m-5">
 
       <h3 className="text-xl font-bold text-gray-500">Ask Your Question</h3>
       <h5 className="font-semibold text-gray-500">
@@ -40,7 +40,7 @@ function AddQuestionForm() {
         {name}
       </h5>
 
-      <form className="m-10" onSubmit={submitHandler}>
+      <form className="m-[5%]" onSubmit={submitHandler}>
         <div className="yourQuestion my-5">
           <p className="text-gray-500">
             Your Question

@@ -60,7 +60,7 @@ function AddAnswerForm({ qBodyId }) {
         {qBodyId.qBody}
       </h5>
 
-      <form className="m-10" onSubmit={submitHandler}>
+      <form className="m-[5%]" onSubmit={submitHandler}>
         <div className="yourQuestion my-5">
           <p className="text-gray-500">
             Your Answer
