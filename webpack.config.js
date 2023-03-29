@@ -12,7 +12,6 @@ module.exports = {
     filename: 'bundle.js',
     assetModuleFilename: 'images/[hash][ext][query]',
   },
-  mode: 'development',
   devtool: 'source-map',
   module: {
     rules: [
@@ -28,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, 'src/css'),
+        // include: path.resolve(__dirname, 'src/css'),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
@@ -87,9 +86,13 @@ module.exports = {
         __dirname,
         './client/src/store/store.js',
       ),
+      '@lib': path.resolve(
+        __dirname,
+        './client/src/lib/',
+      ),
       '@modular': path.resolve(
         __dirname,
-        './client/src/modular',
+        './client/src/modular/',
       ),
     },
   },

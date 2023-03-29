@@ -1,11 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite, selectSize } from '@reducers/productSlice';
+import { addCartItem, getCartDataAsync } from '@reducers/cartSlice';
+import { renderCart, hideCart } from '@lib/cartRender';
 
 const addToCartStyle = 'grid grid-rows-2';
 
 function AddToCart() {
   const dispatch = useDispatch();
+  const productID = useSelector((state) => state.product.id);
   const isFavorited = useSelector((state) => state.product.isFavorited);
   const styles = useSelector((state) => state.product.styles);
   const selectedStyleID = useSelector((state) => state.product.selectedStyleID);
@@ -21,6 +24,13 @@ function AddToCart() {
 
   function sizeChangeHandler(event) {
     dispatch(selectSize(event.target.value));
+  }
+  function addToCartHandler() {
+    const quantity = Number(document.getElementById('productQuantities').value);
+    dispatch(addCartItem(productID, Number(selectedSKU), quantity));
+    dispatch(getCartDataAsync());
+    renderCart();
+    setTimeout(hideCart, 3000);
   }
   function favoriteHandler() {
     dispatch(toggleFavorite());
@@ -48,7 +58,7 @@ function AddToCart() {
 
   const quantitySelector = (
     <div className="col-span-1 pt-2 pb-2">
-      <label htmlFor="productSizes">
+      <label htmlFor="productQuantities">
         <span className="text-xs font-semibold">QUANTITY:</span>
         <select name="productQuantities" id="productQuantities" className="w-full h-14 p-2 standard-border text-sm font-semibold text-secondary-300 hover:bg-secondary-300/5">
           {sizeArray.map((quantity) => (
@@ -67,7 +77,7 @@ function AddToCart() {
       </div>
       <div className="col-span-1 grid grid-cols-[1fr_3.5rem] gap-4">
         <div className="col-span-1 pt-2 pb-2">
-          <button type="button" className="w-full h-14 p-2 px-3 standard-border flex justify-between items-center bg-secondary-300 hover:bg-secondary-300/95">
+          <button type="button" className="w-full h-14 p-2 px-3 standard-border flex justify-between items-center bg-secondary-300 hover:bg-secondary-300/95" onClick={addToCartHandler}>
             <span className="text-sm text-left font-semibold text-white">ADD TO CART</span>
             <span className="text-sm text-left font-semibold text-white">+</span>
           </button>
