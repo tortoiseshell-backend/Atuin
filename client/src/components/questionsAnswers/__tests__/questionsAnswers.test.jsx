@@ -29,9 +29,10 @@ mock.onAny().reply(async (config) => {
   if (endpoint) {
     try {
       const response = await generateMockResponse(method, endpoint);
-      console.log(response);
-      return [200, response];
+      console.log('\n--------------------------\ninputs: ', JSON.stringify(method, null, 2), JSON.stringify(endpoint, null, 2), '\nResponse:\n', JSON.stringify(response, null, 2));
+      return response;
     } catch (err) {
+      console.log(err);
       throw new Error(err);
     }
   } else {
