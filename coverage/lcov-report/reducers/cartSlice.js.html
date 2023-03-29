@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">74.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/27</span>
+                <span class='fraction'>20/27</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.08% </span>
+                <span class="strong">78.26% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/23</span>
+                <span class='fraction'>18/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -151,7 +151,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -163,14 +163,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,13 +181,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,8 +221,8 @@ const cartSlice = createSlice({
     itemInfo: {},
   },
   reducers: {
-<span class="fstat-no" title="function not covered" >    se</span>tAllProducts(state, action) {
-<span class="cstat-no" title="statement not covered" >      state.itemInfo = action.payload;</span>
+    setAllProducts(state, action) {
+      state.itemInfo = action.payload;
     },
 <span class="fstat-no" title="function not covered" >    se</span>tCartItems(state, action) {
 <span class="cstat-no" title="statement not covered" >      state.items = action.payload;</span>
@@ -233,15 +233,15 @@ const cartSlice = createSlice({
   },
 });
 &nbsp;
-export const initializeProductData = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (dispatch) =&gt; {</span>
-  const productIds = <span class="cstat-no" title="statement not covered" >await getProductList(API_URL);</span>
-  const allProducts = <span class="cstat-no" title="statement not covered" >{};</span>
-<span class="cstat-no" title="statement not covered" >  await Promise.all(productIds.map(<span class="fstat-no" title="function not covered" >as</span>ync (product) =&gt; {</span>
-    const responseData = <span class="cstat-no" title="statement not covered" >await getProductDetails(product.id, API_URL);</span>
-<span class="cstat-no" title="statement not covered" >    responseData.results.forEach(<span class="fstat-no" title="function not covered" >(s</span>tyle) =&gt; {</span>
-      const skuList = <span class="cstat-no" title="statement not covered" >Object.keys(style.skus);</span>
-<span class="cstat-no" title="statement not covered" >      skuList.forEach(<span class="fstat-no" title="function not covered" >(s</span>ku) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        allProducts[sku] = {</span>
+export const initializeProductData = () =&gt; async (dispatch) =&gt; {
+  const productIds = await getProductList(API_URL);
+  const allProducts = {};
+  await Promise.all(productIds.map(async (product) =&gt; {
+    const responseData = await getProductDetails(product.id, API_URL);
+    responseData.results.forEach((style) =&gt; {
+      const skuList = Object.keys(style.skus);
+      skuList.forEach((sku) =&gt; {
+        allProducts[sku] = {
           id: product.id,
           name: product.name,
           style: style.name,
@@ -252,13 +252,13 @@ export const initializeProductData = <span class="fstat-no" title="function not 
         };
       });
     });
-<span class="cstat-no" title="statement not covered" >    return responseData;</span>
+    return responseData;
   }));
-<span class="cstat-no" title="statement not covered" >  dispatch(cartSlice.actions.setAllProducts(allProducts));</span>
+  dispatch(cartSlice.actions.setAllProducts(allProducts));
 };
 &nbsp;
-export const getCartDataAsync = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (dispatch) =&gt; {</span>
-  const responseData = <span class="cstat-no" title="statement not covered" >await getCartData(API_URL);</span>
+export const getCartDataAsync = () =&gt; async (dispatch) =&gt; {
+  const responseData = await getCartData(API_URL);
 <span class="cstat-no" title="statement not covered" >  dispatch(cartSlice.actions.setCartItems(responseData));</span>
 };
 &nbsp;
@@ -283,7 +283,7 @@ export const {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-29T01:52:40.354Z
+                at 2023-03-29T17:55:21.909Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25.92% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/27</span>
+                <span class='fraction'>24/30</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28% </span>
+                <span class="strong">82.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/25</span>
+                <span class='fraction'>23/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,7 +121,13 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -141,7 +147,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,21 +155,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,7 +186,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,33 +207,40 @@ export const reviewSlice = createSlice({
   name: 'reviews',
   initialState: {
     data: [],
-    metaData: [],
+    metaData: {},
   },
   reducers: {
-    getReviews: <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >      [state.data, state.metaData] = action.payload;</span>
+    getReviews: (state, action) =&gt; {
+      [state.data, state.metaData] = action.payload;
     },
   },
 });
 &nbsp;
 export const { getReviews } = reviewSlice.actions;
 &nbsp;
-export const getReviewsAsync = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (dispatch, getState) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const state = <span class="cstat-no" title="statement not covered" >getState();</span>
-    const prodId = <span class="cstat-no" title="statement not covered" >40344;</span> // state.product.id; 40435
+export const getReviewsAsync = () =&gt; async (dispatch, getState) =&gt; {
+  try {
+    const state = getState();
+    const prodId = 40346; // state.product.id; 40435
 &nbsp;
-    const metaResponse = <span class="cstat-no" title="statement not covered" >await axios.get(`${API_URL}/meta/?product_id=${prodId} `, API_CONFIG);</span>
-    const reviewCount = <span class="cstat-no" title="statement not covered" >Object.values(metaResponse.data.recommended).reduce(</span>
-<span class="fstat-no" title="function not covered" >      (t</span>rueR, falseR) =&gt; <span class="cstat-no" title="statement not covered" >Number(falseR) + Number(trueR),</span>
+    const metaResponse = await axios.get(`${API_URL}/meta/?product_id=${prodId} `, API_CONFIG);
+    const reviewCount = Object.values(metaResponse.data.recommended).reduce(
+      (trueR, falseR) =&gt; Number(falseR) + Number(trueR),
     );
-    const { ratings, recommended, characteristics } = <span class="cstat-no" title="statement not covered" >metaResponse;</span>
+    const { ratings, recommended, characteristics } = metaResponse.data;
 &nbsp;
-    const reviewResponse = <span class="cstat-no" title="statement not covered" >await axios.get(`${API_URL}/?page=1&amp;count=${reviewCount}&amp;sort=${state.sort.sortedBy}&amp;product_id=${prodId}`, API_CONFIG);</span>
-    const responseTuple = <span class="cstat-no" title="statement not covered" >[reviewResponse.data.results, { ratings, recommended, characteristics }];</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(getReviews(responseTuple));</span>
+    const sumOfKeyValues = Object.entries(ratings)
+      .reduce((sum, [key, value]) =&gt; sum + Number(key) * Number(value), 0);
+    const sumOfValues = Object.values(ratings)
+      .reduce((sum, value) =&gt; sum + Number(value), 0);
+    const averageRating = sumOfKeyValues / sumOfValues;
+&nbsp;
+    const reviewResponse = await axios.get(`${API_URL}/?page=1&amp;count=${reviewCount}&amp;sort=${state.sort.sortedBy}&amp;product_id=${prodId}`, API_CONFIG);
+    const responseTuple = [reviewResponse.data.results, {
+      ratings, recommended, characteristics, averageRating,
+    }];
+    dispatch(getReviews(responseTuple));
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error(err);</span>
 <span class="cstat-no" title="statement not covered" >    throw new Error(err);</span>
   }
 };
@@ -231,7 +250,6 @@ export const addReviewAsync = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    await axios.post(API_URL, data, API_CONFIG);</span>
 <span class="cstat-no" title="statement not covered" >    dispatch(getReviewsAsync());</span>
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    console.error(err);</span>
 <span class="cstat-no" title="statement not covered" >    throw new Error(err);</span>
   }
 };
@@ -244,7 +262,7 @@ export default reviewSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-29T01:52:40.354Z
+                at 2023-03-29T17:55:21.909Z
             </div>
         <script src="../prettify.js"></script>
         <script>

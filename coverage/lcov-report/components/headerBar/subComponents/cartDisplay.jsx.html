@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>6/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">36.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/11</span>
             </div>
         
             
@@ -87,22 +87,30 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,21 +121,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { useSelector } from 'react-redux';
-// import {
-//   getProductListAsync,
-//   getProductDetailsAsync,
-// } from '@reducers/productSlice';
 import CartItem from './cartItem';
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >CartDisplay(</span>) {
-  const CartData = <span class="cstat-no" title="statement not covered" >useSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.cart.items)</span>;</span>
+export default function CartDisplay() {
+  const cartData = useSelector((state) =&gt; state.cart.items);
+  const allProductData = useSelector((state) =&gt; state.cart.itemInfo);
 &nbsp;
-  const cartList = <span class="cstat-no" title="statement not covered" >CartData.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;CartItem item={item} /&gt;</span>
-  ));
+  const cartList = cartData.map(<span class="fstat-no" title="function not covered" >(i</span>) =&gt; {
+    const item = <span class="cstat-no" title="statement not covered" >{ ...i, ...allProductData[i.sku_id] };</span>
+<span class="cstat-no" title="statement not covered" >    item.count = Number(item.count);</span>
+<span class="cstat-no" title="statement not covered" >    item.original_price = Number(item.original_price);</span>
+<span class="cstat-no" title="statement not covered" >    item.sale_price = Number(item.sale_price);</span>
+<span class="cstat-no" title="statement not covered" >    if (allProductData[i.sku_id]) {</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;CartItem item={item} key={item.sku_id} /&gt;;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="absolute top-13 right-4 h-64 w-64 bg-white shadow-lg p-4"&gt;
+  return (
+    &lt;div id="cart-list" className="collapse transition-[max-height] duration-500 absolute top-13 right-4 w-72 bg-white shadow-lg p-4 overflow-y-auto"&gt;
       &lt;div className="text-md font-bold"&gt;SHOPPING CART&lt;/div&gt;
       &lt;div className="p-4"&gt;
         {cartList}
@@ -142,7 +154,7 @@ export default function <span class="fstat-no" title="function not covered" >Car
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-28T21:35:37.959Z
+                at 2023-03-29T17:55:21.909Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

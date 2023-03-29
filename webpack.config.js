@@ -13,6 +13,14 @@ module.exports = {
     assetModuleFilename: 'images/[hash][ext][query]',
   },
   devtool: 'source-map',
+  devServer: {
+    client: {
+      overlay: {
+        errors: false,
+        warnings: false,
+      },
+    },
+  },
   module: {
     rules: [
       {

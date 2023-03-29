@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -145,28 +145,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,14 +162,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,48 +209,48 @@ import {
 } from '@reducers/productSlice';
 import {
   getCartDataAsync,
+  initializeProductData,
 } from '@reducers/cartSlice';
+import { renderCart, hideCart } from '@lib/cartRender';
 import logoImage from '@images/ADIDA_logo_white.png';
 import CartDisplay from './subComponents/cartDisplay';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >HeaderBar(</span>) {
-  const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
-  const productListData = <span class="cstat-no" title="statement not covered" >useSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.product.productList)</span>;</span>
+function HeaderBar() {
+  const dispatch = useDispatch();
+  const productListData = useSelector((state) =&gt; state.product.productList);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(getProductListAsync());</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(getCartDataAsync());</span>
+  useEffect(() =&gt; {
+    dispatch(getProductListAsync());
+    dispatch(initializeProductData());
+    dispatch(getCartDataAsync());
+    hideCart();
   }, []);
 &nbsp;
   function <span class="fstat-no" title="function not covered" >productChangeHandler(</span>event) {
 <span class="cstat-no" title="statement not covered" >    dispatch(getProductDetailsAsync(event.target.value));</span>
   }
 &nbsp;
-  function <span class="fstat-no" title="function not covered" >toggleCartRender(</span>) {
-<span class="cstat-no" title="statement not covered" >    document.getElementById('cart-list').style.display = 'none';</span>
-  }
-&nbsp;
-  function <span class="fstat-no" title="function not covered" >renderProductList(</span>) {
-    const productList = <span class="cstat-no" title="statement not covered" >productListData.map(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;option value={product.id} key={product.id}&gt;{product.name}&lt;/option&gt;</span>
+  function renderProductList() {
+    const productList = productListData.map((product) =&gt; (
+      &lt;option value={product.id} key={product.id}&gt;{product.name}&lt;/option&gt;
     ));
-<span class="cstat-no" title="statement not covered" >    productList.unshift(</span>
+    productList.unshift(
       &lt;option value="none" key="none" disabled&gt;
         you can use axios
       &lt;/option&gt;,
     );
-<span class="cstat-no" title="statement not covered" >    return productList;</span>
+    return productList;
   }
 &nbsp;
   const productSelector = (
-<span class="cstat-no" title="statement not covered" >    &lt;div className="max-w-[80%]"&gt;</span>
+    &lt;div className="max-w-[80%]"&gt;
       &lt;select name="productSelector" id="product-selector" className="w-full p-2 border-b-2 border-white bg-transparent text-lg text-white text-clip" defaultValue="none" onChange={productChangeHandler}&gt;
         {renderProductList()}
       &lt;/select&gt;
     &lt;/div&gt;
   );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div id="header-bar"&gt;
       &lt;div className="header-bar fixed w-full max-w-[950px] z-40 overflow-visible"&gt;
         &lt;div className="header-bar w-full max-w-[950px] bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between p-2 pl-4 gap-x-4"&gt;
@@ -259,10 +259,10 @@ function <span class="fstat-no" title="function not covered" >HeaderBar(</span>)
           &lt;/div&gt;
           &lt;div className="max-w-[60%] flex my-auto"&gt;
             {productSelector}
-            &lt;button type="button" aria-label="link to cart" className="w-[50px] mt-2 ml-4 mr-2"&gt;&lt;i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={toggleCartRender} onMouseLeave={toggleCartRender} /&gt;&lt;/button&gt;
+            &lt;button type="button" aria-label="link to cart" className="w-[50px] mt-2 ml-4 mr-2"&gt;&lt;i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /&gt;&lt;/button&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-        {/* {CartDisplay} */}
+        &lt;CartDisplay /&gt;
       &lt;/div&gt;
       &lt;div className="header-bar w-full max-w-[950px] h-14 bg-gradient-to-r from-primary-300 to-secondary-300" /&gt;
     &lt;/div&gt;
@@ -277,7 +277,7 @@ export default HeaderBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-28T21:35:37.959Z
+                at 2023-03-29T17:55:21.909Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
