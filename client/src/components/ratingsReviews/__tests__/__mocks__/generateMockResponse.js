@@ -237,6 +237,24 @@ const generateMockResponse = (method, endpoint) => {
           ],
           ];
 
+        case 'cart':
+          return [200, [
+            {
+              sku_id: 1,
+              count: 2,
+            },
+            {
+              sku_id: 3,
+              count: 1,
+            },
+            {
+              sku_id: 5,
+              count: 33,
+            },
+            // ...
+          ],
+          ];
+
         case 'qa/questions/':
           return [200, {
             product_id: '1',
@@ -299,9 +317,11 @@ const generateMockResponse = (method, endpoint) => {
         return [201];
       }
       switch (endpoint) {
-        case '/reviews':
+        case 'reviews':
           return [201];
-        case '/qa/questions':
+        case 'qa/questions':
+          return [201];
+        case 'cart':
           return [201];
         default:
           throw new Error(`${endpoint} is not a supported endpoint for the context of this test`);
