@@ -23,6 +23,7 @@ beforeEach(() => {
   container = document.createElement('div');
   container.id = 'root';
   document.body.appendChild(container);
+  jest.resetAllMocks();
 });
 
 afterEach(() => {
@@ -35,7 +36,7 @@ afterEach(() => {
 Element.prototype.scrollTo = () => {};
 
 test('renders the product overview component', async () => {
-  axios.get.mockResolvedValue({ data: product });
+  await axios.get.mockResolvedValue({ data: product });
 
   await act(async () => {
     ReactDOM.createRoot(container).render(
@@ -49,23 +50,17 @@ test('renders the product overview component', async () => {
   expect(testObject).toBeInTheDocument();
 });
 
-test('renders the product overview component', async () => {
-  axios.get.mockResolvedValue({ data: product });
+test('renders the product overview component2', async () => {
+  await axios.get.mockResolvedValue({ data: product });
 
   await act(async () => {
     ReactDOM.createRoot(container).render(
       <Provider store={store}>
-        <ImageGallery />
+        <ProductOverview />
       </Provider>,
     );
   });
 
-  // const testObject = document.querySelector('#main-image');
-
-  // await act(async () => {
-  //   fireEvent.dblClick(screen.getByTestId('main-image'));
-  //   fireEvent.dblClick(testObject);
-  // });
-
-  // console.log(screen.getByTestId('main-image').style.transform);
+  const testObject = document.querySelector('#product-overview');
+  expect(testObject).toBeInTheDocument();
 });

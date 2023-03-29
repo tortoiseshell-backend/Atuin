@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680039653993" clover="3.2.0">
-  <project timestamp="1680039653993" name="All files">
-    <metrics statements="332" coveredstatements="192" conditionals="64" coveredconditionals="31" methods="120" coveredmethods="55" elements="516" coveredelements="278" complexity="0" loc="332" ncloc="332" packages="8" files="29" classes="29"/>
+<coverage generated="1680054760386" clover="3.2.0">
+  <project timestamp="1680054760386" name="All files">
+    <metrics statements="344" coveredstatements="192" conditionals="64" coveredconditionals="31" methods="125" coveredmethods="55" elements="533" coveredelements="278" complexity="0" loc="344" ncloc="344" packages="8" files="30" classes="30"/>
     <package name="components.productOverview">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="index.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/index.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
       </file>
     </package>
     <package name="components.productOverview.scripts">
       <metrics statements="46" coveredstatements="14" conditionals="14" coveredconditionals="4" methods="13" coveredmethods="4"/>
       <file name="checkExpandedView.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/scripts/checkExpandedView.js">
         <metrics statements="6" coveredstatements="2" conditionals="4" coveredconditionals="1" methods="2" coveredmethods="2"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="6" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="9" count="0" type="stmt"/>
@@ -27,13 +27,13 @@
       </file>
       <file name="checkValidImage.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/scripts/checkValidImage.js">
         <metrics statements="7" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
         <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="5" count="0" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
       </file>
       <file name="redirectionLink.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/scripts/redirectionLink.js">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -44,11 +44,11 @@
       </file>
       <file name="scrollCarousel.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/scripts/scrollCarousel.js">
         <metrics statements="9" coveredstatements="8" conditionals="6" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="11" count="1" type="stmt"/>
@@ -79,46 +79,49 @@
       </file>
     </package>
     <package name="components.productOverview.subComponents">
-      <metrics statements="131" coveredstatements="101" conditionals="38" coveredconditionals="21" methods="50" coveredmethods="37"/>
+      <metrics statements="134" coveredstatements="101" conditionals="38" coveredconditionals="21" methods="50" coveredmethods="37"/>
       <file name="addToCart.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/addToCart.jsx">
-        <metrics statements="27" coveredstatements="21" conditionals="4" coveredconditionals="3" methods="13" coveredmethods="10"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="13" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="8" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <metrics statements="30" coveredstatements="21" conditionals="4" coveredconditionals="3" methods="13" coveredmethods="10"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="24" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="48" count="6" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="61" count="8" type="stmt"/>
-        <line num="68" count="2" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="52" count="18" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="65" count="24" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
       </file>
       <file name="imageGallery.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/imageGallery.jsx">
         <metrics statements="28" coveredstatements="14" conditionals="16" coveredconditionals="3" methods="6" coveredmethods="3"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="20" count="2" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="4" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="27" count="0" type="stmt"/>
@@ -129,163 +132,175 @@
         <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="35" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
         <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="46" count="0" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="57" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="4" type="stmt"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="57" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="62" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
+        <line num="62" count="4" type="stmt"/>
+        <line num="64" count="4" type="stmt"/>
       </file>
       <file name="productDetails.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/productDetails.jsx">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
       </file>
       <file name="productFeature.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/productFeature.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="7" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="9" count="2" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="6" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
       </file>
       <file name="productShopper.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/productShopper.jsx">
         <metrics statements="20" coveredstatements="18" conditionals="6" coveredconditionals="4" methods="8" coveredmethods="8"/>
         <line num="8" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="19" count="3" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="21" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="28" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="31" count="6" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="37" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="31" count="18" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="37" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="50" count="2" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="50" count="4" type="stmt"/>
       </file>
       <file name="socialMedia.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/socialMedia.jsx">
         <metrics statements="9" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
       </file>
       <file name="styleSelector.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/styleSelector.jsx">
         <metrics statements="13" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="13" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="7" count="18" type="stmt"/>
+        <line num="8" count="18" type="stmt"/>
+        <line num="9" count="18" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="13" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="28" count="6" type="stmt"/>
-        <line num="30" count="6" type="stmt"/>
+        <line num="28" count="18" type="stmt"/>
+        <line num="30" count="18" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
       </file>
       <file name="thumbnailCard.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/thumbnailCard.jsx">
         <metrics statements="11" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="2"/>
-        <line num="8" count="36" type="stmt"/>
-        <line num="9" count="36" type="stmt"/>
-        <line num="10" count="36" type="stmt"/>
-        <line num="12" count="36" type="stmt"/>
-        <line num="13" count="36" type="cond" truecount="4" falsecount="0"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="18" count="36" type="stmt"/>
+        <line num="8" count="110" type="stmt"/>
+        <line num="9" count="110" type="stmt"/>
+        <line num="10" count="110" type="stmt"/>
+        <line num="12" count="110" type="stmt"/>
+        <line num="13" count="110" type="cond" truecount="4" falsecount="0"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="18" count="106" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="36" type="stmt"/>
+        <line num="24" count="106" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
       </file>
       <file name="thumbnailCarousel.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/components/productOverview/subComponents/thumbnailCarousel.jsx">
         <metrics statements="12" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="5"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="36" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
+        <line num="11" count="108" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="20" count="36" type="stmt"/>
-        <line num="21" count="36" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="20" count="108" type="stmt"/>
+        <line num="21" count="108" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
       </file>
     </package>
     <package name="lib">
-      <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="1"/>
+      <file name="cartRender.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/lib/cartRender.js">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
       <file name="checkMobileBrowser.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/lib/checkMobileBrowser.js">
         <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="2" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="3" count="0" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
       </file>
     </package>
     <package name="modular">
       <metrics statements="10" coveredstatements="9" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
       <file name="StarRatingView.jsx" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/modular/StarRatingView.jsx">
         <metrics statements="10" coveredstatements="9" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="11" count="10" type="stmt"/>
-        <line num="12" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="14" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="11" count="20" type="stmt"/>
+        <line num="12" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="16" type="stmt"/>
+        <line num="14" count="4" type="cond" truecount="3" falsecount="1"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="17" count="10" type="stmt"/>
+        <line num="17" count="20" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
       </file>
     </package>
     <package name="reducers">
-      <metrics statements="113" coveredstatements="43" conditionals="4" coveredconditionals="0" methods="43" coveredmethods="3"/>
+      <metrics statements="118" coveredstatements="43" conditionals="4" coveredconditionals="0" methods="46" coveredmethods="3"/>
       <file name="cartSlice.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/reducers/cartSlice.js">
-        <metrics statements="18" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
-        <line num="6" count="1" type="stmt"/>
+        <metrics statements="23" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
       </file>
       <file name="modalSlice.js" path="/Users/admin/HackReactor/Front-End-Capstone/Atelier/client/src/reducers/modalSlice.js">
         <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
