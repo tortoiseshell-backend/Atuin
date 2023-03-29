@@ -60,7 +60,7 @@ function Modal() {
   return (
     <>
       <div
-        data-testid="modal"
+        data-testid="notAnything5"
         className="relative rounded-b-xl rounded-t-lg"
         style={{
           ...modalStyles, padding: '0px', paddingTop: '27px',
@@ -98,7 +98,7 @@ function Modal() {
             borderRight: '0px',
           }}
         >
-          <div data-testid="content" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
+          <div data-testid="notAnything6" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
             {renderComponent()}
           </div>
         </div>

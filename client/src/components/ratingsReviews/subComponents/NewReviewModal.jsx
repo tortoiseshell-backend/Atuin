@@ -31,6 +31,7 @@ function NewReviewModal() {
       [characteristic]: value,
     });
   };
+
   const handleInputChange = (setStateFunc, maxLength, e) => {
     e.preventDefault();
     setStateFunc(e.target.value);
@@ -208,7 +209,7 @@ function NewReviewModal() {
               rows="4"
               cols="50"
               className="w-full border rounded-md border-gray-500 px-[0.25em]"
-              placeholder="What did you like the product or not?"
+              placeholder="Why did you like the product or not?"
               maxLength="1000"
               value={body}
               onChange={(e) => {

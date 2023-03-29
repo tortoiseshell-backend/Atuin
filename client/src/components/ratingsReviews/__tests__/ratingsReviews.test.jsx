@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import {
-  render, fireEvent, screen, act,
+  render, fireEvent, screen, act, waitFor,
 } from '@testing-library/react';
 import React from 'react';
-import ImageTile from '@modular/ImageTile';
+import App from '@components/App';
 import { Provider } from 'react-redux';
 import store from '@store';
 import axios from 'axios';
@@ -12,13 +12,13 @@ import generateMockResponse from './__mocks__/generateMockResponse';
 
 const mock = new MockAdapter(axios);
 
-mock.onAny().reply((config) => {
+mock.onAny().reply(async (config) => {
   const { method, url } = config;
   const endpoint = url.match(/(?<=hr-rfp\/)[^?]+/)[0];
   if (endpoint) {
     try {
-      const response = generateMockResponse(method, endpoint);
-      return [...response];
+      const response = await generateMockResponse(method, endpoint);
+      return response;
     } catch (err) {
       throw new Error(err);
     }
@@ -27,23 +27,24 @@ mock.onAny().reply((config) => {
   }
 });
 
-test('renders Tile component within modal', async () => {
-  const photo = {
-    id: 2455491,
-    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-  };
+const mockScrollTo = jest.fn();
 
+Object.defineProperty(global.window.HTMLElement.prototype, 'scrollTo', {
+  value: mockScrollTo,
+  writable: true,
+});
+
+test('renders anything', async () => {
   // render the component
-  await act(async () => {
+  await act(() => {
     render(
       <Provider store={store}>
-        <ImageTile photo={photo} />
+        <App />
       </Provider>,
     );
   });
-
-  // wait for the modal to appear
-  const test = await screen.findByTestId('image-container');
-  // check if the Tile component is rendered within the modal
-  await expect(test).toContainElement(screen.findByTestId('image'));
+  // wait for the anything to appear
+  await screen.findAllByTestId('notAnything');
+  const test = await screen.findAllByTestId('notAnything1');
+  await waitFor(() => expect(test[0]).toBeInTheDocument());
 });
