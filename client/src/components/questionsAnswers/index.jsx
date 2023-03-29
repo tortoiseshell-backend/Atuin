@@ -35,7 +35,7 @@ function QuestionsAnswers() {
         dispatch(saveGetResults(res.data));
       })
       .catch((err) => {
-        console.log('GET ERROR: ', err);
+        throw new Error(err);
       });
   }, []);
 

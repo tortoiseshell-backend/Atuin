@@ -25,10 +25,10 @@ function StyleSelector({ style }) {
     ]));
   }
 
-  const thumbnailRender = <img alt="thumbnail selector" src={thumbnailURL} className={styleSelectorStyle} />;
+  const thumbnailRender = <img alt="" src={thumbnailURL} className={styleSelectorStyle} />;
 
   return (
-    <div>
+    <div className="row-span-1 col-span-1 h-16 w-16">
       <button type="button" aria-label={style.style_id} className="relative" onClick={selectStyleHandler}>
         {thumbnailRender}
         <div className={selectedMarker}><i className="relative -top-2 fa fa-solid fa-check text-white text-xs font-bold" /></div>
@@ -42,10 +42,9 @@ export default StyleSelector;
 StyleSelector.propTypes = {
   style: PropTypes.shape({
     style_id: PropTypes.number.isRequired,
-    photos: PropTypes.arrayOf(
-      PropTypes.shape({
-        thumbnail_url: PropTypes.string.isRequired,
-      }).isRequired,
-    ).isRequired,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      thumbnail_url: PropTypes.string,
+      url: PropTypes.string,
+    })).isRequired,
   }).isRequired,
 };

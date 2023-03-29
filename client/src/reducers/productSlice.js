@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getProductDetails from './scripts/getProductDetails';
+import getProductList from './scripts/getProductList';
 
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
 const productSlice = createSlice({
   name: 'product',
   initialState: {
-    value: {},
+    productList: [],
     id: 40346,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
@@ -18,12 +19,15 @@ const productSlice = createSlice({
     selectedStyleID: [],
     selectedImage: [],
     selectedSKU: 0,
+    sale_price: null,
     isExpandedView: false,
     isFavorited: false,
   },
   reducers: {
+    setProductList(state, action) {
+      state.productList = action.payload;
+    },
     setProduct(state, action) {
-      state.value = action.payload;
       state.product_id = action.payload.id;
       state.name = action.payload.name;
       state.category = action.payload.category;
@@ -34,6 +38,7 @@ const productSlice = createSlice({
       state.styles = action.payload.results;
       state.selectedStyleID = state.styles[0].style_id;
       state.selectedSKU = Object.keys(state.styles[0].skus)[0];
+      state.sale_price = state.styles[0].sale_price;
       const photo = state.styles[0].photos[0];
       state.selectedImage = [state.selectedStyleID, 0, photo.thumbnail_url, photo.url];
     },
@@ -42,13 +47,13 @@ const productSlice = createSlice({
         .find((style) => style.style_id === state.selectedStyleID);
 
       const selectedSize = prevStyleData.skus[state.selectedSKU].size;
-
       state.selectedStyleID = action.payload;
       const styleData = state.styles
         .find((style) => style.style_id === state.selectedStyleID);
       state.selectedSKU = Object.keys(styleData.skus)
         .find((sku) => styleData.skus[sku].size === selectedSize)
         || Object.keys(styleData.skus)[0];
+      state.sale_price = styleData.sale_price;
     },
     selectSize(state, action) {
       state.selectedSKU = action.payload;
@@ -70,6 +75,11 @@ export const getProductDetailsAsync = (productID) => async (dispatch) => {
   dispatch(productSlice.actions.setProduct(responseData));
 };
 
+export const getProductListAsync = () => async (dispatch) => {
+  const responseData = await getProductList(API_URL);
+  dispatch(productSlice.actions.setProductList(responseData));
+};
+
 export default productSlice.reducer;
 export const {
   setProduct,
@@ -78,4 +88,6 @@ export const {
   selectStyle,
   selectSize,
   selectImage,
+  setProductID,
+  setProductList,
 } = productSlice.actions;

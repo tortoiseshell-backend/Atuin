@@ -14,7 +14,8 @@
           "event"
         ]
       }
-    ]
+    ],
+    "camelcase": "off"
   },
   "env": {
     "browser": true,
@@ -57,6 +58,10 @@
           [
             "@store",
             "./client/src/store/store.js"
+          ],
+          [
+            "@lib",
+            "./client/src/lib"
           ],
           [
             "@modular",

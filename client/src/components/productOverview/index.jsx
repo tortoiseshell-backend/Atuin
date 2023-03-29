@@ -13,14 +13,14 @@ const productOverviewStyle = 'standard-grid';
 function ProductOverview() {
   const dispatch = useDispatch();
   const productID = useSelector((state) => state.product.id);
-  const productVAL = useSelector((state) => state.product.value);
+  // console.log(useSelector((state) => state.product));
 
   useEffect(() => {
     dispatch(getProductDetailsAsync(productID));
-  }, []);
+  }, [productID]);
 
   return (
-    <div className={productOverviewStyle}>
+    <div id="product-overview" className={productOverviewStyle}>
       <div id="gallery-container" className="row-span-1 col-span-1 bg-gray-100">
         <ImageGallery />
       </div>

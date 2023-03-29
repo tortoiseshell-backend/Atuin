@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import StarRatingView from '@modular/StarRatingView';
 import StyleSelector from './styleSelector';
 import AddToCart from './addToCart';
 import SocialMedia from './socialMedia';
@@ -13,10 +14,13 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 const productShopperStyle = 'grid auto-rows-max gap-2 p-4';
 
 function ProductShopper() {
+  // const avgRating = useSelector((state) => state.reviews.metaData);
+  // console.log(avgRating);
   const styles = useSelector((state) => state.product.styles);
   const name = useSelector((state) => state.product.name);
   const category = useSelector((state) => state.product.category);
   const defaultPrice = useSelector((state) => state.product.default_price);
+  const salePrice = useSelector((state) => state.product.sale_price);
   const selectedStyle = useSelector((state) => state.product.selectedStyleID);
   let styleText = null;
 
@@ -27,9 +31,27 @@ function ProductShopper() {
     return <StyleSelector style={style} key={style.style_id} />;
   });
 
+  let defaultPriceStyle = '';
+  let salePriceStyle = 'invisible';
+
+  if (salePrice !== null) {
+    defaultPriceStyle = 'line-through';
+    salePriceStyle = 'visible font-bold text-red-600';
+  }
+
+  const renderPrice = (
+    <>
+      <span className={defaultPriceStyle}>{currencyFormatter.format(defaultPrice)}</span>
+      &nbsp;
+      <span className={salePriceStyle}>{currencyFormatter.format(salePrice)}</span>
+    </>
+  );
+
   return (
     <div className={productShopperStyle}>
-      <div className="row-span-1 text-xs">
+      <div className="row-span-1 text-xs flex">
+        {StarRatingView({ averageRating: 4 })}
+        &nbsp;
         Read all reviews
       </div>
       <div className="row-span-1 text-sm">
@@ -39,14 +61,14 @@ function ProductShopper() {
         {name}
       </div>
       <div className="row-span-1 text-md mt-1 mb-1">
-        {currencyFormatter.format(defaultPrice)}
+        {renderPrice}
       </div>
       <div className="row-span-1">
         <div className="mb-2">
           <span className="text-sm font-extrabold">STYLE &gt; </span>
           <span className="text-sm">{styleText}</span>
         </div>
-        <div className="grid grid-cols-4 grid-flow-row gap-3 w-0 min-w-max">
+        <div className="grid grid-cols-4 grid-flow-row gap-x-2 w-0 min-w-max">
           {styleSelectorList}
         </div>
       </div>

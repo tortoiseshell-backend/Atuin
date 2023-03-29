@@ -6,13 +6,13 @@ function StarRatingView({ averageRating }) {
   const filledQuarters = Math.floor((averageRating - filledStars) * 4);
 
   return (
-    <div className="flex items-center" style={{ maxWidth: '100%' }}>
+    <div className="flex items-baseline" style={{ maxWidth: '100%' }}>
       {Array.from({ length: 5 }, (_, index) => {
         let starType = 'star';
         if (index < filledStars) {
-          starType = 'starFull';
+          starType += 'Full';
         } else if (index === filledStars && filledQuarters > 0) {
-          starType = `star${filledQuarters}`;
+          starType += `${filledQuarters}`;
         }
         return (
           <span key={index} className={`${starType} fa fa-star`} style={{ fontSize: '100%' }} />

@@ -27,7 +27,7 @@ function AddQuestionForm() {
         console.log('POST RES: ', res);
       })
       .catch((err) => {
-        console.log('ERROR: ', err);
+        throw new Error('ERROR: ', err);
       });
   };
 
