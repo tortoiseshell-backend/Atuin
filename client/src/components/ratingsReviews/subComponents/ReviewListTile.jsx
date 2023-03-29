@@ -91,9 +91,10 @@ function ReviewListTile({ review }) {
             </span>
           )}
         </div>
-        <div id="photos" className="grid grid-cols-5 gap-2 my-2">
+        <div data-testid="notAnything" id="photos" className="grid grid-cols-5 gap-2 my-2">
           {review.photos.map((photo, idx) => (
             <button
+              data-testid="notAnything1"
               id="photo"
               // eslint-disable-next-line react/no-array-index-key
               key={`${review.review_id}-${sanitize(photo.id)}-${idx}`}

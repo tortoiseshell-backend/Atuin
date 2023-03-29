@@ -14,7 +14,8 @@
           "event"
         ]
       }
-    ]
+    ],
+    "camelcase": "off"
   },
   "env": {
     "browser": true,

@@ -48,7 +48,6 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
     }];
     dispatch(getReviews(responseTuple));
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };
@@ -58,7 +57,6 @@ export const addReviewAsync = (data) => async (dispatch) => {
     await axios.post(API_URL, data, API_CONFIG);
     dispatch(getReviewsAsync());
   } catch (err) {
-    console.error(err);
     throw new Error(err);
   }
 };
