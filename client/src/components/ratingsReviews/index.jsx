@@ -1,18 +1,16 @@
-import React from 'react';
+import { getReviewsAsync } from '@reducers/reviewSlice';
 import { useDispatch } from 'react-redux';
-import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
-import ReviewList from './subComponents/ReviewList';
-import SortOptions from './subComponents/SortOptions';
+import React, { useEffect } from 'react';
 import RatingsBreakdown from './subComponents/RatingsBreakdown';
 import ProductBreakdown from './subComponents/ProductBreakdown';
+import SortOptions from './subComponents/SortOptions';
+import ReviewList from './subComponents/ReviewList';
 
 function RatingsReviews() {
   const dispatch = useDispatch();
-  const toggleModal = () => {
-    dispatch(setModalProps({}));
-    dispatch(setModalType('NewReviewModal'));
-    dispatch(toggle());
-  };
+  useEffect(() => {
+    dispatch(getReviewsAsync());
+  }, []);
 
   return (
     <div className="p-5 border-solid border-2 border-sky-500 justify-center max-w-screen-lg mx-auto">
@@ -30,12 +28,7 @@ function RatingsReviews() {
           </div>
         </div>
       </div>
-      <div>
-        <h1>Not a modal</h1>
-        <button type="button" onClick={toggleModal}>Write a review</button>
-      </div>
     </div>
-
   );
 }
 

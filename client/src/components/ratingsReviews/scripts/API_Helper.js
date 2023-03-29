@@ -10,5 +10,9 @@ const API_CONFIG = {
 export default async function markAsHelpful(reviewId) {
   const response = await axios.put(`${API_URL}/${reviewId}/helpful`, {}, API_CONFIG);
   console.log(response.status);
-  // return;
+}
+
+export async function postReview(reviewObj) {
+  const response = await axios.post(`${API_URL}`, reviewObj, API_CONFIG);
+  console.log(response.status);
 }

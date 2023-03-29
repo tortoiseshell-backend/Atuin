@@ -7,7 +7,7 @@ import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import { getReviewsAsync } from '@reducers/reviewSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
-import markAsHelpful from '../scripts/markAsHelpful';
+import markAsHelpful from '../scripts/API_Helper';
 
 function ReviewListTile({ review }) {
   const dispatch = useDispatch();
