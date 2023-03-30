@@ -63,8 +63,8 @@ module.exports = {
             './testSetUp/generateMockResponse.js',
           ],
           [
-            '@lib',
-            './client/src/lib',
+            '@generateMockResponse',
+            './client/src/generateMockResponse',
           ],
           [
             '@modular',

@@ -45,7 +45,7 @@ function NewReviewModal() {
     const stars = document.querySelectorAll('.star');
     stars.forEach((star, index) => {
       star.addEventListener('click', () => {
-        setRating(index - 4);
+        setRating(index - 5);
       });
     });
   }, []);

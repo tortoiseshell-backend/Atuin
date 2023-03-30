@@ -60,6 +60,10 @@
             "./client/src/store/store.js"
           ],
           [
+            "@mock",
+            "./testSetUp/generateMockResponse.js"
+          ],
+          [
             "@lib",
             "./client/src/lib"
           ],

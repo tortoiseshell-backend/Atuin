@@ -92,6 +92,10 @@ module.exports = {
         __dirname,
         './client/src/store/store.js',
       ),
+      '@mock': path.resolve(
+        __dirname,
+        './testSetUp/generateMockResponse.js',
+      ),
       '@lib': path.resolve(
         __dirname,
         './client/src/lib/',
