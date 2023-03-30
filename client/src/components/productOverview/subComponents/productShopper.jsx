@@ -23,7 +23,8 @@ function ProductShopper() {
   const selectedStyle = useSelector((state) => state.product.selectedStyleID);
   let styleText = null;
 
-  function scrollToReviews() {
+  function scrollToReviews(event) {
+    event.preventDefault();
     document.getElementById('ratingsReviews').scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -52,11 +53,11 @@ function ProductShopper() {
 
   return (
     <div className={productShopperStyle}>
-      <button type="button" className="row-span-1 text-xs flex" onClick={scrollToReviews}>
+      <a href="#ratingsReviews" className="row-span-1 text-xs flex" onClick={scrollToReviews}>
         {StarRatingView({ averageRating })}
         &nbsp;
         Read all reviews
-      </button>
+      </a>
       <div className="row-span-1 text-sm">
         {(category || 'CATEGORY').toUpperCase()}
       </div>

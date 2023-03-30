@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite, selectSize } from '@reducers/productSlice';
 import { addCartItem, getCartDataAsync } from '@reducers/cartSlice';
 import { renderCart, hideCart } from '@lib/cartRender';
+import Button from '@modular/Button';
 
 const addToCartStyle = 'grid grid-rows-2';
 
@@ -20,11 +21,9 @@ function AddToCart() {
   let favoriteButton = 'w-full h-14 p-2 px-3 flex justify-center items-center';
   let productSizesStyles = 'w-full h-14 p-2 text-sm font-semibold';
   let quantitySelectorStyle = 'w-full h-14 p-2 text-sm font-semibold';
-  let addToCartButtonStyle = 'w-full h-14 p-2 px-3 flex justify-between items-center';
   if (isDarkTheme) {
     productSizesStyles += ' bg-black text-primary-300 hover:bg-primary-300/5 standard-border-dark';
     quantitySelectorStyle += ' bg-black text-primary-300 hover:bg-primary-300/5 standard-border-dark';
-    addToCartButtonStyle += ' bg-primary-300 hover:bg-primary-300/95 text-black standard-border-dark';
     if (isFavorited) {
       favoriteIcon += ' text-gray-700';
       favoriteButton += ' bg-primary-300 hover:bg-primary-300/95 standard-border-dark';
@@ -35,7 +34,6 @@ function AddToCart() {
   } else {
     productSizesStyles += ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border';
     quantitySelectorStyle += ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border';
-    addToCartButtonStyle += ' bg-secondary-300 hover:bg-secondary-300/95 text-white standard-border';
     if (isFavorited) {
       favoriteIcon += ' text-gray-300';
       favoriteButton += ' bg-secondary-300 hover:bg-secondary-300/95 standard-border';
@@ -100,10 +98,16 @@ function AddToCart() {
       </div>
       <div className="col-span-1 grid grid-cols-[1fr_3.5rem] gap-4">
         <div className="col-span-1 pt-2 pb-2">
-          <button type="button" className={addToCartButtonStyle} onClick={addToCartHandler}>
-            <span className="text-sm text-left font-semibold">ADD TO CART</span>
-            <span className="text-sm text-left font-semibold">+</span>
-          </button>
+          <Button
+            content={(
+              <>
+                <span className="text-sm text-left font-semibold">ADD TO CART</span>
+                <span className="text-sm text-left font-semibold">+</span>
+              </>
+            )}
+            styleOverride=" flex justify-between items-center"
+            onClick={() => addToCartHandler()}
+          />
         </div>
         <div className="col-span-1 pt-2 pb-2">
           <button type="button" className={favoriteButton} onClick={favoriteHandler}>
