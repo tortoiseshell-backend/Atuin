@@ -1,23 +1,7 @@
 const generateMockResponse = (method, endpoint) => {
   switch (method) {
     case 'get':
-      if (/cart\/\d+$/.test(endpoint)) {
-        return [200, [
-          {
-            sku_id: 1394786,
-            count: '1',
-          },
-          {
-            sku_id: 1394788,
-            count: '1',
-          },
-          {
-            sku_id: 1394805,
-            count: '4',
-          },
-        ],
-        ];
-      } if (/products\/\d+$/.test(endpoint)) {
+      if (/products\/\d+$/.test(endpoint)) {
         return [200, {
           id: 1,
           name: 'Air Minis 250',
@@ -253,6 +237,24 @@ const generateMockResponse = (method, endpoint) => {
           ],
           ];
 
+        case 'cart':
+          return [200, [
+            {
+              sku_id: 1,
+              count: 2,
+            },
+            {
+              sku_id: 3,
+              count: 1,
+            },
+            {
+              sku_id: 5,
+              count: 33,
+            },
+            // ...
+          ],
+          ];
+
         case 'qa/questions/':
           return [200, {
             product_id: '1',
@@ -313,15 +315,13 @@ const generateMockResponse = (method, endpoint) => {
     case 'post':
       if (/qa\/questions\/\d+\/answers/.test(endpoint)) {
         return [201];
-      } if (/cart\/\d+$/.test(endpoint)) {
-        return [201];
       }
       switch (endpoint) {
-        case '/reviews':
+        case 'reviews':
           return [201];
-        case '/qa/questions':
+        case 'qa/questions':
           return [201];
-        case '/cart':
+        case 'cart':
           return [201];
         default:
           throw new Error(`${endpoint} is not a supported endpoint for the context of this test`);

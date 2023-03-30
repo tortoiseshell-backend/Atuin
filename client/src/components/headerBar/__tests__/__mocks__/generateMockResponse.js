@@ -1,23 +1,7 @@
 const generateMockResponse = (method, endpoint) => {
   switch (method) {
     case 'get':
-      if (/cart\/\d+$/.test(endpoint)) {
-        return [200, [
-          {
-            sku_id: 1394786,
-            count: '1',
-          },
-          {
-            sku_id: 1394788,
-            count: '1',
-          },
-          {
-            sku_id: 1394805,
-            count: '4',
-          },
-        ],
-        ];
-      } if (/products\/\d+$/.test(endpoint)) {
+      if (/products\/\d+$/.test(endpoint)) {
         return [200, {
           id: 1,
           name: 'Air Minis 250',
@@ -59,15 +43,15 @@ const generateMockResponse = (method, endpoint) => {
                 // ...
               ],
               skus: {
-                37: {
+                1: {
                   quantity: 8,
                   size: 'XS',
                 },
-                38: {
+                2: {
                   quantity: 16,
                   size: 'S',
                 },
-                39: {
+                3: {
                   quantity: 17,
                   size: 'M',
                 },
@@ -88,15 +72,15 @@ const generateMockResponse = (method, endpoint) => {
                 // ...
               ],
               skus: {
-                37: {
+                4: {
                   quantity: 8,
                   size: 'XS',
                 },
-                38: {
+                5: {
                   quantity: 16,
                   size: 'S',
                 },
-                39: {
+                6: {
                   quantity: 17,
                   size: 'M',
                 },
@@ -253,6 +237,24 @@ const generateMockResponse = (method, endpoint) => {
           ],
           ];
 
+        case 'cart':
+          return [200, [
+            {
+              sku_id: 1,
+              count: 2,
+            },
+            {
+              sku_id: 2,
+              count: 1,
+            },
+            {
+              sku_id: 3,
+              count: 33,
+            },
+            // ...
+          ],
+          ];
+
         case 'qa/questions/':
           return [200, {
             product_id: '1',
@@ -315,9 +317,11 @@ const generateMockResponse = (method, endpoint) => {
         return [201];
       }
       switch (endpoint) {
-        case '/reviews':
+        case 'reviews':
           return [201];
-        case '/qa/questions':
+        case 'qa/questions':
+          return [201];
+        case 'cart':
           return [201];
         default:
           throw new Error(`${endpoint} is not a supported endpoint for the context of this test`);

@@ -1,5 +1,5 @@
 import { getReviewsAsync } from '@reducers/reviewSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import RatingsBreakdown from './subComponents/RatingsBreakdown';
 import ProductBreakdown from './subComponents/ProductBreakdown';
@@ -8,9 +8,11 @@ import ReviewList from './subComponents/ReviewList';
 
 function RatingsReviews() {
   const dispatch = useDispatch();
+  const productID = useSelector((state) => state.product.id);
+
   useEffect(() => {
     dispatch(getReviewsAsync());
-  }, []);
+  }, [productID]);
 
   return (
     <div className="p-5 border-solid border-2 border-sky-500 justify-center max-w-screen-lg mx-auto">

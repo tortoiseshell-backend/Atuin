@@ -3,7 +3,8 @@ import {
   render, fireEvent, screen, act, waitFor,
 } from '@testing-library/react';
 import React from 'react';
-import App from '@components/App';
+// import App from '@components/App';
+import HeaderBar from '@components/headerBar';
 import { Provider } from 'react-redux';
 import store from '@store';
 import axios from 'axios';
@@ -34,17 +35,57 @@ Object.defineProperty(global.window.HTMLElement.prototype, 'scrollTo', {
   writable: true,
 });
 
-test('renders anything', async () => {
-  // render the component
-  await act(() => {
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-    );
+describe('Header Bar tests', () => {
+  test('Renders header bar to document', async () => {
+    // render the component
+    await act(() => {
+      render(
+        <Provider store={store}>
+          <HeaderBar />
+        </Provider>,
+      );
+    });
+    // wait for the anything to appear
+    const testObject = await screen.getByTestId('header-bar');
+    await waitFor(() => expect(testObject).toBeInTheDocument());
   });
-  // wait for the anything to appear
-  await screen.findAllByTestId('notAnything');
-  const test = await screen.findAllByTestId('notAnything1');
-  await waitFor(() => expect(test[0]).toBeInTheDocument());
+
+  test('Product selector renders available products', async () => {
+    // render the component
+    await act(() => {
+      render(
+        <Provider store={store}>
+          <HeaderBar />
+        </Provider>,
+      );
+    });
+
+    // wait for the anything to appear
+    const testObject = await screen.getByTestId('product-selector');
+    await fireEvent.click(testObject);
+    const testOptions = await screen.getAllByTestId('product-dropdown', { value: 2 });
+    await waitFor(() => expect(testOptions[0].textContent).toEqual('Camo Onesie'));
+  });
+
+  test('Cart renders items', async () => {
+    // render the component
+    await act(() => {
+      render(
+        <Provider store={store}>
+          <HeaderBar />
+        </Provider>,
+      );
+    });
+
+    // wait for the anything to appear
+    const testObject = await screen.getByTestId('cart-button');
+    const testRenders = await screen.getByTestId('cart-list');
+    await fireEvent.mouseOver(testObject);
+    await fireEvent.mouseEnter(testObject);
+    await waitFor(() => expect(testRenders).toBeVisible());
+    await fireEvent.mouseLeave(testObject);
+    await waitFor(() => expect(testRenders).not.toBeVisible());
+    const testRenderList = await screen.getAllByTestId('cart-item');
+    await waitFor(() => expect(testRenderList.length).toEqual(3));
+  });
 });
