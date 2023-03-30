@@ -23,13 +23,13 @@ function HeaderBar() {
     hideCart();
   }, []);
 
-  function productChangeHandler(event) {
-    dispatch(getProductDetailsAsync(event.target.value));
+  async function productChangeHandler(event) {
+    await dispatch(getProductDetailsAsync(event.target.value));
   }
 
   function renderProductList() {
     const productList = productListData.map((product) => (
-      <option value={product.id} key={product.id}>{product.name}</option>
+      <option value={product.id} key={product.id} data-testid="product-dropdown">{product.name}</option>
     ));
     productList.unshift(
       <option value="none" key="none" disabled>
@@ -41,14 +41,14 @@ function HeaderBar() {
 
   const productSelector = (
     <div className="max-w-[80%]">
-      <select name="productSelector" id="product-selector" className="w-full p-2 border-b-2 border-white bg-transparent text-lg text-white text-clip" defaultValue="none" onChange={productChangeHandler}>
+      <select name="productSelector" id="product-selector" data-testid="product-selector" className="w-full p-2 border-b-2 border-white bg-transparent text-lg text-white text-clip" defaultValue="none" onChange={productChangeHandler}>
         {renderProductList()}
       </select>
     </div>
   );
 
   return (
-    <div id="header-bar">
+    <div id="header-bar" data-testid="header-bar">
       <div className="header-bar fixed w-full max-w-[950px] z-40 overflow-visible">
         <div className="header-bar w-full max-w-[950px] bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between p-2 pl-4 gap-x-4">
           <div className="my-auto max-w-[40%]">
@@ -56,7 +56,7 @@ function HeaderBar() {
           </div>
           <div className="max-w-[60%] flex my-auto">
             {productSelector}
-            <button type="button" aria-label="link to cart" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>
+            <button type="button" aria-label="link to cart" data-testid="cart-button" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>
           </div>
         </div>
         <CartDisplay />

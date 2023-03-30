@@ -43,15 +43,15 @@ const generateMockResponse = (method, endpoint) => {
                 // ...
               ],
               skus: {
-                37: {
+                1: {
                   quantity: 8,
                   size: 'XS',
                 },
-                38: {
+                2: {
                   quantity: 16,
                   size: 'S',
                 },
-                39: {
+                3: {
                   quantity: 17,
                   size: 'M',
                 },
@@ -72,15 +72,15 @@ const generateMockResponse = (method, endpoint) => {
                 // ...
               ],
               skus: {
-                37: {
+                4: {
                   quantity: 8,
                   size: 'XS',
                 },
-                38: {
+                5: {
                   quantity: 16,
                   size: 'S',
                 },
-                39: {
+                6: {
                   quantity: 17,
                   size: 'M',
                 },
@@ -244,11 +244,11 @@ const generateMockResponse = (method, endpoint) => {
               count: 2,
             },
             {
-              sku_id: 3,
+              sku_id: 2,
               count: 1,
             },
             {
-              sku_id: 5,
+              sku_id: 3,
               count: 33,
             },
             // ...

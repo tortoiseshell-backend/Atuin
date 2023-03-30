@@ -13,11 +13,10 @@ const productOverviewStyle = 'standard-grid';
 function ProductOverview() {
   const dispatch = useDispatch();
   const productID = useSelector((state) => state.product.id);
-  // console.log(useSelector((state) => state.product));
 
   useEffect(() => {
     dispatch(getProductDetailsAsync(productID));
-  }, [productID]);
+  }, []);
 
   return (
     <div id="product-overview" className={productOverviewStyle}>
