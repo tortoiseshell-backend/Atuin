@@ -10,7 +10,7 @@ const axios = require('axios');
 
 function QuestionsAnswers() {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.product);
+  const id = useSelector((state) => state.product.id);
   const toggleModal = () => {
     dispatch(setModalProps({}));
     dispatch(setModalType('AddQuestionForm'));
@@ -37,7 +37,7 @@ function QuestionsAnswers() {
       .catch((err) => {
         throw new Error(err);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="mx-auto p-10 bg-primary-100">
