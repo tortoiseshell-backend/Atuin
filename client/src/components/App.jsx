@@ -17,9 +17,11 @@ function App() {
   if (isDarkTheme) {
     appStyles += ' bg-secondary-100 text-gray-300';
     backgroundStyles += ' bg-gray-800';
+    document.body.style.backgroundColor = '#1f2937';
   } else {
     appStyles += ' bg-primary-100 text-gray-700';
     backgroundStyles += ' bg-gray-300';
+    document.body.style.backgroundColor = '#d1d5db';
   }
 
   return (
