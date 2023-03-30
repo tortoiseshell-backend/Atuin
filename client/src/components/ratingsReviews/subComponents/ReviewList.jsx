@@ -16,7 +16,7 @@ function ReviewList() {
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    //document.getElementById('reviewList').scrollTo(0, 0);
+    // document.getElementById('reviewList').scrollTo(0, 0);
   }, [sort]);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function ReviewList() {
   };
 
   return (
-    <div data-testid="notAnything4" style={{ paddingRight: '10px' }}>
+    <div data-testid="scrollableDiv" style={{ paddingRight: '10px' }}>
       <div id="reviewList" style={{ maxHeight: 'auto' }} onScroll={handleScroll}>
         <style>
           {`
@@ -82,14 +82,15 @@ function ReviewList() {
           </div>
         ))}
         {reachedBottom && (
-          <span className="flex justify-center items-center">
+          <span data-testid="endScroll" className="flex justify-center items-center">
             All caught up!
           </span>
         )}
       </div>
-      <div className="flex justify-center">
+      <div data-testid="moreReviewsButtonContainer" className="flex justify-center">
         {displayMoreReviewsButton && reviews.length > 2 && (
           <button
+            data-testid="moreReviewsButton"
             className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"
             type="button"
             onClick={() => {

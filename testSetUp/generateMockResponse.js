@@ -170,6 +170,57 @@ const generateMockResponse = (method, endpoint) => {
                   },
                 ],
               },
+              {
+                review_id: 3,
+                rating: 2,
+                summary: 'This is a bad product',
+                recommend: true,
+                response: 'wow',
+                body: 'KTYFKGFkhsgelf gsldhgf lajhsfdg laisbgd l;ksdhb  ',
+                date: '2022-07-18T00:00:00.000Z',
+                reviewer_name: 'fdhsfhysd',
+                helpfulness: 6,
+                photos: [
+                  {
+                    id: 15,
+                    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+                  },
+                ],
+              },
+              {
+                review_id: 4,
+                rating: 2,
+                summary: 'This is a bad product',
+                recommend: true,
+                response: 'wow',
+                body: 'KTYFKGFkhsgelf gsldhgf lajhsfdg laisbgd l;ksdhb  ',
+                date: '2022-07-18T00:00:00.000Z',
+                reviewer_name: 'fdhsfhysd',
+                helpfulness: 6,
+                photos: [
+                  {
+                    id: 5,
+                    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+                  },
+                ],
+              },
+              {
+                review_id: 5,
+                rating: 2,
+                summary: 'This is a bad product',
+                recommend: true,
+                response: 'wow',
+                body: 'KTYFKGFkhsgelf gsldhgf lajhsfdg laisbgd l;ksdhb  ',
+                date: '2022-07-18T00:00:00.000Z',
+                reviewer_name: 'fdhsfhysd',
+                helpfulness: 6,
+                photos: [
+                  {
+                    id: 1,
+                    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+                  },
+                ],
+              },
             ],
           },
           ];
