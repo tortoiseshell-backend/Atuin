@@ -28,7 +28,8 @@ export const { getReviews } = reviewSlice.actions;
 export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
-    const prodId = 40346; // state.product.id; 40435
+    // const prodId = 40346; // state.product.id; 40435
+    const prodId = state.product.id;
 
     const metaResponse = await axios.get(`${API_URL}/meta/?product_id=${prodId} `, API_CONFIG);
     const reviewCount = Object.values(metaResponse.data.recommended).reduce(

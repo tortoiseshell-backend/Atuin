@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+
+const axios = require('axios');
 
 const initialState = {
   getProductId: '',
@@ -14,6 +17,28 @@ export const qnaSlice = createSlice({
   name: 'qna',
   initialState,
   reducers: {
+    // refresh: (state, action) => {
+    //   const dispatch = useDispatch();
+    //   const { id } = useSelector((state) => state.product);
+    //   const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/';
+    //   const API_CONFIG = {
+    //     params: {
+    //       product_id: id, // TODO: replace with global product_id variable
+    //       page: 1,
+    //       count: 20,
+    //     },
+    //     headers: {
+    //       Authorization: process.env.AUTH_SECRET,
+    //     },
+    //   };
+    //   axios.get(API_URL, API_CONFIG)
+    //     .then((res) => {
+    //       dispatch(saveGetResults(res.data));
+    //     })
+    //     .catch((err) => {
+    //       throw new Error(err);
+    //     });
+    // },
     saveGetResults: (state, action) => {
       const data = action.payload;
       state.getProductId = data.product_id;

@@ -10,17 +10,17 @@ const axios = require('axios');
 
 function QuestionsAnswers() {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.product);
+  const id = useSelector((state) => state.product.id);
   const toggleModal = () => {
     dispatch(setModalProps({}));
     dispatch(setModalType('AddQuestionForm'));
     dispatch(toggle());
   };
-
+  console.log(id);
   const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/';
   const API_CONFIG = {
     params: {
-      product_id: id, // TODO: replace with global product_id variable
+      product_id: id,
       page: 1,
       count: 20,
     },
@@ -37,7 +37,7 @@ function QuestionsAnswers() {
       .catch((err) => {
         throw new Error(err);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="mx-auto p-10 bg-primary-100">
