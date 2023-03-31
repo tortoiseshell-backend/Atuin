@@ -8,6 +8,9 @@ import {
   getCartDataAsync,
   initializeProductData,
 } from '@reducers/cartSlice';
+import {
+  toggleTheme,
+} from '@reducers/themeSlice';
 import { renderCart, hideCart } from '@lib/cartRender';
 import logoImage from '@images/ADIDA_logo_white.png';
 import CartDisplay from './subComponents/cartDisplay';
@@ -23,8 +26,8 @@ function HeaderBar() {
     hideCart();
   }, []);
 
-  async function productChangeHandler(event) {
-    await dispatch(getProductDetailsAsync(event.target.value));
+  function productChangeHandler(event) {
+    dispatch(getProductDetailsAsync(event.target.value));
   }
 
   function renderProductList() {
@@ -51,9 +54,9 @@ function HeaderBar() {
     <div id="header-bar" data-testid="header-bar">
       <div className="header-bar fixed w-full max-w-[950px] z-40 overflow-visible">
         <div className="header-bar w-full max-w-[950px] bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between p-2 pl-4 gap-x-4">
-          <div className="my-auto max-w-[40%]">
+          <button type="button" className="my-auto max-w-[40%]" onClick={() => dispatch(toggleTheme())}>
             <img alt="logo" src={logoImage} className="max-h-8 aspect-auto" />
-          </div>
+          </button>
           <div className="max-w-[60%] flex my-auto">
             {productSelector}
             <button type="button" aria-label="link to cart" data-testid="cart-button" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>

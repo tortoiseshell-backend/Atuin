@@ -6,6 +6,7 @@ import sortReducer from '@reducers/sortSlice';
 import reviewsReducer from '@reducers/reviewSlice';
 import modalReducer from '@reducers/modalSlice';
 import cartReducer from '@reducers/cartSlice';
+import relatedReducer from '@reducers/relatedSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     reviews: reviewsReducer,
     modal: modalReducer,
     cart: cartReducer,
+    related: relatedReducer,
   },
 });
 

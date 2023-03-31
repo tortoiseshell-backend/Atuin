@@ -9,19 +9,19 @@
 
 @layer components {
   #root {
-    @apply bg-gray-300;
-  }
-  #app {
-    @apply bg-white;
-  }
-  * {
-    @apply text-gray-800;
+    @apply bg-gray-500;
   }
   .standard-border {
     @apply border-1 border-secondary-300 border-solid;
   }
+  .standard-border-dark {
+    @apply border-1 border-primary-300 border-solid;
+  }
   .standard-grid {
     @apply md:grid md:grid-cols-[minmax(400px,_550px)_400px];
+  }
+  .view-standard {
+    @apply w-full;
   }
   .style-unselected {
     @apply border-2 border-secondary-200 border-solid;
@@ -35,7 +35,16 @@
   .image-selected {
     @apply border-2 border-secondary-300 border-solid ring-2 ring-secondary-300/25;
   }
-  .view-standard {
-    @apply w-full;
+  .style-unselected-dark {
+    @apply border-2 border-primary-200 border-solid;
+  }
+  .style-unselected-dark:hover {
+    @apply border-2 border-primary-200 border-solid ring ring-black ring-offset-2 ring-offset-primary-300/25;
+  }
+  .style-selected-dark {
+    @apply border-3 border-primary-300 border-solid ring ring-primary-300/25 ring-offset-2 ring-offset-primary-300/50;
+  }
+  .image-selected-dark {
+    @apply border-2 border-primary-300 border-solid ring-2 ring-primary-300/25;
   }
 }
