@@ -44,11 +44,20 @@ function AnswersList({ answersObj, qId }) {
   }
 
   return (
-    <div>
-      <div className="max-w-3xl">
+    <div className="answerList max-h-[35vh] overflow-auto border border-primary-200 rounded-lg p-3">
+      <style>
+        {`
+          .answerList::-webkit-scrollbar {
+            background: transparent;
+            width: 0;
+          }
+          scroll-behavior: smooth;
+        `}
+      </style>
+      <div>
         {viewAnswers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
       </div>
-      {answerKeys.length > 2 ? <button type="button" className="hover:text-secondary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
+      {answerKeys.length > 2 ? <button type="button" className="dark:text-stone-400 hover:text-secondary-300 dark:hover:text-primary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
     </div>
   );
 }

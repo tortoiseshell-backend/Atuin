@@ -61,7 +61,7 @@ function Modal() {
     <>
       <div
         data-testid="notAnything5"
-        className="relative rounded-b-xl rounded-t-lg"
+        className="relative rounded-b-xl rounded-t-lg dark:bg-secondary-200"
         style={{
           ...modalStyles, padding: '0px', paddingTop: '27px',
         }}
@@ -98,7 +98,7 @@ function Modal() {
             borderRight: '0px',
           }}
         >
-          <div data-testid="notAnything6" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
+          <div data-testid="notAnything6" className="dark:bg-secondary-200" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
             {renderComponent()}
           </div>
         </div>
