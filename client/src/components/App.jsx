@@ -7,25 +7,22 @@ import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
+const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto shadow-sm'
++ ' bg-primary-100 text-gray-700 dark:bg-secondary-100 dark:text-gray-300';
+const backgroundStyles = 'w-full h-full bg-slate-300 dark:bg-neutral-900';
+
 function App() {
   const rendered = useSelector((state) => state.modal.modalOpen);
 
-  let appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto bg-primary-100 shadow-sm';
-  let backgroundStyles = 'w-full h-full';
-
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   if (isDarkTheme) {
-    appStyles += ' bg-secondary-100 text-gray-300';
-    backgroundStyles += ' bg-neutral-900';
     document.body.style.backgroundColor = '#1f2937';
   } else {
-    appStyles += ' bg-primary-100 text-gray-700';
-    backgroundStyles += ' bg-slate-300';
     document.body.style.backgroundColor = '#d1d5db';
   }
 
   return (
-    <div className={isDarkTheme && 'dark'}>
+    <div className={isDarkTheme ? 'dark' : ''}>
       <div id="background" className={backgroundStyles}>
         <div id="app" className={appStyles}>
           <style>
@@ -50,17 +47,17 @@ function App() {
           <div className="row-span-1">
             <HeaderBar />
           </div>
-          <div className="row-span-1">
+          <div className="row-span-1 mx-auto max-w-[950px]">
             <ProductOverview />
           </div>
-          <div className="row-span-1">
+          <div className="row-span-1 p-10 mx-auto max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
             <RatingsReviews />
           </div>
-          <div className="row-span-1">
+          <div className="row-span-1 p-10 mx-auto max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
             <QuestionsAnswers />
           </div>
-          <div className="row-span-1">
-            {/* <RelatedItems /> */}
+          <div className="row-span-1 p-10 max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
+            <RelatedItems />
           </div>
           {rendered ? <Modal /> : null}
         </div>

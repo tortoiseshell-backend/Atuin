@@ -53,7 +53,7 @@ function ProductShopper() {
 
   return (
     <div className={productShopperStyle}>
-      <a href="#ratingsReviews" className="row-span-1 text-xs flex" onClick={scrollToReviews}>
+      <a href="#ratingsReviews" className="row-span-1 text-xs flex text-gray-500 dark:text-gray-400" onClick={scrollToReviews}>
         {StarRatingView({ averageRating })}
         &nbsp;
         Read all reviews

@@ -4,6 +4,7 @@ import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getReviewsAsync } from '@reducers/reviewSlice';
+import Button from '@modular/Button';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
@@ -19,7 +20,6 @@ function ReviewList() {
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    console.log(prodID);
     document.getElementById('reviewList').scrollTo(0, 0);
     dispatch(getReviewsAsync());
   }, [prodID]);
@@ -103,12 +103,11 @@ function ReviewList() {
           </span>
         )}
       </div>
-      <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3">
+      <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3 pt-3">
         {displayMoreReviewsButton && reviews.length > 2 && (
-          <button
-            data-testid="moreReviewsButton"
-            className="mt-3 border-solid border-[3px] font-semibold p-4 border-violet-700 text-violet-700 dark:text-stone-300 hover:bg-white dark:hover:bg-secondary-200"
-            type="button"
+          <Button
+            testID="moreReviewsButton"
+            content="MORE REVIEWS"
             onClick={() => {
               const list = document.getElementById('reviewList');
               list.style.maxHeight = '55em';
@@ -117,18 +116,13 @@ function ReviewList() {
               setDisplayMoreReviewsButton(false);
               setRenderedReviews(reviews.slice(0, 10));
             }}
-          >
-            MORE REVIEWS
-          </button>
+          />
         )}
         <div data-testid="openWriteReviewModel" className="flex justify-center">
-          <button
-            type="button"
-            className="mt-3 border-solid border-[3px] font-semibold p-4 border-violet-700 text-violet-700 dark:text-stone-300 hover:bg-white dark:hover:bg-secondary-200"
+          <Button
+            content="NEW REVIEW"
             onClick={toggleModal}
-          >
-            NEW REVIEW
-          </button>
+          />
         </div>
       </div>
 

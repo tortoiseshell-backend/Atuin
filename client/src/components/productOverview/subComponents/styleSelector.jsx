@@ -11,10 +11,11 @@ function StyleSelector({ style }) {
   let selectedMarker = 'invisible';
 
   if (selectedStyle === style.style_id) {
-    styleSelectorStyle += 'style-selected dark:style-selected-dark';
-    selectedMarker = 'style-selected dark:style-selected-dark visible absolute top-0 right-0 rounded-full bg-primary-300 h-4 w-4 z-10';
+    styleSelectorStyle += ' style-selected dark:style-selected-dark';
+    selectedMarker = 'visible absolute top-0 right-0 rounded-full h-4 w-4 z-10'
+      + ' style-selected dark:style-selected-dark bg-secondary-300 dark:bg-primary-300';
   } else {
-    styleSelectorStyle += 'style-unselected dark:style-unselected-dark';
+    styleSelectorStyle += ' style-unselected dark:style-unselected-dark';
   }
 
   function selectStyleHandler() {

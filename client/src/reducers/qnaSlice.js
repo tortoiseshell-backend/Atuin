@@ -18,7 +18,6 @@ export const qnaSlice = createSlice({
       const data = action.payload;
       state.getProductId = data.product_id;
       state.allQuestions = data.results;
-      console.log('allQuestions: ', state.allQuestions);
 
       const sortedQuestions = Object.values(data.results).sort(
         (a, b) => b.question_helpfulness - a.question_helpfulness,
@@ -44,7 +43,6 @@ export const qnaSlice = createSlice({
       state.aViewExpanded[action.payload.qId] = action.payload.opened;
     },
     updateQAndA: (state, action) => {
-      console.log('payload: ', action.payload);
       for (let i = 0; i < state.allQuestions.length; i += 1) {
         if (state.allQuestions[i].question_id === action.payload.qId) {
           const updatedAnswers = [...state.allQuestions];
@@ -52,7 +50,6 @@ export const qnaSlice = createSlice({
           state.allQuestions = updatedAnswers;
         }
       }
-      console.log('allQuestions: ', state.allQuestions);
     },
   },
 });

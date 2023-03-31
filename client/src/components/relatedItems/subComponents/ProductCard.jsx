@@ -90,13 +90,10 @@ ProductCard.propTypes = {
     name: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     results: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          url: PropTypes.string,
-        }),
-      ),
+      PropTypes.shape({
+        url: PropTypes.string,
+      }),
     ),
-    count: PropTypes.number.isRequired,
-    default_price: PropTypes.number.isRequired,
+    default_price: PropTypes.number,
   }).isRequired,
 };

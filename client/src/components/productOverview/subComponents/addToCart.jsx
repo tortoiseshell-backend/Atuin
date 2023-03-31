@@ -100,8 +100,8 @@ function AddToCart() {
           <Button
             content={(
               <>
-                <span className="text-sm text-left font-semibold">ADD TO CART</span>
-                <span className="text-sm text-left font-semibold">+</span>
+                <span>ADD TO CART</span>
+                <span>+</span>
               </>
             )}
             styleOverride=" flex justify-between items-center"

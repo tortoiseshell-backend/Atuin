@@ -22,7 +22,7 @@ function StarRatingView({ averageRating }) {
           <span key={index} className={`${starType} fa fa-star`} style={{ fontSize: '100%' }} />
         );
       })}
-      <span className="text-gray-400 ml-1">{averageRating.toFixed(1)}</span>
+      <span className="text-gray-500 dark:text-gray-400 ml-1">{averageRating.toFixed(1)}</span>
     </div>
   );
 }
