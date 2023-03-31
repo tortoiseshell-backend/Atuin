@@ -9,10 +9,22 @@ const relatedSlice = createSlice({
   name: 'related',
   initialState: {
     itemsRelated: [],
+    itemsOutfit: [],
   },
   reducers: {
     setRelatedItems(state, action) {
       state.itemsRelated = action.payload;
+    },
+    addOutfitItem(state, action) {
+      const { id } = action.payload;
+      let push = true;
+      state.itemsOutfit.forEach((item, index) => {
+        if (item.id === id) {
+          state.itemsOutfit.splice(index);
+          push = false;
+        }
+      });
+      if (push) { state.itemsOutfit.push(action.payload); }
     },
   },
 });
@@ -29,4 +41,5 @@ export const getRelatedProductsAsync = (productID) => async (dispatch) => {
 export default relatedSlice.reducer;
 export const {
   setRelatedItems,
+  addOutfitItem,
 } = relatedSlice.actions;
