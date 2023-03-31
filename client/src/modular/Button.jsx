@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function Button({
@@ -7,26 +6,23 @@ function Button({
   href,
   onClick,
   styleOverride,
+  testID,
+  name,
 }) {
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-
-  let buttonStyle = 'w-full h-14 p-2 px-3';
+  let buttonStyle = 'w-full h-14 p-2 px-3 text-sm text-left font-semibold'
+    + ' bg-secondary-300 hover:bg-secondary-300/95 text-white standard-border'
+    + ' dark:bg-primary-300 dark:hover:bg-primary-300/95 dark:text-black dark:standard-border-dark';
   buttonStyle += styleOverride;
-  if (isDarkTheme) {
-    buttonStyle += ' bg-primary-300 hover:bg-primary-300/95 text-black standard-border-dark';
-  } else {
-    buttonStyle += ' bg-secondary-300 hover:bg-secondary-300/95 text-white standard-border';
-  }
 
   let renderButton = (
-    <button type="button" href={href} onClick={onClick} className={buttonStyle}>
+    <button type="button" href={href} onClick={onClick} className={buttonStyle} data-testid={testID} name={name}>
       {content}
     </button>
   );
 
   if (href) {
     renderButton = (
-      <a href={href} onClick={onClick} className={buttonStyle}>
+      <a href={href} onClick={onClick} className={buttonStyle} data-testid={testID} name={name}>
         {content}
       </a>
     );

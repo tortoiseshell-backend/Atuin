@@ -8,20 +8,12 @@ import checkExpandedView from '../scripts/checkExpandedView';
 import zoomPanning from '../scripts/zoomPanning';
 import ThumbnailCarousel from './thumbnailCarousel';
 
+const imageGalleryStyle = 'transition-[width] duration-300 relative h-full max-v-screen mx-auto z-20 bg-gray-100 dark:bg-gray-900';
+
 function ImageGallery() {
   const dispatch = useDispatch();
   let isZoomView = false;
-  let imageGalleryStyle = 'transition-[width] duration-300 relative h-full max-v-screen mx-auto z-20';
-  let expandButtonStyle = 'absolute top-2 right-2 z-30 h-7 w-7 rounded-full justify-center items-center';
-
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-  if (isDarkTheme) {
-    imageGalleryStyle += ' bg-gray-900';
-    expandButtonStyle += ' bg-black text-white';
-  } else {
-    imageGalleryStyle += ' bg-gray-100';
-    expandButtonStyle += ' bg-white text-black';
-  }
+  let expandButtonStyle = 'absolute top-2 right-2 z-30 h-7 w-7 rounded-full justify-center items-center bg-white text-black dark:bg-black dark:text-white';
 
   let photoURL = useSelector((state) => {
     if (state.product.styles.length === 0) return '';

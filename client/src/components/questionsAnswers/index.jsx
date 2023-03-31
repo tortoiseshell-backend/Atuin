@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveGetResults } from '@reducers/qnaSlice';
 import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
+import Button from '@modular/Button';
 import Search from './subComponents/Search';
 import QuestionsList from './subComponents/QuestionsList';
 import MoreAnsweredQuestions from './subComponents/MoreAnsweredQuestions';
@@ -40,7 +41,7 @@ function QuestionsAnswers() {
   }, [id]);
 
   return (
-    <div className="md:p-10 max-w-[500px] md:max-w-[950px] mx-auto">
+    <div>
       <h3>QUESTIONS & ANSWERS</h3>
       <Search />
       <div className="questionList max-h-[65vh] overflow-auto">
@@ -65,9 +66,9 @@ function QuestionsAnswers() {
         </style>
         <QuestionsList />
       </div>
-      <div className="mt-3 ml-5 flex">
+      <div className="mt-3 ml-5 flex gap-3">
         <MoreAnsweredQuestions />
-        <button type="button" className="border-solid border-[3px] border-secondary-300 dark:border-primary-300 text-secondary-300 dark:text-primary-300 hover:bg-white dark:hover:bg-secondary-200 font-semibold p-4" onClick={toggleModal}>ADD A QUESTION</button>
+        <Button content="ADD A QUESTION" styleOverride="text-center" onClick={toggleModal} />
       </div>
     </div>
   );

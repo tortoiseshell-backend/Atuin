@@ -8,15 +8,10 @@ function ThumbnailCard({ thumbnail, index }) {
   const dispatch = useDispatch();
   const thumbnailURL = thumbnail[2];
   const selectedImage = useSelector((state) => state.product.selectedImage);
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
 
   let thumbnailCardStyle = 'object-cover rounded-md bg-gray-300 h-14 w-14';
   if (selectedImage[0] === thumbnail[0] && selectedImage[1] === thumbnail[1]) {
-    if (isDarkTheme) {
-      thumbnailCardStyle += ' image-selected-dark';
-    } else {
-      thumbnailCardStyle += ' image-selected';
-    }
+    thumbnailCardStyle += ' image-selected dark:image-selected-dark';
     scrollCarousel(index - 3, true);
   }
 

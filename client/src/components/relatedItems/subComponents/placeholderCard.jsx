@@ -1,19 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOutfitItem } from '@reducers/relatedSlice';
 
 export default function PlaceholderCard() {
-  let cardStyle = 'flex h-72 w-48 border-2 p-18';
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.product.value);
 
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-  if (isDarkTheme) {
-    cardStyle += ' border-primary-300 bg-black';
-  } else {
-    cardStyle += ' border-secondary-300 bg-white';
+  function addOutfitItemHandler() {
+    dispatch(addOutfitItem(productDetails));
   }
 
   return (
-    <div className={cardStyle}>
+    <button type="button" className="flex h-72 w-48 border-2 p-18 border-secondary-300 dark:border-primary-300 bg-white dark:bg-black" onClick={addOutfitItemHandler}>
       <i className="self-center mx-auto fa-solid fa-circle-plus text-8xl" />
-    </div>
+    </button>
   );
 }

@@ -15,11 +15,11 @@ function RatingsReviews() {
   }, [productID]);
 
   return (
-    <div id="ratingsReviews" className="p-5 border-solid justify-center max-w-screen-lg mx-auto">
+    <div id="ratingsReviews">
       <div className="flex flex-col md:flex-row">
-        <div id="breakdown" className="w-full md:w-2/5 text-xl lg:text-2xl">
+        <div id="breakdown" className="w-full md:w-2/5 text-lg">
           <div className="flex justify-center">
-            <div className="mb-4 flex flex-row md:flex-col mx-auto gap-4 md: gap-0 md:items-center">
+            <div className="mb-4 flex flex-col sm:flex-row md:flex-col mx-auto gap-4 md:gap-0 md:items-center">
               <div className="flex-grow">
                 <RatingsBreakdown />
               </div>
