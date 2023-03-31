@@ -17,16 +17,12 @@ function SortOptions() {
     <div>
       <div>
         {'Sort by: '}
-        <select value={sortedBy} onChange={handleChange}>
+        <select className="bg-white dark:text-white dark:bg-stone-700" value={sortedBy} onChange={handleChange}>
           {options.map((option) => (
             <option key={option.value} value={option.value}>{option.label}</option>
           ))}
         </select>
       </div>
-      <p>
-        {'Sorted by: '}
-        {sortedBy}
-      </p>
     </div>
   );
 }

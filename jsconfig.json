@@ -10,6 +10,7 @@
       "@images/*": ["./client/src/assets/images/*"],
       "@css/*": ["./client/src/css/*"],
       "@store": ["./client/src/store/store.js"],
+      "@mock": ["./testSetUp/generateMockResponse.js"],
       "@lib/*": ["./client/src/lib/*"],
       "@modular/*": ["./client/src/modular/*"]
     },
