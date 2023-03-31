@@ -6,6 +6,7 @@ const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
+  mode: 'development',
   entry: path.join(SRC_DIR, 'index.jsx'),
   output: {
     path: DIST_DIR,
@@ -29,7 +30,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            cacheDirectory: true,
+            presets: [
+              ['@babel/preset-env', { useBuiltIns: 'usage', corejs: 3 }],
+              '@babel/preset-react',
+            ],
           },
         },
       },
@@ -49,6 +54,7 @@ module.exports = {
     ],
   },
   plugins: [
+
     new HtmlWebpackPlugin({
       title: 'Atelier',
       template: path.resolve(__dirname, '/templates/template.html'),
@@ -92,6 +98,10 @@ module.exports = {
       '@store': path.resolve(
         __dirname,
         './client/src/store/store.js',
+      ),
+      '@mock': path.resolve(
+        __dirname,
+        './testSetUp/generateMockResponse.js',
       ),
       '@lib': path.resolve(
         __dirname,

@@ -20,7 +20,7 @@ const relatedSlice = createSlice({
       let push = true;
       state.itemsOutfit.forEach((item, index) => {
         if (item.id === id) {
-          state.itemsOutfit.splice(index);
+          state.itemsOutfit.splice(index, 1);
           push = false;
         }
       });

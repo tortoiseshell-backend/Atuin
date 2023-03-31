@@ -3,7 +3,7 @@ module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },
-  modulePathIgnorePatterns: ['testdata', '__mocks__'],
+  modulePathIgnorePatterns: ['testdata', '__mocks__', 'proxies'],
   moduleNameMapper: {
     '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less)$': '<rootDir>/__mocks__/fileMock.js',
@@ -15,6 +15,7 @@ module.exports = {
     '^@images(.*)$': '<rootDir>/client/src/assets/images$1',
     '^@css(.*)$': '<rootDir>/client/src/css$1',
     '^@store$': '<rootDir>/client/src/store/store.js',
+    '^@mock$': '<rootDir>/testSetUp/generateMockResponse.js',
     '^@modular(.*)$': '<rootDir>/client/src/modular$1',
     '^@lib(.*)$': '<rootDir>/client/src/lib$1',
   },

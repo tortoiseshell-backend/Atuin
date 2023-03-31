@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -15,20 +16,29 @@ export const reviewSlice = createSlice({
   initialState: {
     data: [],
     metaData: {},
+    rendered: [],
+    averageRating: 0,
   },
   reducers: {
     getReviews: (state, action) => {
       [state.data, state.metaData] = action.payload;
+      state.rendered = state.data;
+    },
+    setRenderedReviews: (state, action) => {
+      state.rendered = action.payload;
+    },
+    setAverageRating: (state, action) => {
+      state.averageRating = action.payload;
     },
   },
 });
 
-export const { getReviews } = reviewSlice.actions;
+export const { getReviews, setRenderedReviews, setAverageRating } = reviewSlice.actions;
 
 export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
-    const prodId = state.product.id; // 40436
+    const prodId = state.product.id; // good products: 40435 40436
 
     const metaResponse = await axios.get(`${API_URL}/meta/?product_id=${prodId} `, API_CONFIG);
     const reviewCount = Object.values(metaResponse.data.recommended).reduce(

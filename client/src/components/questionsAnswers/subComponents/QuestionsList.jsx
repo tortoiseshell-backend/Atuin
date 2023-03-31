@@ -9,12 +9,12 @@ function QuestionsList() {
     <div id="questionsList">
       {viewQuestions.length === 0
         ? (
-          <div className="text-gray-600">
+          <div className="m-5 text-gray-600 dark:text-stone-300">
             No results available.
           </div>
         )
         : (
-          <div>
+          <div data-testid="qEntries">
             {viewQuestions.map((q) => (
               <QuestionEntry q={q} key={q.question_id} />
             ))}
