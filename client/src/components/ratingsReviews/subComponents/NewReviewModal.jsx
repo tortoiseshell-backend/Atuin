@@ -59,11 +59,11 @@ function NewReviewModal() {
 
     const config = {
       method: 'post',
-      url: 'https://api.imgur.com/3/images',
+      url: 'https://api.imgur.com/3/image',
       headers: {
         Authorization: 'Bearer 72f560c29407c932a0b76f8a1adc287ed03ae950',
         Cookie: 'IMGURSESSION=494f1e879f30e1625de8cb15b931bd92; _nc=1',
-        ...data.getHeaders(),
+        'Content-Type': 'multipart/form-data',
       },
       data,
     };
