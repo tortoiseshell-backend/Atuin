@@ -17,7 +17,7 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0,
 });
 
-export default function RelatedProductCard({ item }) {
+export default function ProductCard({ item }) {
   const dispatch = useDispatch();
   const averageRating = useSelector((state) => state.reviews.metaData).averageRating || 0;
   const { name, category, default_price } = item;
@@ -93,7 +93,7 @@ export default function RelatedProductCard({ item }) {
   );
 }
 
-RelatedProductCard.propTypes = {
+ProductCard.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -101,7 +101,7 @@ RelatedProductCard.propTypes = {
     results: PropTypes.arrayOf(
       PropTypes.arrayOf(
         PropTypes.shape({
-          url: PropTypes.string.isRequired,
+          url: PropTypes.string,
         }),
       ),
     ),
