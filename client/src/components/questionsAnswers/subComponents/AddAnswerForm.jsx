@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateQAndA } from '@reducers/qnaSlice';
 import defaultImage from '@images/place-holder.jpg';
 import PropTypes from 'prop-types';
-
-const axios = require('axios');
+import FormData from 'form-data';
+import axios from 'axios';
 
 function AddAnswerForm({ qBodyId }) {
   const [images, setImages] = useState([0]);
@@ -12,20 +12,62 @@ function AddAnswerForm({ qBodyId }) {
   const dispatch = useDispatch();
   let photosArr = [];
 
-  const uploadPhotos = () => {
-    // TODO: add photo links to photosArr
+  // const uploadPhotos = () => {
+  //   // TODO: add photo links to photosArr
+  // };
+
+  // const getImage = (e) => {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (images[0] === 0) {
+  //       setImages(() => [reader.result]);
+  //     } else {
+  //       setImages((current) => [...current, reader.result]);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // };
+
+  const uploadImageToImgur = async (imageData) => {
+    const data = new FormData();
+    data.append('image', imageData);
+
+    const config = {
+      method: 'post',
+      url: 'https://api.imgur.com/3/image',
+      headers: {
+        Authorization: 'Bearer 72f560c29407c932a0b76f8a1adc287ed03ae950',
+        Cookie: 'IMGURSESSION=494f1e879f30e1625de8cb15b931bd92; _nc=1',
+        'Content-Type': 'multipart/form-data',
+      },
+      data,
+    };
+
+    try {
+      const response = await axios(config);
+      console.log(response.data.data.link);
+
+      if (images[0] === 0) {
+        setImages(() => [response.data.data.link]);
+      } else {
+        setImages((current) => [...current, response.data.data.link]);
+      }
+      photosArr.push(response.data.data.link);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const getImage = (e) => {
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
     const reader = new FileReader();
+
     reader.onload = () => {
-      if (images[0] === 0) {
-        setImages(() => [reader.result]);
-      } else {
-        setImages((current) => [...current, reader.result]);
-      }
+      const base64Data = reader.result.replace(/^data:image\/\w+;base64,/, '');
+      uploadImageToImgur(base64Data);
     };
-    reader.readAsDataURL(e.target.files[0]);
+
+    reader.readAsDataURL(file);
   };
 
   const submitHandler = (e) => {
@@ -121,7 +163,7 @@ function AddAnswerForm({ qBodyId }) {
           </div>
           <div className="uploadButton my-4">
             <label htmlFor="actualButton" className="styledUploadButton hover:bg-primary-100 dark:hover:bg-secondary-300 border border-secondary-300 dark:border-primary-300 text-secondary-300 dark:text-primary-300 rounded p-2">
-              {images.length < 5 && <input type="file" id="actualButton" name="filename" accept="image/*" onChange={getImage} multiple hidden />}
+              {images.length < 5 && <input type="file" id="actualButton" name="filename" accept="image/*" onChange={handleImageUpload} multiple hidden />}
               <i className="fa-solid fa-plus text-secondary-300 dark:text-primary-300" />
               &nbsp; Upload a photo
             </label>

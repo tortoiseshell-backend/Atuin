@@ -59,7 +59,7 @@ function QuestionsAnswers() {
               display: none;
             }
             .questionList::-webkit-scrollbar-track {
-              background-color: #e5f4ff;
+              background-color: #fff;
               border-radius: 6px;
             }
           `}

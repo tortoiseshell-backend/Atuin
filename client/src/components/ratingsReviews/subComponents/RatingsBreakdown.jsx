@@ -29,6 +29,10 @@ function RatingsBreakdown() {
     dispatch(setRenderedReviews(reviews));
   }, [reviews]);
 
+  useEffect(() => {
+    dispatch(setRenderedReviews(filteredReviews));
+  }, [filteredReviews]);
+
   // Handle filter clicks
   const handleFilterClick = (rating) => {
     let newFilters = [...activeFilters];
@@ -39,7 +43,6 @@ function RatingsBreakdown() {
     }
     setActiveFilters(newFilters);
     setFilteredReviews(reviews.filter((review) => newFilters.includes(review.rating)));
-    dispatch(setRenderedReviews(filteredReviews));
   };
 
   // Clear all filters
@@ -66,13 +69,12 @@ function RatingsBreakdown() {
         <div className="grid grid-rows-5 text-lg">
           {Object.entries(ratings).map(([rating, count]) => (
             <button
+              className="bg-white dark:bg-grey-500"
               type="button"
               key={rating}
               onClick={() => handleFilterClick(parseInt(rating, 10))}
               style={{
-                backgroundColor: activeFilters.includes(parseInt(rating, 10))
-                  ? 'green'
-                  : 'transparent',
+                backgroundColor: 'transparent',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -106,8 +108,12 @@ function RatingsBreakdown() {
                   />
                 </div>
                 <span className="pr-[10px]">{`${count}`}</span>
+                {activeFilters.includes(parseInt(rating, 10)) && (
+                  <i className="fa-solid fa-caret-left text-secondary-300 dark:bg-primary-300" style={{ backgroundColor: 'transparent' }} />
+                )}
               </div>
             </button>
+
           ))}
         </div>
 
