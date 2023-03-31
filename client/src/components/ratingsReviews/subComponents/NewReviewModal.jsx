@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import StarRatingView from '@modular/StarRatingView';
 import defaultImage from '@images/place-holder.jpg';
+import FormData from 'form-data';
+import axios from 'axios';
 import { postReview } from '../scripts/API_Helper';
 import characteristicsMeaning from '../scripts/characteristicsMeaning';
 
@@ -24,6 +26,7 @@ function NewReviewModal() {
   const [rating, setRating] = useState(0);
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
+  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
 
   const handleCharacteristicChange = (characteristic, value) => {
     setEnteredCharacteristics({
@@ -41,25 +44,48 @@ function NewReviewModal() {
   };
 
   useEffect(() => {
-    // add event listener to all star elements
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
+    // add event listener to all star elements with parent div of freeContent
+    const freeContentStars = isDarkTheme ? document.querySelectorAll('#stars .Dstar') : document.querySelectorAll('#stars .star');
+    freeContentStars.forEach((star, index) => {
       star.addEventListener('click', () => {
-        setRating(index - 5);
+        setRating(index + 1);
       });
     });
   }, []);
 
-  const getImage = (e) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (images[0] === 0) {
-        setImages(() => [reader.result]);
-      } else {
-        setImages((current) => [...current, reader.result]);
-      }
+  const uploadImageToImgur = async (imageData) => {
+    const data = new FormData();
+    data.append('image', imageData);
+
+    const config = {
+      method: 'post',
+      url: 'https://api.imgur.com/3/images',
+      headers: {
+        Authorization: 'Bearer 72f560c29407c932a0b76f8a1adc287ed03ae950',
+        Cookie: 'IMGURSESSION=494f1e879f30e1625de8cb15b931bd92; _nc=1',
+        ...data.getHeaders(),
+      },
+      data,
     };
-    reader.readAsDataURL(e.target.files[0]);
+
+    try {
+      const response = await axios(config);
+      console.log(JSON.stringify(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Data = reader.result.replace(/^data:image\/\w+;base64,/, '');
+      uploadImageToImgur(base64Data);
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const postNewReview = (reviewObj) => {
@@ -90,7 +116,7 @@ function NewReviewModal() {
         <div id="freeContent" className="grid grid-rows-3 gap-2 mt-4">
           {/* Stars */}
           <div className="md:ml-4 grid items-end md:grid-cols-2 grid-cols-1 justify-items-center pt-2 py-3 text-xl sm:text-xl md:text-2xl lg:text-4xl" id="overallRating">
-            <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100">
+            <div id="stars" className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100">
               <StarRatingView averageRating={rating} />
               <span className="ml-3">{renderStarsSwitch()}</span>
 
@@ -230,7 +256,7 @@ function NewReviewModal() {
               <img className="my-2" id={`outputImage-${idx}`} key={`outputImage-${idx}`} alt={`outputImage-${idx}`} onError={((e) => { e.target.src = defaultImage; })} src={image} style={{ maxHeight: '4em', maxWidth: '4em' }} />
             ))}
           </div>
-          {images.length < 5 && <input type="file" accept="image/*" onChange={getImage} />}
+          {images.length < 5 && <input type="file" accept="image/*" onChange={handleImageUpload} />}
         </div>
 
         {/* Name */}

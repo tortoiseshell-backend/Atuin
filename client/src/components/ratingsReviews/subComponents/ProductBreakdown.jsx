@@ -34,7 +34,7 @@ function ProductBreakdown() {
                 }}
               >
                 <div
-                  className="bg-green-500 dark:bg-primary-300"
+                  className="bg-stone-300 dark:bg-secondary-200"
                   style={{
                     display: 'inline-block',
                     position: 'relative',
@@ -51,8 +51,8 @@ function ProductBreakdown() {
                       left: '95%',
                       top: '50%',
                       transform: 'translateY(-50%)',
-                      width: '10px',
-                      height: '10px',
+                      width: '15px',
+                      height: '15px',
                       borderRadius: '50%',
                       border: '1px solid grey',
                     }}
