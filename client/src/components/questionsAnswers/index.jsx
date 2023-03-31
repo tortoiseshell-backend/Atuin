@@ -40,7 +40,7 @@ function QuestionsAnswers() {
   }, [id]);
 
   return (
-    <div className="mx-auto p-10 ">
+    <div className= "p-10 max-w-[400px] md:max-w-[950px] mx-auto">
       <h3>QUESTIONS & ANSWERS</h3>
       <Search />
       <QuestionsList />

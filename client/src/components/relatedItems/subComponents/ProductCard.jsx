@@ -31,16 +31,19 @@ export default function ProductCard({ item }) {
   let cardStyle = 'h-72 w-48 border-2';
   let imageStyle = 'object-cover w-full h-48';
   let textboxStyle = ' text-left p-2';
+  let starStyle = 'absolute top-2 right-3 z-20';
 
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   if (isDarkTheme) {
     cardStyle += ' border-primary-300';
     imageStyle += ' bg-gray-900';
     textboxStyle += ' bg-black';
+    starStyle += ' text-primary-300';
   } else {
     cardStyle += ' border-secondary-300';
     imageStyle += ' bg-gray-100';
     textboxStyle += ' bg-white';
+    starStyle += ' text-secondary-300';
   }
 
   let starIconType = 'fa-sharp fa-regular fa-star';
@@ -88,7 +91,7 @@ export default function ProductCard({ item }) {
           </div>
         </div>
       </button>
-      <button type="button" aria-label="like this item" className="absolute top-2 right-3 text-secondary-300 z-20" onClick={addOutfitItemHandler}><i className={starIconType} /></button>
+      <button type="button" aria-label="like this item" className={starStyle} onClick={addOutfitItemHandler}><i className={starIconType} /></button>
     </div>
   );
 }
