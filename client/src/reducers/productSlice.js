@@ -28,7 +28,7 @@ const productSlice = createSlice({
       state.productList = action.payload;
     },
     setProduct(state, action) {
-      state.product_id = action.payload.id;
+      state.id = action.payload.id;
       state.name = action.payload.name;
       state.category = action.payload.category;
       state.default_price = action.payload.default_price;

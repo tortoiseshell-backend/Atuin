@@ -3,6 +3,7 @@
 import { toggle, setModalProps, setModalType } from '@reducers/modalSlice';
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getReviewsAsync } from '@reducers/reviewSlice';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList() {
@@ -11,12 +12,27 @@ function ReviewList() {
   const { characteristics } = useSelector((state) => state.reviews.metaData);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const reviews = useSelector((state) => state.reviews.data);
+  const filteredReviews = useSelector((state) => state.reviews.rendered);
+  const prodID = useSelector((state) => state.product.id);
   const [reachedBottom, setReachedBottom] = useState(false);
   const sort = useSelector((state) => state.sort.sortedBy);
   const elementPointerRef = useRef(null);
 
   useEffect(() => {
-    // document.getElementById('reviewList').scrollTo(0, 0);
+    console.log(prodID);
+    document.getElementById('reviewList').scrollTo(0, 0);
+    dispatch(getReviewsAsync());
+  }, [prodID]);
+
+  useEffect(() => {
+    if (filteredReviews.length > 0) {
+      setRenderedReviews(filteredReviews);
+    }
+  }, [filteredReviews]);
+
+  useEffect(() => {
+    document.getElementById('reviewList').scrollTo(0, 0);
+    dispatch(getReviewsAsync());
   }, [sort]);
 
   useEffect(() => {
@@ -48,10 +64,10 @@ function ReviewList() {
     if (!reachedBottom) {
       const list = e.target;
       const elementPointer = elementPointerRef.current;
-      const scrolledToBottom = (reviews.length - 5) === Number(elementPointer.getAttribute('data'));
+      const scrolledToBottom = (filteredReviews.length - 10) === Number(elementPointer.getAttribute('data'));
 
       if (isElementOnScreen(elementPointer, list)) {
-        setRenderedReviews((rendered) => reviews.slice(0, rendered.length + 5));
+        setRenderedReviews((rendered) => filteredReviews.slice(0, rendered.length + 10));
         if (scrolledToBottom) {
           setReachedBottom(true);
         }
@@ -105,7 +121,7 @@ function ReviewList() {
             More Reviews
           </button>
         )}
-        <div className="flex justify-center">
+        <div data-testid="openWriteReviewModel" className="flex justify-center">
           <button
             type="button"
             className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"

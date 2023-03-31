@@ -9,6 +9,8 @@ import store from '@store';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import generateMockResponse from '@mock';
+import NewReviewModal from '@components/ratingsReviews/subComponents/NewReviewModal';
+
 
 describe('Ratings and Reviews', () => {
   const mock = new MockAdapter(axios);
@@ -48,5 +50,17 @@ describe('Ratings and Reviews', () => {
     await screen.findAllByTestId('notAnything');
     const test = await screen.findAllByTestId('notAnything1');
     await waitFor(() => expect(test[0]).toBeInTheDocument());
+    // await waitFor(async () => fireEvent.click(await screen.findByTestId('openWriteReviewModel')));
+  });
+
+  test('renders NewReviewModal', () => {
+    render(
+      <Provider store={store}>
+        <NewReviewModal />
+      </Provider>,
+    );
+    expect(screen.getByTestId('newReviewModel')).toBeInTheDocument();
+    // click the "Yes" radio button
+    fireEvent.click(screen.getByTestId('radioYes'));
   });
 });

@@ -84,7 +84,7 @@ function NewReviewModal() {
   };
 
   return (
-    <div className="px-1 w-[min-content]">
+    <div data-testid="newReviewModel" className="px-1 w-[min-content]">
       <form onSubmit={(e) => { e.preventDefault(); console.log(e); }}>
 
         <div id="freeContent" className="grid grid-rows-3 gap-2 mt-4">
@@ -107,6 +107,7 @@ function NewReviewModal() {
               <label className="mx-2" htmlFor="radioYes">
                 Yes
                 <input
+                  data-testid="radioYes"
                   type="radio"
                   id="radioYes"
                   name="recommend"
