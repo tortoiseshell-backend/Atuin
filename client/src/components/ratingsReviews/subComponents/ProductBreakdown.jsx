@@ -34,15 +34,16 @@ function ProductBreakdown() {
                 }}
               >
                 <div
+                  className="bg-green-500 dark:bg-primary-300"
                   style={{
                     display: 'inline-block',
                     position: 'relative',
                     width: `${(characteristics[key].value / 5) * 100}%`,
                     height: '100%',
-                    backgroundColor: 'green',
                   }}
                 >
                   <div
+                    className="bg-white"
                     style={{
                       zIndex: '2',
                       display: 'inline-block',
@@ -50,22 +51,21 @@ function ProductBreakdown() {
                       left: '95%',
                       top: '50%',
                       transform: 'translateY(-50%)',
-                      width: '5px',
+                      width: '10px',
                       height: '10px',
                       borderRadius: '50%',
-                      backgroundColor: 'white',
                       border: '1px solid grey',
                     }}
                   />
                 </div>
                 <div
+                  className="bg-stone-300 dark:bg-secondary-200"
                   style={{
                     zIndex: '1',
                     display: 'inline-block',
                     position: 'relative',
                     width: `${100 - (characteristics[key].value / 5) * 100}%`,
                     height: '100%',
-                    backgroundColor: 'grey',
                   }}
                 />
               </div>

@@ -11,7 +11,7 @@ function RelatedItems() {
 
   useEffect(() => {
     dispatch(getRelatedProductsAsync(productID));
-  }, []);
+  }, [productID]);
 
   return (
     <div className="mx-auto p-10 w-full max-w-[950px] ">

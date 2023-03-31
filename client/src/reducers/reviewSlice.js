@@ -17,6 +17,7 @@ export const reviewSlice = createSlice({
     data: [],
     metaData: {},
     rendered: [],
+    averageRating: 0,
   },
   reducers: {
     getReviews: (state, action) => {
@@ -26,10 +27,13 @@ export const reviewSlice = createSlice({
     setRenderedReviews: (state, action) => {
       state.rendered = action.payload;
     },
+    setAverageRating: (state, action) => {
+      state.averageRating = action.payload;
+    },
   },
 });
 
-export const { getReviews, setRenderedReviews } = reviewSlice.actions;
+export const { getReviews, setRenderedReviews, setAverageRating } = reviewSlice.actions;
 
 export const getReviewsAsync = () => async (dispatch, getState) => {
   try {

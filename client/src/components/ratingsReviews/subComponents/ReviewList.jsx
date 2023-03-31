@@ -103,31 +103,31 @@ function ReviewList() {
           </span>
         )}
       </div>
-      <div data-testid="moreReviewsButtonContainer" className="flex justify-center">
+      <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3">
         {displayMoreReviewsButton && reviews.length > 2 && (
           <button
             data-testid="moreReviewsButton"
-            className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"
+            className="mt-3 border-solid border-[3px] font-semibold p-4 border-violet-700 text-violet-700 dark:text-stone-300 hover:bg-white dark:hover:bg-secondary-200"
             type="button"
             onClick={() => {
               const list = document.getElementById('reviewList');
-              list.style.maxHeight = '45em';
+              list.style.maxHeight = '55em';
               list.style.overflow = 'scroll';
               list.style.paddingRight = '10px';
               setDisplayMoreReviewsButton(false);
               setRenderedReviews(reviews.slice(0, 10));
             }}
           >
-            More Reviews
+            MORE REVIEWS
           </button>
         )}
         <div data-testid="openWriteReviewModel" className="flex justify-center">
           <button
             type="button"
-            className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 font-semibold p-4"
+            className="mt-3 border-solid border-[3px] font-semibold p-4 border-violet-700 text-violet-700 dark:text-stone-300 hover:bg-white dark:hover:bg-secondary-200"
             onClick={toggleModal}
           >
-            Write a review
+            NEW REVIEW
           </button>
         </div>
       </div>

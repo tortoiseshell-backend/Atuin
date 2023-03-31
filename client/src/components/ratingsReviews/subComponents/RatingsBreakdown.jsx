@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setRenderedReviews } from '@reducers/reviewSlice';
+import { setRenderedReviews, setAverageRating } from '@reducers/reviewSlice';
 import StarRatingView from '@modular/StarRatingView';
 
 function RatingsBreakdown() {
@@ -11,6 +11,7 @@ function RatingsBreakdown() {
 
   // Calculate average rating
   const avgRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
+  dispatch(setAverageRating(avgRating));
 
   // Calculate rating breakdown
   const ratings = {
@@ -52,7 +53,7 @@ function RatingsBreakdown() {
     <div id="RatingsBreakdown">
       {/* Display average rating */}
       <div className="md:ml-4 grid items-end grid-cols-1 justify-items-center pt-2 py-3 text-3xl lg:text-4xl" id="overallRating">
-        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100">
+        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100 dark:bg-stone-700">
           <div className="flex flex-col items-center">
             <StarRatingView averageRating={avgRating} />
             <span className="mt-3">{`${reviews.length} reviews`}</span>
@@ -89,19 +90,19 @@ function RatingsBreakdown() {
                   }}
                 >
                   <div
+                    className="bg-green-500 dark:bg-primary-300"
                     style={{
                       display: 'inline-block',
                       width: `${(count / reviews.length) * 100}%`,
                       height: '100%',
-                      backgroundColor: 'green',
                     }}
                   />
                   <div
+                    className="bg-stone-300 dark:bg-secondary-200"
                     style={{
                       display: 'inline-block',
                       width: `${100 - (count / reviews.length) * 100}%`,
                       height: '100%',
-                      backgroundColor: 'grey',
                     }}
                   />
                 </div>

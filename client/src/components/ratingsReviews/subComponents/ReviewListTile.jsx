@@ -188,10 +188,9 @@ function ReviewListTile({ review }) {
           >
             {helpfulClicked !== 'like' && (
               <i
-                className="fa fa-duotone fa-thumbs-up fa-rotate-180"
+                className="fa fa-duotone fa-thumbs-up fa-rotate-180 text-[#300e7f] dark:text-secondary-300"
                 aria-label="dislike button"
                 style={{
-                  color: '#300e7f',
                   opacity: '0.8',
                   cursor: 'pointer',
                   fontSize: '2em',
@@ -218,10 +217,9 @@ function ReviewListTile({ review }) {
             )}
             {helpfulClicked !== 'dislike' && (
               <i
-                className="fa fa-duotone fa-thumbs-up"
+                className="fa fa-duotone fa-thumbs-up  text-[#300e7f] dark:text-secondary-300"
                 aria-label="like button"
                 style={{
-                  color: '#300e7f',
                   opacity: '0.8',
                   cursor: 'pointer',
                   fontSize: '2em',
