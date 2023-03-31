@@ -18,7 +18,6 @@ import CartDisplay from './subComponents/cartDisplay';
 function HeaderBar() {
   const dispatch = useDispatch();
   const productListData = useSelector((state) => state.product.productList);
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
 
   useEffect(() => {
     dispatch(getProductListAsync());
