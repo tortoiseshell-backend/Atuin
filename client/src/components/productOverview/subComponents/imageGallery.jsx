@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleViewState } from '@reducers/productSlice';
 import defaultImage from '@images/place-holder.jpg';
 import checkMobileBrowser from '@lib/checkMobileBrowser';
-import checkValidImage from '../scripts/checkValidImage';
+import checkValidImage from '@lib/checkValidImage';
 import checkExpandedView from '../scripts/checkExpandedView';
 import zoomPanning from '../scripts/zoomPanning';
 import ThumbnailCarousel from './thumbnailCarousel';
