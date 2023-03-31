@@ -19,7 +19,7 @@ function NewReviewModal() {
   const prodName = useSelector((state) => state.product.name);
   const { characteristics } = useSelector((state) => state.reviews.metaData);
   const [enteredCharacteristics, setEnteredCharacteristics] = useState({});
-  const [recommend, setRecommend] = useState(false);
+  const [recommend, setRecommend] = useState(null);
   const [nickName, setNickName] = useState('');
   const [summary, setSummary] = useState('');
   const [images, setImages] = useState([0]);
@@ -42,10 +42,6 @@ function NewReviewModal() {
       window.alert(`Input shouldn't exceed ${maxLength} characters`);
     }
   };
-
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
 
   useEffect(() => {
     // add event listener to all star elements with parent div of freeContent
@@ -98,7 +94,7 @@ function NewReviewModal() {
     reader.readAsDataURL(file);
   };
 
-  const postNewReview = (reviewObj) => {
+  const handlePostNewReview = (reviewObj) => {
     postReview(reviewObj);
   };
 

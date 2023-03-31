@@ -60,7 +60,7 @@ function App() {
             <QuestionsAnswers />
           </div>
           <div className="row-span-1">
-            <RelatedItems />
+            {/* <RelatedItems /> */}
           </div>
           {rendered ? <Modal /> : null}
         </div>

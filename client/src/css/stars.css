@@ -2,7 +2,7 @@
   display: inline-block;
   position: relative;
   font-size: 100px;
-  color: #c8e8ff;
+  color: #cccccc;
 }
 
 .starFull:after {
@@ -12,7 +12,7 @@
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: #6120d8;
+  color: rgb(244, 167, 0);
 }
 .star1:after {
   content: "\f005";
@@ -21,7 +21,7 @@
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #6120d8;
+  color: rgb(244, 167, 0);
 }
 .star2:after {
   content: "\f005";
@@ -30,7 +30,7 @@
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: #6120d8;
+  color: rgb(244, 167, 0);
 }
 .star3:after {
   content: "\f005";
@@ -39,14 +39,14 @@
   top: 0;
   width: 75%;
   overflow: hidden;
-  color: #6120d8;
+  color: rgb(244, 167, 0);
 }
 
 [class^="Dstar"] {
   display: inline-block;
   position: relative;
   font-size: 100px;
-  color: #300e7f;
+  color: #c8e8ff;
 }
 
 .DstarFull:after {
@@ -56,7 +56,7 @@
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: #c8e8ff;
+  color: #f80;
 }
 .Dstar1:after {
   content: "\f005";
@@ -65,7 +65,7 @@
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #c8e8ff;
+  color: #f80;
 }
 .Dstar2:after {
   content: "\f005";
@@ -74,7 +74,7 @@
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: #c8e8ff;
+  color: #f80;
 }
 .Dstar3:after {
   content: "\f005";
@@ -83,10 +83,10 @@
   top: 0;
   width: 75%;
   overflow: hidden;
-  color: #c8e8ff;
+  color: #f80;
 }
 
 ::selection {
   background-color: #6120d8;
-  color: #c8e8ff;
+  color: #f80;
 }

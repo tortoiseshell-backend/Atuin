@@ -34,7 +34,7 @@ function ProductBreakdown() {
                 }}
               >
                 <div
-                  className="bg-stone-300 dark:bg-secondary-200"
+                  className="bg-stone-200 dark:bg-secondary-200"
                   style={{
                     display: 'inline-block',
                     position: 'relative',
@@ -43,7 +43,7 @@ function ProductBreakdown() {
                   }}
                 >
                   <div
-                    className="bg-white"
+                    className="bg-secondary-300 dark:bg-primary-200"
                     style={{
                       zIndex: '2',
                       display: 'inline-block',
@@ -59,7 +59,7 @@ function ProductBreakdown() {
                   />
                 </div>
                 <div
-                  className="bg-stone-300 dark:bg-secondary-200"
+                  className="bg-stone-200 dark:bg-secondary-200"
                   style={{
                     zIndex: '1',
                     display: 'inline-block',

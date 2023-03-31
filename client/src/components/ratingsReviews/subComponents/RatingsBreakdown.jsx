@@ -90,7 +90,7 @@ function RatingsBreakdown() {
                   }}
                 >
                   <div
-                    className="bg-green-500 dark:bg-primary-300"
+                    className="bg-secondary-300 dark:bg-primary-300"
                     style={{
                       display: 'inline-block',
                       width: `${(count / reviews.length) * 100}%`,
@@ -98,7 +98,7 @@ function RatingsBreakdown() {
                     }}
                   />
                   <div
-                    className="bg-stone-300 dark:bg-secondary-200"
+                    className="bg-primary-200 dark:bg-secondary-200"
                     style={{
                       display: 'inline-block',
                       width: `${100 - (count / reviews.length) * 100}%`,
