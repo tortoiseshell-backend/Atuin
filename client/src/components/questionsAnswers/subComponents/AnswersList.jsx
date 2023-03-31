@@ -44,14 +44,24 @@ function AnswersList({ answersObj, qId }) {
   }
 
   return (
-    <div className="answerList max-h-[35vh] overflow-auto border border-primary-200 rounded-lg p-3">
+    <div className="answerList max-h-[35vh] overflow-auto border border-primary-200 dark:border-neutral-500 rounded p-3">
       <style>
         {`
           .answerList::-webkit-scrollbar {
-            background: transparent;
-            width: 0;
+            width: 0.75vh;
+            height: 2vh;
           }
-          scroll-behavior: smooth;
+          .answerList::-webkit-scrollbar-thumb {
+            background-color: rgb(97 32 216);
+            border-radius: 6px;
+          }
+          .answerList::-webkit-scrollbar-button {
+            display: none;
+          }
+          .answerList::-webkit-scrollbar-track {
+            background-color: #e5f4ff;
+            border-radius: 6px;
+          }
         `}
       </style>
       <div>

@@ -45,7 +45,14 @@ function AddAnswerForm({ qBodyId }) {
 
     try {
       const response = await axios(config);
-      console.log(JSON.stringify(response.data));
+      console.log(response.data.data.link);
+
+      if (images[0] === 0) {
+        setImages(() => [response.data.data.link]);
+      } else {
+        setImages((current) => [...current, response.data.data.link]);
+      }
+      photosArr.push(response.data.data.link);
     } catch (error) {
       console.log(error);
     }
