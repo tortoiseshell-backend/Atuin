@@ -9,14 +9,13 @@ import ReviewListTile from './ReviewListTile';
 function ReviewList() {
   const dispatch = useDispatch();
   const [displayMoreReviewsButton, setDisplayMoreReviewsButton] = useState(true);
-  const { characteristics } = useSelector((state) => state.reviews.metaData);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const reviews = useSelector((state) => state.reviews.data);
   const filteredReviews = useSelector((state) => state.reviews.rendered);
   const prodID = useSelector((state) => state.product.id);
-  const [reachedBottom, setReachedBottom] = useState(false);
+  // const [reachedBottom, setReachedBottom] = useState(false);
   const sort = useSelector((state) => state.sort.sortedBy);
-  const elementPointerRef = useRef(null);
+  // const elementPointerRef = useRef(null);
 
   useEffect(() => {
     console.log(prodID);
@@ -26,7 +25,11 @@ function ReviewList() {
 
   useEffect(() => {
     if (filteredReviews.length > 0) {
-      setRenderedReviews(filteredReviews);
+      if (displayMoreReviewsButton) {
+        setRenderedReviews(filteredReviews.slice(0, 2));
+      } else {
+        setRenderedReviews(filteredReviews);
+      }
     }
   }, [filteredReviews]);
 
@@ -39,18 +42,19 @@ function ReviewList() {
     if (displayMoreReviewsButton) {
       setRenderedReviews(reviews.slice(0, 2));
     } else if (!displayMoreReviewsButton) {
-      setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
+      // setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
+      setRenderedReviews(reviews);
     }
   }, [reviews]);
 
-  const isElementOnScreen = (element, container) => {
-    const elementRect = element.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-    return (
-      elementRect.bottom > containerRect.top
-      && elementRect.top < containerRect.bottom
-    );
-  };
+  // const isElementOnScreen = (element, container) => {
+  //   const elementRect = element.getBoundingClientRect();
+  //   const containerRect = container.getBoundingClientRect();
+  //   return (
+  //     elementRect.bottom > containerRect.top
+  //     && elementRect.top < containerRect.bottom
+  //   );
+  // };
 
   const toggleModal = () => {
     dispatch(setModalProps({}));
@@ -58,26 +62,26 @@ function ReviewList() {
     dispatch(toggle());
   };
 
-  const handleScroll = (e) => {
-    e.preventDefault();
+  // const handleScroll = (e) => {
+  //   e.preventDefault();
 
-    if (!reachedBottom) {
-      const list = e.target;
-      const elementPointer = elementPointerRef.current;
-      const scrolledToBottom = (filteredReviews.length - 10) === Number(elementPointer.getAttribute('data'));
+  //   if (!reachedBottom) {
+  //     const list = e.target;
+  //     const elementPointer = elementPointerRef.current;
+  //     const scrolledToBottom = (filteredReviews.length - 10) === Number(elementPointer.getAttribute('data'));
 
-      if (isElementOnScreen(elementPointer, list)) {
-        setRenderedReviews((rendered) => filteredReviews.slice(0, rendered.length + 10));
-        if (scrolledToBottom) {
-          setReachedBottom(true);
-        }
-      }
-    }
-  };
+  //     if (isElementOnScreen(elementPointer, list)) {
+  //       setRenderedReviews((rendered) => filteredReviews.slice(0, rendered.length + 10));
+  //       if (scrolledToBottom) {
+  //         setReachedBottom(true);
+  //       }
+  //     }
+  //   }onScroll={handleScroll}
+  // };
 
   return (
     <div data-testid="scrollableDiv" style={{ paddingRight: '10px' }}>
-      <div id="reviewList" style={{ maxHeight: 'auto' }} onScroll={handleScroll}>
+      <div id="reviewList" style={{ maxHeight: 'auto' }}>
         <style>
           {`
             #reviewList::-webkit-scrollbar {
@@ -89,7 +93,7 @@ function ReviewList() {
         </style>
         {renderedReviews.map((review, idx) => (
           <div
-            ref={idx === (renderedReviews.length - 5) ? elementPointerRef : null}
+            // ref={idx === (renderedReviews.length - 5) ? elementPointerRef : null}
             key={`review-${review.id}-${idx}`}
             id={`review-${idx}`}
             data={idx}
@@ -97,11 +101,11 @@ function ReviewList() {
             <ReviewListTile key={`review-${review.id}-${idx}`} review={review} />
           </div>
         ))}
-        {reachedBottom && (
+        {/* {reachedBottom && (
           <span data-testid="endScroll" className="flex justify-center items-center">
             All caught up!
           </span>
-        )}
+        )} */}
       </div>
       <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3">
         {displayMoreReviewsButton && reviews.length > 2 && (
@@ -115,7 +119,8 @@ function ReviewList() {
               list.style.overflow = 'scroll';
               list.style.paddingRight = '10px';
               setDisplayMoreReviewsButton(false);
-              setRenderedReviews(reviews.slice(0, 10));
+              // setRenderedReviews(reviews.slice(0, 10));
+              setRenderedReviews(reviews);
             }}
           >
             MORE REVIEWS

@@ -6,19 +6,20 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import StarRatingView from '@modular/StarRatingView';
 import defaultImage from '@images/place-holder.jpg';
 import FormData from 'form-data';
 import axios from 'axios';
+import { toggle } from '@reducers/modalSlice';
 import { postReview } from '../scripts/API_Helper';
 import characteristicsMeaning from '../scripts/characteristicsMeaning';
 
 function NewReviewModal() {
-  const prodId = useSelector((state) => state.product.id);
-  const prodName = useSelector((state) => state.product.name);
   const { characteristics } = useSelector((state) => state.reviews.metaData);
   const [enteredCharacteristics, setEnteredCharacteristics] = useState({});
+  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
+  const prodId = useSelector((state) => state.product.id);
   const [recommend, setRecommend] = useState(null);
   const [nickName, setNickName] = useState('');
   const [summary, setSummary] = useState('');
@@ -26,7 +27,7 @@ function NewReviewModal() {
   const [rating, setRating] = useState(0);
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
+  const dispatch = useDispatch();
 
   const handleCharacteristicChange = (characteristic, value) => {
     setEnteredCharacteristics({
@@ -94,8 +95,59 @@ function NewReviewModal() {
     reader.readAsDataURL(file);
   };
 
-  const handlePostNewReview = (reviewObj) => {
-    postReview(reviewObj);
+  const handlePostNewReview = () => {
+    const submitCharacteristics = Object.entries(enteredCharacteristics)
+      .reduce((acc, [key, value]) => {
+        const characteristic = characteristics[key];
+        acc[characteristic.id] = enteredCharacteristics[key].value;
+        return acc;
+      }, {});
+
+    const postObj = {
+      product_id: prodId,
+      rating,
+      summary,
+      body,
+      recommend,
+      name: nickName,
+      email,
+      photos: images,
+      characteristics: submitCharacteristics,
+    };
+
+    const mandatoryFields = [
+      { field: 'rating', message: 'Rating' },
+      { field: 'body', message: 'Review Body' },
+      { field: 'email', message: 'Email Address' },
+    ];
+
+    const invalidFields = [];
+
+    mandatoryFields.forEach((field) => {
+      if (!postObj[field.field]) {
+        invalidFields.push(field.message);
+      }
+    });
+
+    if (body.length < 50) {
+      invalidFields.push('Review body must be at least 50 characters long');
+    }
+
+    if (email && !/\S+@\S+\.\S+/.test(email)) {
+      invalidFields.push('Email address is not valid');
+    }
+
+    if (images.some((image) => !image)) {
+      invalidFields.push('Some images are invalid or unable to be uploaded');
+    }
+
+    if (invalidFields.length > 0) {
+      window.alert(`You must enter the following: ${invalidFields.join(', ')}`);
+      return;
+    }
+
+    postReview(postObj);
+    dispatch(toggle());
   };
 
   const renderStarsSwitch = () => {
@@ -117,12 +169,12 @@ function NewReviewModal() {
 
   return (
     <div data-testid="newReviewModel" className="px-1 w-[min-content]">
-      <form onSubmit={(e) => { e.preventDefault(); console.log(e); }}>
+      <form onSubmit={(e) => { e.preventDefault(); handlePostNewReview(); }}>
 
         <div id="freeContent" className="grid grid-rows-3 gap-2 mt-4">
           {/* Stars */}
           <div className="md:ml-4 grid items-end md:grid-cols-2 grid-cols-1 justify-items-center pt-2 py-3 text-xl sm:text-xl md:text-2xl lg:text-4xl" id="overallRating">
-            <div id="stars" className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100">
+            <div id="stars" className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100 dark:bg-stone-500">
               <StarRatingView averageRating={rating} />
               <span className="ml-3">{renderStarsSwitch()}</span>
 
@@ -177,7 +229,7 @@ function NewReviewModal() {
           }}
         >
           {Object.entries(characteristics).map(([key, value]) => (
-            <div key={value.id} className="border p-3 mb-3 w-[max-content]" style={{ backgroundColor: '#f5f5f5', borderStyle: 'outset', borderWidth: '3px' }}>
+            <div key={value.id} className="border p-3 mb-3 w-[max-content] bg-[#f5f5f5] dark:bg-[#110029]" style={{ borderStyle: 'outset', borderWidth: '3px' }}>
               <div className="col-span-1 flex items-center">
                 <span className="text-center block font-bold w-24">{key}</span>
               </div>
@@ -185,7 +237,7 @@ function NewReviewModal() {
               <div className="col-span-4 grid grid-cols-5 gap-2 items-center">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <div key={num} className="col-span-1 flex flex-col items-center">
-                    <label htmlFor={`radio-${key}-${num}`} className="block w-full border rounded-md border-gray-500 font-xs border p-1 rounded text-center lg:w-[6em] sm:w-[10vw] w-[3em]" style={{ padding: '4px' }} maxLength={60}>{num}</label>
+                    <label htmlFor={`radio-${key}-${num}`} className="block w-full border rounded-md border-gray-200 font-xs border p-1 rounded text-center lg:w-[6em] sm:w-[10vw] w-[3em]" style={{ padding: '4px' }} maxLength={60}>{num}</label>
                     <input
                       type="radio"
                       value={num}
