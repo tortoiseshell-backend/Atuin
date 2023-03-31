@@ -48,7 +48,7 @@ function AnswersList({ answersObj, qId }) {
       <div className="max-w-3xl">
         {viewAnswers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
       </div>
-      {answerKeys.length > 2 ? <button type="button" className="text-gray-500 hover:text-secondary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
+      {answerKeys.length > 2 ? <button type="button" className="hover:text-secondary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
     </div>
   );
 }

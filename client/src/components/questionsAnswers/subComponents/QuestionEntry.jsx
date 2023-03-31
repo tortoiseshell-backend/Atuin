@@ -43,16 +43,16 @@ function QuestionEntry({ q }) {
   return (
     <div className="grid grid-cols-[1fr_125px] gap-2 flex p-4">
       <div className="questionEntry grid grid-cols-[35px_1fr] flex">
-        <h3 className="font-semibold text-gray-500">Q: </h3>
-        <h3 className="flex-wrap break-words font-semibold text-gray-500">{q.question_body}</h3>
-        <h3 className="mt-4 font-semibold text-gray-500">A: </h3>
+        <h3 className="font-semibold">Q: </h3>
+        <h3 className="flex-wrap break-words font-semibold">{q.question_body}</h3>
+        <h3 className="mt-4 font-semibold">A: </h3>
         <div className="mt-4">
           <AnswersList className="answersList" answersObj={q.answers} qId={q.question_id} />
         </div>
       </div>
       <div className="helpfulAddAnswer border-l border-l-gray-300">
         <div className="flex flex-col items-end">
-          <small className="mb-2 text-end text-gray-500">
+          <small className="mb-2 text-end">
             Helpful?&nbsp;&nbsp;
             <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markHelpful}>
               Yes

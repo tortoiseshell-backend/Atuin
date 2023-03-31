@@ -15,7 +15,7 @@ function RatingsReviews() {
   }, [productID]);
 
   return (
-    <div className="p-5 border-solid border-2 border-sky-500 justify-center max-w-screen-lg mx-auto">
+    <div id="ratingsReviews" className="p-5 border-solid justify-center max-w-screen-lg mx-auto">
       <div className="flex flex-col md:flex-row">
         <div id="breakdown" className="w-full md:w-2/5">
           <RatingsBreakdown />
