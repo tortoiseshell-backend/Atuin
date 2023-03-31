@@ -25,10 +25,11 @@ function App() {
   }
 
   return (
-    <div id="background" className={backgroundStyles}>
-      <div id="app" className={appStyles}>
-        <style>
-          {`
+    <div className={isDarkTheme && 'dark'}>
+      <div id="background" className={backgroundStyles}>
+        <div id="app" className={appStyles}>
+          <style>
+            {`
             body::-webkit-scrollbar {
               width: 1.5vh;
               height: 2vh;
@@ -45,23 +46,24 @@ function App() {
               border-radius: 6px;
             }
             `}
-        </style>
-        <div className="row-span-1">
-          <HeaderBar />
+          </style>
+          <div className="row-span-1">
+            <HeaderBar />
+          </div>
+          <div className="row-span-1">
+            <ProductOverview />
+          </div>
+          <div className="row-span-1">
+            <RatingsReviews />
+          </div>
+          <div className="row-span-1">
+            <QuestionsAnswers />
+          </div>
+          <div className="row-span-1">
+            {/* <RelatedItems /> */}
+          </div>
+          {rendered ? <Modal /> : null}
         </div>
-        <div className="row-span-1">
-          <ProductOverview />
-        </div>
-        <div className="row-span-1">
-          <RatingsReviews />
-        </div>
-        <div className="row-span-1">
-          <QuestionsAnswers />
-        </div>
-        <div className="row-span-1">
-          <RelatedItems />
-        </div>
-        {rendered ? <Modal /> : null}
       </div>
     </div>
   );
