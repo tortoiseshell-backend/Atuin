@@ -17,9 +17,14 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0,
 });
 
+const cardStyle = 'h-72 w-48 border-2 border-secondary-300 dark:border-primary-300';
+const imageStyle = 'object-cover w-full h-48 bg-gray-100 dark:bg-gray-900';
+const textboxStyle = ' text-left p-2 bg-white dark:bg-black';
+const starStyle = 'absolute top-2 right-3 z-20 text-secondary-300 dark: text-primary-300';
+
 export default function ProductCard({ item }) {
   const dispatch = useDispatch();
-  const averageRating = useSelector((state) => state.reviews.metaData).averageRating || 0;
+  const averageRating = Math.random() * 3 + 2;
   const { name, category, default_price } = item;
   let isFavorited = false;
   useSelector((state) => state.related.itemsOutfit).forEach((product) => {
@@ -28,23 +33,6 @@ export default function ProductCard({ item }) {
     }
   });
   let photoURL = item.results[0].photos[0].url;
-  let cardStyle = 'h-72 w-48 border-2';
-  let imageStyle = 'object-cover w-full h-48';
-  let textboxStyle = ' text-left p-2';
-  let starStyle = 'absolute top-2 right-3 z-20';
-
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-  if (isDarkTheme) {
-    cardStyle += ' border-primary-300';
-    imageStyle += ' bg-gray-900';
-    textboxStyle += ' bg-black';
-    starStyle += ' text-primary-300';
-  } else {
-    cardStyle += ' border-secondary-300';
-    imageStyle += ' bg-gray-100';
-    textboxStyle += ' bg-white';
-    starStyle += ' text-secondary-300';
-  }
 
   let starIconType = 'fa-sharp fa-regular fa-star';
   if (isFavorited) {

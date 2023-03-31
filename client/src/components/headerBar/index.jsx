@@ -32,10 +32,10 @@ function HeaderBar() {
 
   function renderProductList() {
     const productList = productListData.map((product) => (
-      <option value={product.id} key={product.id} data-testid="product-dropdown">{product.name}</option>
+      <option value={product.id} key={product.id} data-testid="product-dropdown" className="dark:bg-black">{product.name}</option>
     ));
     productList.unshift(
-      <option value="none" key="none" disabled>
+      <option value="none" key="none" className="dark:bg-black" disabled>
         you can use axios
       </option>,
     );
@@ -59,12 +59,13 @@ function HeaderBar() {
           </button>
           <div className="max-w-[60%] flex my-auto">
             {productSelector}
-            <button type="button" aria-label="link to cart" data-testid="cart-button" className="w-[50px] mt-2 ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>
+            <button type="button" aria-label="link to cart" data-testid="cart-button" className="w-[50px] ml-4 mr-2"><i className="fa-solid fa-cart-shopping text-white text-xl" onMouseEnter={renderCart} onMouseLeave={hideCart} /></button>
           </div>
         </div>
         <CartDisplay />
       </div>
       <div className="header-bar w-full max-w-[950px] h-14 bg-gradient-to-r from-primary-300 to-secondary-300" />
+      <div className="header-bar w-full max-w-[950px] h-6 pt-1 text-xs italic text-center border-solid border-y-2 border-gray-100 dark:border-gray-900 bg-white dark:bg-black">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER</div>
     </div>
   );
 }

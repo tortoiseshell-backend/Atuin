@@ -10,17 +10,17 @@ import RelatedItems from './relatedItems';
 function App() {
   const rendered = useSelector((state) => state.modal.modalOpen);
 
-  let appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto bg-primary-100';
+  let appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto bg-primary-100 shadow-sm';
   let backgroundStyles = 'w-full h-full';
 
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   if (isDarkTheme) {
     appStyles += ' bg-secondary-100 text-gray-300';
-    backgroundStyles += ' bg-gray-800';
+    backgroundStyles += ' bg-neutral-900';
     document.body.style.backgroundColor = '#1f2937';
   } else {
     appStyles += ' bg-primary-100 text-gray-700';
-    backgroundStyles += ' bg-gray-300';
+    backgroundStyles += ' bg-slate-300';
     document.body.style.backgroundColor = '#d1d5db';
   }
 
