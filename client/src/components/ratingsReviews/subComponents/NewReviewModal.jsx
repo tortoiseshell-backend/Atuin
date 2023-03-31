@@ -44,6 +44,10 @@ function NewReviewModal() {
   };
 
   useEffect(() => {
+    console.log(images);
+  }, [images]);
+
+  useEffect(() => {
     // add event listener to all star elements with parent div of freeContent
     const freeContentStars = isDarkTheme ? document.querySelectorAll('#stars .Dstar') : document.querySelectorAll('#stars .star');
     freeContentStars.forEach((star, index) => {
@@ -70,7 +74,13 @@ function NewReviewModal() {
 
     try {
       const response = await axios(config);
-      console.log(JSON.stringify(response.data));
+      console.log(response.data.data.link);
+
+      if (images[0] === 0) {
+        setImages(() => [response.data.data.link]);
+      } else {
+        setImages((current) => [...current, response.data.data.link]);
+      }
     } catch (error) {
       console.log(error);
     }
