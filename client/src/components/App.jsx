@@ -7,7 +7,7 @@ import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
-const appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto shadow-sm'
+const appStyles = 'min-w-[390px] max-w-[950px] grid grid-flow-row auto-rows-max mx-auto shadow-sm'
 + ' bg-primary-100 text-gray-700 dark:bg-secondary-100 dark:text-gray-300';
 const backgroundStyles = 'w-full h-full bg-slate-300 dark:bg-neutral-900';
 
@@ -47,16 +47,16 @@ function App() {
           <div className="row-span-1">
             <HeaderBar />
           </div>
-          <div className="row-span-1 mx-auto max-w-[950px]">
+          <div className="row-span-1 mx-auto max-w-[500px] md:max-w-[950px]">
             <ProductOverview />
           </div>
-          <div className="row-span-1 p-10 mx-auto max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
+          <div className="row-span-1 p-10 mx-auto max-w-[500px] md:max-w-[950px]">
             <RatingsReviews />
           </div>
-          <div className="row-span-1 p-10 mx-auto max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
+          <div className="row-span-1 p-10 mx-auto max-w-[500px] md:max-w-[950px]">
             <QuestionsAnswers />
           </div>
-          <div className="row-span-1 p-10 max-w-[350px] sm:max-w-[500px] md:max-w-[700px] xl:max-w-[950px]">
+          <div className="row-span-1 p-10 max-w-[500px] md:max-w-[950px]">
             <RelatedItems />
           </div>
           {rendered ? <Modal /> : null}

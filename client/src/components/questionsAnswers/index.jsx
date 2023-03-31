@@ -68,7 +68,7 @@ function QuestionsAnswers() {
       </div>
       <div className="mt-3 ml-5 flex gap-3">
         <MoreAnsweredQuestions />
-        <Button content="ADD A QUESTION" onClick={toggleModal} />
+        <Button content="ADD A QUESTION" styleOverride="text-center" onClick={toggleModal} />
       </div>
     </div>
   );
