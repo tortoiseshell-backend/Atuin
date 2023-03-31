@@ -34,27 +34,39 @@ function AddAnswerForm({ qBodyId }) {
     };
 
     const payload = {
-      answerer_name: e.target[1].value,
-      body: e.target[0].value,
-      photos: photosArr,
+      qId: qBodyId.qId,
+      answerData: {
+        answerer_name: e.target[1].value,
+        body: e.target[0].value,
+        date: new Date(),
+        helpfulness: 0,
+        photos: photosArr,
+      },
     };
 
     axios.post(API_URL, API_DATA, API_CONFIG)
       .then((postRes) => {
         console.log('POST RES: ', postRes);
-        // TODO: Refresh Q list or page
-        // dispatch(updateQAndA(payload));
+        // axios.get(API_URL, API_CONFIG)
+        //   .then((res) => {
+        //     dispatch(saveGetResults(res.data));
+        //   })
+        //   .catch((err) => {
+        //     throw new Error(err);
+        //   });
       })
       .catch((err) => {
         console.log('ERROR: ', err);
       });
+
+    dispatch(updateQAndA(payload));
   };
 
   return (
     <div className="m-5">
 
-      <h3 className="text-xl font-bold text-gray-500">Submit Your Answer</h3>
-      <h5 className="font-semibold text-gray-500">
+      <h3 className="text-xl font-bold text-gray-700">Submit Your Answer</h3>
+      <h5 className="font-semibold text-gray-700">
         {name}
         :&nbsp;
         {qBodyId.qBody}
@@ -62,7 +74,7 @@ function AddAnswerForm({ qBodyId }) {
 
       <form className="m-[5%]" onSubmit={submitHandler}>
         <div className="yourQuestion my-5">
-          <p className="text-gray-500">
+          <p className="text-gray-700">
             Your Answer
             <span className="text-red-500">*</span>
           </p>
@@ -70,21 +82,21 @@ function AddAnswerForm({ qBodyId }) {
         </div>
 
         <div className="yourNickname my-5">
-          <p className="text-gray-500">
+          <p className="text-gray-700">
             What is your nickname?
             <span className="text-red-500">*</span>
           </p>
           <input type="text" className="w-full border rounded-md border-gray-500 font-xs p-2" maxLength="60" placeholder="Example: jackson543!" required />
-          <small className="block text-gray-500">For privacy reasons, do not use your full name or email address</small>
+          <small className="block text-gray-700">For privacy reasons, do not use your full name or email address</small>
         </div>
 
         <div className="yourEmail my-5">
-          <p className="text-gray-500">
+          <p className="text-gray-700">
             Your email
             <span className="text-red-500">*</span>
           </p>
           <input type="email" className="w-full border rounded-md border-gray-500 p-2" maxLength="60" placeholder="Example: jack@email.com" required />
-          <small className="block text-gray-500">For authentication reasons, you will not be emailed</small>
+          <small className="block text-gray-700">For authentication reasons, you will not be emailed</small>
         </div>
 
         <div className="uploadPhotos my-7">
@@ -97,7 +109,7 @@ function AddAnswerForm({ qBodyId }) {
               <i className="fa-solid fa-plus text-secondary-300" />
               &nbsp; Upload a photo
             </label>
-            <small id="file-chosen" className="ml-3 text-gray-500"> No file chosen</small>
+            <small id="file-chosen" className="ml-3 text-gray-700"> No file chosen</small>
           </div>
         </div>
 

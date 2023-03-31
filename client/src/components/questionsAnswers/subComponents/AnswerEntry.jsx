@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function AnswerEntry({ answerData }) {
   const answererName = answerData.answerer_name.toLowerCase() === 'Seller'
     ? <span className="font-semibold text-violet-700">Seller</span>
-    : <span className="text-gray-400">{answerData.answerer_name}</span>;
+    : <span className="text-gray-500">{answerData.answerer_name}</span>;
 
   const date = new Date(answerData.date);
   const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -20,17 +20,17 @@ function AnswerEntry({ answerData }) {
   return (
     <div className="mb-4">
       <div>
-        <p className="text-gray-500" style={{ wordBreak: 'break-word' }}>{answerData.body}</p>
+        <p className="text-gray-700" style={{ wordBreak: 'break-word' }}>{answerData.body}</p>
       </div>
       <div className="">
-        <small className="inline-block text-gray-400">
+        <small className="inline-block text-gray-500">
           by &nbsp;
           {answererName}
           , &nbsp;
           {formattedDate}
           &nbsp;&nbsp;
         </small>
-        <small className="inline-block text-gray-400 border-l border-solid border-gray-500">
+        <small className="inline-block text-gray-500 border-l border-solid border-gray-500">
           &nbsp;&nbsp; Helpful? &nbsp;
           <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markHelpful}>
             Yes

@@ -44,11 +44,11 @@ function AnswersList({ answersObj, qId }) {
   }
 
   return (
-    <div>
-      <div className="">
+    <div className="max-h-[35vh] overflow-auto pr-5">
+      <div>
         {viewAnswers.map((a) => <AnswerEntry className="answerEntry" answerData={a} key={a.id} />)}
       </div>
-      {answerKeys.length > 2 ? <button type="button" className="text-gray-500 hover:text-secondary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
+      {answerKeys.length > 2 ? <button type="button" className="text-gray-700 hover:text-secondary-300 text-xs font-semibold" value={qId} onClick={handleClick}>{buttonText}</button> : null}
     </div>
   );
 }

@@ -16,7 +16,7 @@ function QuestionsAnswers() {
     dispatch(setModalType('AddQuestionForm'));
     dispatch(toggle());
   };
-  console.log(id);
+
   const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/';
   const API_CONFIG = {
     params: {
@@ -40,10 +40,12 @@ function QuestionsAnswers() {
   }, [id]);
 
   return (
-    <div className="mx-auto p-10 bg-primary-100">
-      <h3 className="text-gray-600">QUESTIONS & ANSWERS</h3>
+    <div className="mx-auto p-10">
+      <h3 className="text-gray-700">QUESTIONS & ANSWERS</h3>
       <Search />
-      <QuestionsList />
+      <div className="max-h-[65vh] overflow-auto">
+        <QuestionsList />
+      </div>
       <div className="ml-5 flex">
         <MoreAnsweredQuestions />
         <button type="button" className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 hover:bg-white font-semibold p-4" onClick={toggleModal}>ADD A QUESTION</button>

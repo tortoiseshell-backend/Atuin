@@ -249,7 +249,7 @@ function NewReviewModal() {
               }}
             // style={{ minWidth: '16px', width: 'calc(100% - 8px)', margin: '4px 0' }}
             />
-            <small className="block text-gray-500">For privacy reasons, do not use your full name or email address</small>
+            <small className="block text-gray-700">For privacy reasons, do not use your full name or email address</small>
             <span className="flex justify-end">
               {`${nickName.length}/60`}
             </span>
@@ -273,7 +273,7 @@ function NewReviewModal() {
               }}
             // style={{ minWidth: '16px', width: 'calc(100% - 8px)', margin: '4px 0' }}
             />
-            <small className="block text-gray-500">For authentication reasons, you will not be emailed</small>
+            <small className="block text-gray-700">For authentication reasons, you will not be emailed</small>
             <span className="flex justify-end">
               {`${email.length}/60`}
             </span>
