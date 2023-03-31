@@ -14,8 +14,7 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 const productShopperStyle = 'grid auto-rows-max gap-2 p-4';
 
 function ProductShopper() {
-  // const avgRating = useSelector((state) => state.reviews.metaData);
-  // console.log(avgRating);
+  const averageRating = useSelector((state) => state.reviews.metaData).averageRating || 0;
   const styles = useSelector((state) => state.product.styles);
   const name = useSelector((state) => state.product.name);
   const category = useSelector((state) => state.product.category);
@@ -23,6 +22,11 @@ function ProductShopper() {
   const salePrice = useSelector((state) => state.product.sale_price);
   const selectedStyle = useSelector((state) => state.product.selectedStyleID);
   let styleText = null;
+
+  function scrollToReviews(event) {
+    event.preventDefault();
+    document.getElementById('ratingsReviews').scrollIntoView({ behavior: 'smooth' });
+  }
 
   const styleSelectorList = styles.map((style) => {
     if (selectedStyle === style.style_id) {
@@ -49,11 +53,11 @@ function ProductShopper() {
 
   return (
     <div className={productShopperStyle}>
-      <div className="row-span-1 text-xs flex">
-        {StarRatingView({ averageRating: 4 })}
+      <a href="#ratingsReviews" className="row-span-1 text-xs flex" onClick={scrollToReviews}>
+        {StarRatingView({ averageRating })}
         &nbsp;
         Read all reviews
-      </div>
+      </a>
       <div className="row-span-1 text-sm">
         {(category || 'CATEGORY').toUpperCase()}
       </div>

@@ -1,66 +1,50 @@
-import axios from 'axios';
-import React from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom/client';
-// import TestRenderer from 'react-test-renderer';
-import {
-  render, fireEvent, screen, act, cleanup,
-} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import store from '@store';
 import {
-  getProductDetailsAsync,
-} from '@reducers/productSlice';
-// import App from '@components/App.jsx';
-import ProductOverview from '@components/productOverview';
-import ImageGallery from '@components/productOverview/subComponents/imageGallery';
-import product from './testdata/product';
+  render, fireEvent, screen, act, waitFor,
+} from '@testing-library/react';
+import React from 'react';
+import App from '@components/App';
+import { Provider } from 'react-redux';
+import store from '@store';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+import generateMockResponse from './__mocks__/generateMockResponse';
 
-jest.mock('axios');
-let container;
+const mock = new MockAdapter(axios);
 
-beforeEach(() => {
-  container = document.createElement('div');
-  container.id = 'root';
-  document.body.appendChild(container);
-  jest.resetAllMocks();
+mock.onAny().reply(async (config) => {
+  const { method, url } = config;
+  const endpoint = url.match(/(?<=hr-rfp\/)[^?]+/)[0];
+  if (endpoint) {
+    try {
+      const response = await generateMockResponse(method, endpoint);
+      return response;
+    } catch (err) {
+      throw new Error(err);
+    }
+  } else {
+    throw new Error(`${url} is not a supported url for the context of this test`);
+  }
 });
 
-afterEach(() => {
-  jest.clearAllMocks();
-  cleanup();
-  document.body.removeChild(container);
-  container = null;
+const mockScrollTo = jest.fn();
+
+Object.defineProperty(global.window.HTMLElement.prototype, 'scrollTo', {
+  value: mockScrollTo,
+  writable: true,
 });
 
-Element.prototype.scrollTo = () => {};
-
-test('renders the product overview component', async () => {
-  await axios.get.mockResolvedValue({ data: product });
-
-  await act(async () => {
-    ReactDOM.createRoot(container).render(
+test('renders anything', async () => {
+  // render the component
+  await act(() => {
+    render(
       <Provider store={store}>
-        <ProductOverview />
+        <App />
       </Provider>,
     );
   });
-
-  const testObject = document.querySelector('#product-overview');
-  expect(testObject).toBeInTheDocument();
-});
-
-test('renders the product overview component2', async () => {
-  await axios.get.mockResolvedValue({ data: product });
-
-  await act(async () => {
-    ReactDOM.createRoot(container).render(
-      <Provider store={store}>
-        <ProductOverview />
-      </Provider>,
-    );
-  });
-
-  const testObject = document.querySelector('#product-overview');
-  expect(testObject).toBeInTheDocument();
+  // wait for the anything to appear
+  await screen.findAllByTestId('notAnything');
+  const test = await screen.findAllByTestId('notAnything1');
+  await waitFor(() => expect(test[0]).toBeInTheDocument());
 });

@@ -18,7 +18,7 @@ export default function CartDisplay() {
   });
 
   return (
-    <div id="cart-list" className="collapse transition-[max-height] duration-500 absolute top-13 right-4 w-72 bg-white shadow-lg p-4 overflow-y-auto">
+    <div id="cart-list" data-testid="cart-list" className="collapse transition-[max-height] duration-500 absolute top-13 right-4 w-72 bg-white text-gray-700 shadow-lg p-4 overflow-y-auto">
       <div className="text-md font-bold">SHOPPING CART</div>
       <div className="p-4">
         {cartList}

@@ -14,6 +14,14 @@ module.exports = {
     assetModuleFilename: 'images/[hash][ext][query]',
   },
   devtool: 'source-map',
+  devServer: {
+    client: {
+      overlay: {
+        errors: false,
+        warnings: false,
+      },
+    },
+  },
   module: {
     rules: [
       {
@@ -32,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        // include: path.resolve(__dirname, 'src/css'),
+        include: path.resolve(__dirname, 'src/css'),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
