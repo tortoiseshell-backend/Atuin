@@ -34,7 +34,7 @@ function AddQuestionForm({ props }) {
         throw new Error('ERROR: ', err);
       });
 
-    dispatch(updateQAndA(API_DATA));
+    // dispatch(updateQAndA(API_DATA));
   };
 
   return (

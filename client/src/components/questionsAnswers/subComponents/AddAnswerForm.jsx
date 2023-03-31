@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateQAndA } from '@reducers/qnaSlice';
+import defaultImage from '@images/place-holder.jpg';
 import PropTypes from 'prop-types';
 
 const axios = require('axios');
 
 function AddAnswerForm({ qBodyId }) {
+  const [images, setImages] = useState([0]);
   const { name } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   let photosArr = [];
 
   const uploadPhotos = () => {
     // TODO: add photo links to photosArr
+  };
+
+  const getImage = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (images[0] === 0) {
+        setImages(() => [reader.result]);
+      } else {
+        setImages((current) => [...current, reader.result]);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const submitHandler = (e) => {
@@ -95,21 +109,22 @@ function AddAnswerForm({ qBodyId }) {
             Your email
             <span className="text-red-500">*</span>
           </p>
-          <input type="email" className="w-full border rounded-md p-2" maxLength="60" placeholder="Example: jack@email.com" required />
+          <input type="email" className="w-full border rounded-md border-gray-500 p-2" maxLength="60" placeholder="Example: jack@email.com" required />
           <small className="block">For authentication reasons, you will not be emailed</small>
         </div>
 
         <div className="uploadPhotos my-7">
-          <div className="thumbnails">
-            {/* thumbnails go here */}
+          <div className="thumbnails my-2 py-2 px-1 col-span-5 grid grid-cols-5 gap-2 items-center justify-items-center  border rounded-md border-secondary-300 font-xs border p-1 rounded" id="getImage">
+            {images.map((image, index) => (
+              <img className="my-2" id={`outputImage-${index}`} key={`outputImage-${index}`} alt={`outputImage-${index}`} onError={((e) => { e.target.src = defaultImage; })} src={image} style={{ maxHeight: '4em', maxWidth: '4em' }} />
+            ))}
           </div>
-          <div className="uploadButton">
+          <div className="uploadButton my-4">
             <label htmlFor="actualButton" className="styledUploadButton hover:bg-primary-100 border border-secondary-300 text-secondary-300 rounded p-2">
-              <input type="file" id="actualButton" name="filename" multiple hidden />
+              {images.length < 5 && <input type="file" id="actualButton" name="filename" accept="image/*" onChange={getImage} multiple hidden />}
               <i className="fa-solid fa-plus text-secondary-300" />
               &nbsp; Upload a photo
             </label>
-            <small id="file-chosen" className="ml-3"> No file chosen</small>
           </div>
         </div>
 

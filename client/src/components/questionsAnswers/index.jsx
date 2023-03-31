@@ -22,7 +22,7 @@ function QuestionsAnswers() {
     params: {
       product_id: id,
       page: 1,
-      count: 20,
+      count: 200,
     },
     headers: {
       Authorization: process.env.AUTH_SECRET,
@@ -40,15 +40,34 @@ function QuestionsAnswers() {
   }, [id]);
 
   return (
-    <div className= "p-10 max-w-[400px] md:max-w-[950px] mx-auto">
+    <div className="p-10 mx-auto">
       <h3>QUESTIONS & ANSWERS</h3>
       <Search />
-      <div className="max-h-[65vh] overflow-auto">
+      <div className="questionList max-h-[65vh] overflow-auto">
+        <style>
+          {`
+            .questionList::-webkit-scrollbar {
+              width: 1vh;
+              height: 2vh;
+            }
+            .questionList::-webkit-scrollbar-thumb {
+              background-color: rgb(97 32 216);
+              border-radius: 6px;
+            }
+            .questionList::-webkit-scrollbar-button {
+              display: none;
+            }
+            .questionList::-webkit-scrollbar-track {
+              background-color: #e5f4ff;
+              border-radius: 6px;
+            }
+          `}
+        </style>
         <QuestionsList />
       </div>
-      <div className="ml-5 flex">
+      <div className="mt-3 ml-5 flex">
         <MoreAnsweredQuestions />
-        <button type="button" className="mt-3 border-solid border-[3px] border-violet-700 text-violet-700 hover:bg-white font-semibold p-4" onClick={toggleModal}>ADD A QUESTION</button>
+        <button type="button" className="border-solid border-[3px] border-secondary-300 dark:border-primary-300 text-secondary-300 dark:text-primary-300 hover:bg-white dark:hover:bg-secondary-200 font-semibold p-4" onClick={toggleModal}>ADD A QUESTION</button>
       </div>
     </div>
   );

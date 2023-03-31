@@ -20,7 +20,7 @@ function AnswerEntry({ answerData }) {
   return (
     <div className="mb-4">
       <div>
-        <p className="inline-flex break-all">{answerData.body}</p>
+        <p style={{ 'word-break': 'break-word' }}>{answerData.body}</p>
       </div>
       <div className="">
         <small className="inline-block">
@@ -32,7 +32,7 @@ function AnswerEntry({ answerData }) {
         </small>
         <small className="inline-block border-l border-solid border-gray-500">
           &nbsp;&nbsp; Helpful? &nbsp;
-          <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markHelpful}>
+          <button type="button" className="underline text-secondary-200 dark:text-secondary-300 hover:text-violet-600 dark:hover:text-primary-300" onClick={markHelpful}>
             Yes
           </button>
           &nbsp;(
@@ -41,7 +41,7 @@ function AnswerEntry({ answerData }) {
         </small>
         <small className="inline-block border-l border-solid border-gray-500">
           &nbsp;&nbsp;&nbsp;
-          <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markReported}>
+          <button type="button" className="underline text-secondary-200 dark:text-secondary-300 hover:text-violet-600 dark:hover:text-primary-300" onClick={markReported}>
             Report
           </button>
         </small>

@@ -14,7 +14,7 @@ function MoreAnsweredQuestions() {
   return (
     <div role="button">
       {viewQuestions.length < allQuestions.length
-        ? <button name="loadMoreQs" type="button" className="mt-3 mr-3 border-solid border-[3px] border-violet-700 hover:bg-white text-violet-700 font-semibold p-4" onClick={handleClick}>MORE ANSWERED QUESTIONS</button>
+        ? <button name="loadMoreQs" type="button" className="mr-3 border-solid border-[3px] border-secondary-300 dark:border-primary-300 hover:bg-white dark:hover:bg-secondary-200 text-secondary-300 dark:text-primary-300 font-semibold p-4" onClick={handleClick}>MORE ANSWERED QUESTIONS</button>
         : null}
     </div>
   );

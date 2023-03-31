@@ -30,7 +30,7 @@ function App() {
         <style>
           {`
             body::-webkit-scrollbar {
-              width: 2vh;
+              width: 1.5vh;
               height: 2vh;
             }
             body::-webkit-scrollbar-thumb {

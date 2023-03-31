@@ -44,8 +44,8 @@ function QuestionEntry({ q }) {
     <div className="grid grid-cols-[1fr_125px] gap-5 flex px-4 py-6">
       <div className="questionEntry grid grid-cols-[35px_1fr] flex">
         <h3 className="font-semibold">Q: </h3>
-        <h3 className="flex-wrap break-words font-semibold">{q.question_body}</h3>
-        <h3 className="mt-4 font-semibold">A: </h3>
+        <h3 className="font-semibold" style={{ 'word-break': 'break-word' }}>{q.question_body}</h3>
+        <h3 className="mt-[30px] font-semibold">A: </h3>
         <div className="mt-4">
           <AnswersList className="answersList" answersObj={q.answers} qId={q.question_id} />
         </div>
@@ -54,7 +54,7 @@ function QuestionEntry({ q }) {
         <div className="flex flex-col items-end">
           <small className="mb-2 text-end">
             Helpful?&nbsp;&nbsp;
-            <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={markHelpful}>
+            <button type="button" className="underline text-secondary-200 dark:text-secondary-300 hover:text-violet-600 dark:hover:text-primary-300" onClick={markHelpful}>
               Yes
             </button>
             &nbsp;(
@@ -62,7 +62,7 @@ function QuestionEntry({ q }) {
             )
           </small>
           <small className="text-end">
-            <button type="button" className="underline text-secondary-200 hover:text-violet-600" onClick={toggleModal}>
+            <button type="button" className="underline text-secondary-200 dark:text-secondary-300 hover:text-violet-600 dark:hover:text-primary-300" onClick={toggleModal}>
               Add Answer
             </button>
           </small>
