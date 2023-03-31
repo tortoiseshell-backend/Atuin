@@ -40,7 +40,7 @@ function QuestionsAnswers() {
   }, [id]);
 
   return (
-    <div className="p-10 mx-auto">
+    <div className="md:p-10 max-w-[500px] md:max-w-[950px] mx-auto">
       <h3>QUESTIONS & ANSWERS</h3>
       <Search />
       <div className="questionList max-h-[65vh] overflow-auto">
@@ -58,7 +58,7 @@ function QuestionsAnswers() {
               display: none;
             }
             .questionList::-webkit-scrollbar-track {
-              background-color: #e5f4ff;
+              background-color: #fff;
               border-radius: 6px;
             }
           `}
