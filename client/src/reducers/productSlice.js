@@ -7,6 +7,7 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 const productSlice = createSlice({
   name: 'product',
   initialState: {
+    value: {},
     productList: [],
     id: 40346,
     name: 'Nostrud Excepteur',
@@ -21,13 +22,13 @@ const productSlice = createSlice({
     selectedSKU: 0,
     sale_price: null,
     isExpandedView: false,
-    isFavorited: false,
   },
   reducers: {
     setProductList(state, action) {
       state.productList = action.payload;
     },
     setProduct(state, action) {
+      state.value = action.payload;
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.category = action.payload.category;
@@ -64,9 +65,6 @@ const productSlice = createSlice({
     toggleViewState(state) {
       state.isExpandedView = !state.isExpandedView;
     },
-    toggleFavorite(state) {
-      state.isFavorited = !state.isFavorited;
-    },
   },
 });
 
@@ -84,7 +82,6 @@ export default productSlice.reducer;
 export const {
   setProduct,
   toggleViewState,
-  toggleFavorite,
   selectStyle,
   selectSize,
   selectImage,

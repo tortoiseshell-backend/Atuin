@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite, selectSize } from '@reducers/productSlice';
+import { selectSize } from '@reducers/productSlice';
 import { addCartItem, getCartDataAsync } from '@reducers/cartSlice';
+import { addOutfitItem } from '@reducers/relatedSlice';
 import { renderCart, hideCart } from '@lib/cartRender';
 import Button from '@modular/Button';
 
@@ -9,12 +10,18 @@ const addToCartStyle = 'grid grid-rows-2';
 
 function AddToCart() {
   const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.product.value);
   const productID = useSelector((state) => state.product.id);
-  const isFavorited = useSelector((state) => state.product.isFavorited);
   const styles = useSelector((state) => state.product.styles);
   const selectedStyleID = useSelector((state) => state.product.selectedStyleID);
   const selectedSKU = useSelector((state) => state.product.selectedSKU);
   const selectedStyle = styles.find((style) => style.style_id === selectedStyleID);
+  let isFavorited = false;
+  useSelector((state) => state.related.itemsOutfit).forEach((product) => {
+    if (product.id === productID) {
+      isFavorited = true;
+    }
+  });
 
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   let favoriteIcon = 'text-md text-left font-semibold';
@@ -61,7 +68,7 @@ function AddToCart() {
     setTimeout(hideCart, 3000);
   }
   function favoriteHandler() {
-    dispatch(toggleFavorite());
+    dispatch(addOutfitItem(productDetails));
   }
 
   const sizeSelector = (
