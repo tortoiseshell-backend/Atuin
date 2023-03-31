@@ -40,41 +40,41 @@ function AddQuestionForm({ props }) {
   return (
     <div id="addQuestion" className="m-5">
 
-      <h3 className="text-xl font-bold text-gray-700">Ask Your Question</h3>
-      <h5 className="font-semibold text-gray-700">
+      <h3 className="text-xl font-bold text-gray-700 dark:text-stone-300">Ask Your Question</h3>
+      <h5 className="font-semibold text-gray-700 dark:text-stone-300">
         about the&nbsp;
         {name}
       </h5>
 
       <form className="m-[5%]" onSubmit={submitHandler}>
         <div className="yourQuestion my-5">
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:text-stone-300">
             Your Question
             <span className="text-red-500">*</span>
           </p>
-          <textarea rows="4" cols="50" className="w-full border rounded-md border-gray-500 p-2" maxLength="1000" required />
+          <textarea rows="4" cols="50" className="w-full border rounded-md border-gray-500 dark:bg-secondary-100 p-2" maxLength="1000" required />
         </div>
 
         <div className="yourNickname my-5">
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:text-stone-300">
             What is your nickname?
             <span className="text-red-500">*</span>
           </p>
-          <input type="text" className="w-full border rounded-md border-gray-500 font-xs p-2" maxLength="60" placeholder="Example: jackson11!" required />
-          <small className="block text-gray-700">For privacy reasons, do not use your full name or email address</small>
+          <input type="text" className="w-full border rounded-md border-gray-500 dark:bg-secondary-100  font-xs p-2" maxLength="60" placeholder="Example: jackson11!" required />
+          <small className="block text-gray-700 dark:text-stone-300">For privacy reasons, do not use your full name or email address</small>
         </div>
 
         <div className="yourEmail my-5">
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:text-stone-300">
             Your email
             <span className="text-red-500">*</span>
           </p>
-          <input type="email" className="w-full border rounded-md border-gray-500 p-2" maxLength="60" placeholder="Example: jackson@email.com" required />
-          <small className="block text-gray-700">For authentication reasons, you will not be emailed</small>
+          <input type="email" className="w-full border rounded-md border-gray-500 dark:bg-secondary-100  p-2" maxLength="60" placeholder="Example: jackson@email.com" required />
+          <small className="block text-gray-700 dark:text-stone-300">For authentication reasons, you will not be emailed</small>
         </div>
 
         <div className="submitQuestion flex justify-end mt-10">
-          <button type="submit" className="object-right-bottom bg-secondary-300 hover:bg-primary-200 rounded text-white hover:text-secondary-300 p-2">Submit Question</button>
+          <button type="submit" className="object-right-bottom bg-secondary-300 dark:bg-primary-300 hover:bg-primary-200 dark:hover:bg-primary-200 rounded text-white dark:text-secondary-200 hover:text-secondary-300 p-2">Submit Question</button>
         </div>
       </form>
 
