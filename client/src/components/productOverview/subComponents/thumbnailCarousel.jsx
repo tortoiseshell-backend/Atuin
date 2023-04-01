@@ -33,7 +33,7 @@ function ThumbnailCarousel() {
       <div id="carousel-body" className={galleryStyle}>
         {thumbnailCards}
       </div>
-      {thumbnailList.length > 7 ? <button type="button" aria-label="scroll up" className="mx-7" onClick={scrollDownHandler}><i className="fa-solid fa-caret-down text-3xl text-secondary-100 hover:text-secondary-200 dark:text-primary-100 dark:hover:text-primary-200" /></button> : null }
+      {thumbnailList.length > 7 ? <button type="button" aria-label="scroll down" className="mx-7" onClick={scrollDownHandler}><i className="fa-solid fa-caret-down text-3xl text-secondary-100 hover:text-secondary-200 dark:text-primary-100 dark:hover:text-primary-200" /></button> : null }
     </div>
   );
 }
