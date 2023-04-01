@@ -98,7 +98,16 @@ function Modal() {
             borderRight: '0px',
           }}
         >
-          <div data-testid="notAnything6" className="dark:bg-secondary-200" style={{ overflowY: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
+          <div id="modal" data-testid="notAnything6" className="dark:bg-secondary-200" style={{ overflowY: 'auto', overflowX: 'auto', maxHeight: 'calc(95vh - 50px)' }}>
+            <style>
+              {`
+                #modal::-webkit-scrollbar {
+                background: transparent;
+                width: 0;
+                height: 0;
+                }
+              `}
+            </style>
             {renderComponent()}
           </div>
         </div>

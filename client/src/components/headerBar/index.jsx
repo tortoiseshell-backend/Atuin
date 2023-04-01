@@ -36,7 +36,7 @@ function HeaderBar() {
       <option value={product.id} key={product.id} data-testid="product-dropdown" className="dark:bg-black">{product.name}</option>
     ));
     productList.unshift(
-      <option value="none" key="none" className="dark:bg-black" disabled>
+      <option value="none" key="none" className=" bg-stone-200 dark:bg-black" disabled>
         you can use axios
       </option>,
     );

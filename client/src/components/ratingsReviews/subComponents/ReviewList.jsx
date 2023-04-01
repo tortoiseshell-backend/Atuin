@@ -20,7 +20,9 @@ function ReviewList() {
 
   useEffect(() => {
     document.getElementById('reviewList').scrollTo(0, 0);
+    setDisplayMoreReviewsButton(true);
     dispatch(getReviewsAsync());
+    setRenderedReviews(reviews);
   }, [prodID]);
 
   useEffect(() => {
@@ -30,6 +32,8 @@ function ReviewList() {
       } else {
         setRenderedReviews(filteredReviews);
       }
+    } else {
+      setRenderedReviews(reviews);
     }
   }, [filteredReviews]);
 
@@ -38,14 +42,14 @@ function ReviewList() {
     dispatch(getReviewsAsync());
   }, [sort]);
 
-  useEffect(() => {
-    if (displayMoreReviewsButton) {
-      setRenderedReviews(reviews.slice(0, 2));
-    } else if (!displayMoreReviewsButton) {
-      // setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
-      setRenderedReviews(reviews);
-    }
-  }, [reviews]);
+  // useEffect(() => {
+  //   if (displayMoreReviewsButton) {
+  //     setRenderedReviews(reviews.slice(0, 2));
+  //   } else if (!displayMoreReviewsButton) {
+  //     // setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
+  //     setRenderedReviews(reviews);
+  //   }
+  // }, [reviews]);
 
   // const isElementOnScreen = (element, container) => {
   //   const elementRect = element.getBoundingClientRect();
@@ -76,8 +80,8 @@ function ReviewList() {
   //         setReachedBottom(true);
   //       }
   //     }
-  //   }onScroll={handleScroll}
-  // };
+  //   }
+  // };onScroll={handleScroll}
 
   return (
     <div data-testid="scrollableDiv" style={{ paddingRight: '10px' }}>
@@ -101,11 +105,11 @@ function ReviewList() {
             <ReviewListTile key={`review-${review.id}-${idx}`} review={review} />
           </div>
         ))}
-        {/* {reachedBottom && (
+        {!displayMoreReviewsButton && (
           <span data-testid="endScroll" className="flex justify-center items-center">
             All caught up!
           </span>
-        )} */}
+        )}
       </div>
       <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3 pt-3">
         {displayMoreReviewsButton && reviews.length > 2 && (

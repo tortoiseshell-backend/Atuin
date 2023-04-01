@@ -8,6 +8,7 @@ import { getReviewsAsync } from '@reducers/reviewSlice';
 import PropTypes from 'prop-types';
 import StarRatingView from '@modular/StarRatingView';
 import markAsHelpful from '../scripts/API_Helper';
+import DOMPurify from 'dompurify';
 
 function ReviewListTile({ review }) {
   const dispatch = useDispatch();
@@ -36,16 +37,7 @@ function ReviewListTile({ review }) {
 
   const sanitize = (text) => {
     text = String(text);
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      '/': '&#x2F;',
-    };
-    const reg = /[&<>"'/]/ig;
-    return text.replace(reg, (match) => (map[match]));
+    return DOMPurify.sanitize(text);
   };
 
   return (

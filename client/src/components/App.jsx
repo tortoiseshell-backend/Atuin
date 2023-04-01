@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from '@modular/Modal';
 import { useSelector } from 'react-redux';
 import HeaderBar from './headerBar';
@@ -20,7 +20,13 @@ function App() {
   } else {
     document.body.style.backgroundColor = '#d1d5db';
   }
-
+  useEffect(() => {
+    if (rendered) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [rendered]);
   return (
     <div className={isDarkTheme ? 'dark' : ''}>
       <div id="background" className={backgroundStyles}>
