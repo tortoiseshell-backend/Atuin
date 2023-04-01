@@ -59,22 +59,26 @@ function ImageTile({ photo }) {
         height: '100%',
       }}
     >
-      <img
-        ref={imgRef}
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-          objectFit: 'contain',
-          transform: `translate(${panValue.x}px, ${panValue.y}px) scale(${zoomValue})`,
-          transition: 'transform 0.1s ease-out',
-          cursor: 'grab',
-        }}
-        src={photo.url}
-        alt={photo.id}
+      <button
+        type="button"
         onWheel={handleZoom}
         onMouseDown={handlePanStart}
         onTouchStart={handlePanStart}
-      />
+      >
+        <img
+          ref={imgRef}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            objectFit: 'contain',
+            transform: `translate(${panValue.x}px, ${panValue.y}px) scale(${zoomValue})`,
+            transition: 'transform 0.1s ease-out',
+            cursor: 'grab',
+          }}
+          src={photo.url}
+          alt={photo.id}
+        />
+      </button>
     </div>
   );
 }
