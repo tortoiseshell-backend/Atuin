@@ -8,6 +8,7 @@ function RatingsBreakdown() {
   const reviews = useSelector((state) => state.reviews.data);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
+  const productID = useSelector((state) => state.product.id);
 
   // Calculate average rating
   const avgRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
@@ -27,6 +28,10 @@ function RatingsBreakdown() {
 
   useEffect(() => {
     dispatch(setRenderedReviews(reviews));
+  }, [productID]);
+
+  useEffect(() => {
+    dispatch(setRenderedReviews(reviews));
   }, [reviews]);
 
   useEffect(() => {
@@ -43,6 +48,7 @@ function RatingsBreakdown() {
     }
     setActiveFilters(newFilters);
     setFilteredReviews(reviews.filter((review) => newFilters.includes(review.rating)));
+    document.getElementById('reviewList').scrollTo(0, 0);
   };
 
   // Clear all filters

@@ -20,7 +20,7 @@ function AnswerEntry({ answerData }) {
   return (
     <div className="mb-4">
       <div>
-        <p className="text-gray-700 dark:text-gray-300" style={{ 'word-break': 'break-word' }}>{answerData.body}</p>
+        <p className="text-gray-700 dark:text-gray-300" style={{ wordBreak: 'break-word' }}>{answerData.body}</p>
       </div>
       <div className="">
         <small className="inline-block">
