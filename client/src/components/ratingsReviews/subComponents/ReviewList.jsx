@@ -25,12 +25,15 @@ function ReviewList() {
   }, [prodID]);
 
   useEffect(() => {
+    document.getElementById('reviewList').scrollTo(0, 0);
     if (filteredReviews.length > 0) {
       if (displayMoreReviewsButton) {
         setRenderedReviews(filteredReviews.slice(0, 2));
       } else {
         setRenderedReviews(filteredReviews);
       }
+    } else {
+      setRenderedReviews(reviews);
     }
   }, [filteredReviews]);
 
@@ -77,8 +80,8 @@ function ReviewList() {
   //         setReachedBottom(true);
   //       }
   //     }
-  //   }onScroll={handleScroll}
-  // };
+  //   }
+  // };onScroll={handleScroll}
 
   return (
     <div data-testid="scrollableDiv" style={{ paddingRight: '10px' }}>
@@ -102,11 +105,11 @@ function ReviewList() {
             <ReviewListTile key={`review-${review.id}-${idx}`} review={review} />
           </div>
         ))}
-        {/* {reachedBottom && (
+        {!displayMoreReviewsButton && (
           <span data-testid="endScroll" className="flex justify-center items-center">
             All caught up!
           </span>
-        )} */}
+        )}
       </div>
       <div data-testid="moreReviewsButtonContainer" className="flex justify-center gap-3 pt-3">
         {displayMoreReviewsButton && reviews.length > 2 && (
@@ -137,3 +140,6 @@ function ReviewList() {
 }
 
 export default ReviewList;
+// Fixed not reverting to 2 reviews on product change
+// Fixed app scrolling in background when scrollingin modal
+// Fixed filter breaking the procedural review load,

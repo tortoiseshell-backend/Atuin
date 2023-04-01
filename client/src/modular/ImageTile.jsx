@@ -83,8 +83,7 @@ function ImageTile({ photo }) {
   );
 }
 
-ImageTile.propTypes =
-{
+ImageTile.propTypes = {
   photo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     url: PropTypes.string.isRequired,
