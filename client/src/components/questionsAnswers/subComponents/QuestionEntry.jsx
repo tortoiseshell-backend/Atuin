@@ -44,7 +44,7 @@ function QuestionEntry({ q }) {
     <div className="grid grid-cols-[1fr_110px] gap-5 px-4 py-6">
       <div className="questionEntry grid grid-cols-[35px_1fr] rounded-lg border border-primary-300 bg-white dark:bg-stone-950 p-4">
         <h3 className="font-semibold">Q: </h3>
-        <h3 className="font-semibold" style={{ 'word-break': 'break-word' }}>{q.question_body}</h3>
+        <h3 className="font-semibold" style={{ wordBreak: 'break-word' }}>{q.question_body}</h3>
         <h3 className="mt-[30px] font-semibold">A: </h3>
         <div className="mt-4">
           <AnswersList className="answersList" answersObj={q.answers} qId={q.question_id} />

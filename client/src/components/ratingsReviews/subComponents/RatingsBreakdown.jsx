@@ -8,6 +8,7 @@ function RatingsBreakdown() {
   const reviews = useSelector((state) => state.reviews.data);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
+  const productID = useSelector((state) => state.product.id);
 
   // Calculate average rating
   const avgRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
@@ -24,6 +25,10 @@ function RatingsBreakdown() {
   reviews.forEach((review) => {
     ratings[review.rating] += 1;
   });
+
+  useEffect(() => {
+    dispatch(setRenderedReviews(reviews));
+  }, [productID]);
 
   useEffect(() => {
     dispatch(setRenderedReviews(reviews));
