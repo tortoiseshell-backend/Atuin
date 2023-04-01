@@ -48,6 +48,7 @@ function RatingsBreakdown() {
     }
     setActiveFilters(newFilters);
     setFilteredReviews(reviews.filter((review) => newFilters.includes(review.rating)));
+    document.getElementById('reviewList').scrollTo(0, 0);
   };
 
   // Clear all filters

@@ -22,10 +22,10 @@ function ReviewList() {
     document.getElementById('reviewList').scrollTo(0, 0);
     setDisplayMoreReviewsButton(true);
     dispatch(getReviewsAsync());
+    setRenderedReviews(reviews);
   }, [prodID]);
 
   useEffect(() => {
-    document.getElementById('reviewList').scrollTo(0, 0);
     if (filteredReviews.length > 0) {
       if (displayMoreReviewsButton) {
         setRenderedReviews(filteredReviews.slice(0, 2));
@@ -42,14 +42,14 @@ function ReviewList() {
     dispatch(getReviewsAsync());
   }, [sort]);
 
-  useEffect(() => {
-    if (displayMoreReviewsButton) {
-      setRenderedReviews(reviews.slice(0, 2));
-    } else if (!displayMoreReviewsButton) {
-      // setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
-      setRenderedReviews(reviews);
-    }
-  }, [reviews]);
+  // useEffect(() => {
+  //   if (displayMoreReviewsButton) {
+  //     setRenderedReviews(reviews.slice(0, 2));
+  //   } else if (!displayMoreReviewsButton) {
+  //     // setRenderedReviews(reviews.slice(0, renderedReviews.length + 5));
+  //     setRenderedReviews(reviews);
+  //   }
+  // }, [reviews]);
 
   // const isElementOnScreen = (element, container) => {
   //   const elementRect = element.getBoundingClientRect();
@@ -140,6 +140,3 @@ function ReviewList() {
 }
 
 export default ReviewList;
-// Fixed not reverting to 2 reviews on product change
-// Fixed app scrolling in background when scrollingin modal
-// Fixed filter breaking the procedural review load,
