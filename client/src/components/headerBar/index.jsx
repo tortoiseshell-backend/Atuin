@@ -45,7 +45,7 @@ function HeaderBar() {
 
   const productSelector = (
     <div className="max-w-[80%]">
-      <select name="productSelector" id="product-selector" data-testid="product-selector" className="w-full p-2 border-b-2 border-white bg-transparent text-lg text-white text-clip" defaultValue="none" onChange={productChangeHandler}>
+      <select name="productSelector" id="product-selector" data-testid="product-selector" className="w-full p-2 border-b-2 border-white bg-transparent text-lg text-white text-clip m-2" defaultValue="none" onChange={productChangeHandler}>
         {renderProductList()}
       </select>
     </div>
@@ -54,26 +54,26 @@ function HeaderBar() {
   return (
     <div id="header-bar" data-testid="header-bar">
       <div className="header-bar fixed w-full max-w-[950px] z-40 overflow-visible">
-        <div className="header-bar bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between p-2 pl-4 gap-x-4">
+        <div className="header-bar bg-gradient-to-r from-primary-300 to-secondary-300 flex justify-between pl-4 gap-x-4">
           <div className="my-auto max-w-[40%]">
             <img alt="logo" src={logoImage} className="max-h-8 aspect-auto" />
           </div>
 
           <div className="max-w-[60%] flex justify-end my-auto gap-2">
             {productSelector}
-            <div className="my-auto w-[110px] flex">
+            <div className="my-auto w-[110px] flex ml-4">
               <button
                 type="button"
                 className="w-[50px]"
                 onClick={() => dispatch(toggleTheme())}
               >
-                <i className={isDarkTheme ? 'fa-sharp fa-solid fa-sun text-2xl text-white' : 'fa-sharp fa-solid fa-moon text-2xl text-white'} />
+                <i className={isDarkTheme ? 'fa-sharp fa-solid fa-sun text-2xl text-white p-3' : 'fa-sharp fa-solid fa-moon text-2xl text-white p-3'} />
               </button>
               <button
                 type="button"
                 aria-label="link to cart"
                 data-testid="cart-button"
-                className="w-[50px]"
+                className="w-[50px] p-3"
                 onMouseEnter={renderCart}
                 onMouseLeave={hideCart}
               >

@@ -20,7 +20,7 @@ function RelatedItems() {
       <div className="text-md font-semibold">RELATED ITEMS</div>
       <ProductList items={itemsRelated} />
       <div className="text-md font-semibold">OUTFITS</div>
-      <ProductList items={itemsOutfit} />
+      <ProductList items={itemsOutfit} hasPlaceholder />
     </div>
   );
 }

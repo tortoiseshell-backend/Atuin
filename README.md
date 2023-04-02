@@ -1,124 +1,81 @@
-# Atelier
-# Not A Copy of Mo's
 
-A modernized e-commerce site built for an optimal user browsing experience.
+# Adidae - e-commerce storefront
 
-## Authors
+## Project Summary
+This project is an e-commerce storefront with four main components:
+- Product Overview
+- Ratings and Reviews
+- Questions and Answers
+- Related Items and Outfits
 
-[Madeline King](https://www.github.com/maddieking02)\
-[Simon Buret de Longagne](https://www.github.com/SimonBdeL)\
-[Robert Hu](https://www.github.com/LeBob007)\
-[Mo Akbari](https://www.github.com/akbarimo)
-
-## Built With
-![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)![ExpressJS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)![Styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+### Built With
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)![NodeJS](https://img.shields.io/badge/Node.js-154a10?style=for-the-badge&logo=node.js)![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux)![HTML5](https://img.shields.io/badge/HTML5-802d16?style=for-the-badge&logo=html5)![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3)![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws)![Tailwind](https://img.shields.io/badge/Tailwind-1572B6?style=for-the-badge&logo=tailwindcss)![Webpack](https://img.shields.io/badge/Webpack-6ba5bf?style=for-the-badge&logo=webpack)![Babel](https://img.shields.io/badge/Babel-b5a12d?style=for-the-badge&logo=babel)![Styled-components](https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components)![Jest](https://img.shields.io/badge/jest-DB7093?style=for-the-badge&logo=jest)
 
 ## Key Features
-- Light/dark mode toggle
-- Optimized performance using Redux
+### Light/Dark mode toggle
 
-## Overview
-#### Features
-- Interactive image gallery with zoom-in features
-- Details page describing product attributes and pricing
-- Styles selector along with a user-friendly size guide
+<img src="./readme-assets/Adidae_DarkMode.gif" alt= “dark_mode” width="600">
 
-![fec-overview-readme](https://user-images.githubusercontent.com/106297124/208506471-d7e17ca2-3b99-4c99-9c5b-2db417800de1.png)
+## Product Overview
+### Image gallery
+- Smooth scrolling carousel
+- Animated theatre mode
+- Image zoom with mouse-tracked panning
 
-<details>
-    <summary>Additional Features</summary>
-	<ul>
-		<li>Social media sharing ability</li>
-		<li>Checkout cart for product purchases</li>
-	</ul>
+<img src="./readme-assets/Adidae_ImageGallery.gif" alt= “image_gallery” width="600">
 
+### Product shopper
+- Style selector
+- Dynamic size and quantity rendering
+- Add to cart
 
-![fec-cart-readme](https://user-images.githubusercontent.com/106297124/208507697-c684493c-0899-4e74-bf68-2bb1635b1fb8.png)
+<img src="./readme-assets/Adidae_ProductShopper.gif" alt= “product_shopper” width="600">
 
+## Ratings and Reviews
 
-</details>
+## Questions and Answers
+- Search functionality finds questions by keywords.
+- Questions and answers are sorted by helpfulness ratings.
+- Modal forms allow users to add questions and answers.
+- Fits on one screen via dynamic sizing and scrollability.
 
-## Related Products & Your Outfit
-#### Features
-- A carousel displaying related products
-- A modal comparing product features
-- A list of products saved by the user
+## Related Items and Outfits
 
-<!-- ![Screen Shot 2022-12-17 at 10 25 08 AM](https://user-images.githubusercontent.com/99362878/208256244-13415a39-0f66-4800-80e8-dc473dfce959.png) -->
-![fec-related-products readme](https://user-images.githubusercontent.com/106297124/208510501-ae2786f9-33c6-4861-a5d9-7965c89b22f5.png)
-
-<details>
-    <summary>See Comparison Details</summary>
-
-
-![Screen Shot 2022-12-17 at 10 26 06 AM](https://user-images.githubusercontent.com/99362878/208256245-965a0942-026c-4fcc-9fb6-d99c5b242f65.png)
-
-
-</details>
-
-## Questions & Answers
-#### Features
-- Search functionality to filter questions by title
-- Question and Answers lists with Load More functionality
-- Question and Answer modals for adding to the list
-
-<!-- ![Questions and Answers](https://user-images.githubusercontent.com/52551319/208265749-aa075175-c951-4d29-bf6d-26f5789e94db.png) -->
-![fec-qa-readme](https://user-images.githubusercontent.com/106297124/208510609-244cfc80-1e29-4884-a6cf-00f5ff014afd.png)
-<!-- ![qaforms](https://user-images.githubusercontent.com/52551319/208266127-5a313e33-37d7-4804-a53f-1541c13b101b.png) -->
-
-<details>
-    <summary>See Q&A Forms</summary>
-
-
-![fec-qa-forms-readme](https://user-images.githubusercontent.com/106297124/208513128-e0b8570a-50a1-45b2-8ce3-60275610ee67.png)
-
-
-</details>
-
-
-## Ratings & Reviews
-#### Features
-- Filter reviews by both rating and query
-- Visual represention of the breakdown of product ratings and characteristics
-- A custom form for adding reviews
-
-
-![fec-rr-readme](https://user-images.githubusercontent.com/106297124/208514439-aa206fda-aedb-473b-84d2-7d7ad32e8516.png)
-
-
-<details>
-    <summary>See R&R Form</summary>
-
-
-![fec-rr-form-readme](https://user-images.githubusercontent.com/106297124/208514913-6194587f-4a35-4c23-ae6c-43cf25fa522d.png)
-
-
-</details>
-
+- Add products to outfit list
+- See related items to product on horizontal carousel
+<img src="./readme-assets/Adidae_RelatedItems.gif" alt= “product_shopper” width="600">
 
 ## Getting Started
+1. Clone the repository to your local machine
+    ```
+    git clone https://github.com/Fullmetal-Alchemest/Atelier.git
+    ```
+2. Navigate into the repository folder, then install all necessary dependencies
+    ```
+    npm install
+    ```
+3. Make a copy of *rename.env*, name it *.env*, then fill in the following fields
+    ```
+    AUTH_SECRET="Insert GitHub API token here"
+    ```
+4. Run this script to start webpack and TailwindCSS watchers for compiling
+    ```
+    npm run dev
+    ```
+5. To run on a server and view on local IPv4:
+    ```
+    npm run react-dev
+    ```
 
-Installation
-- Clone the repository
-    ```
-        git clone https://github.com/KFEC/TechStyles.git
-    ```
-- Install the dependencies
-    ```
-        npm install
-    ```
-- Copy example.env file and rename to .env with the following within
-    ```
-        PORT=3000
+## Lighthouse Results
+Desktop:
 
-        HOST='localhost'
+Mobile:
 
-        API_TOKEN='Insert API token'
+## Authors
+This project was created by:
 
-        WEBPACK_MODE='development'
-    ```
-- Run the following script
-    ```
-        npm run dev
-        npm run start
-    ```
+- Jake Sifodaskalakis (GitHub: JakeSifo)
+- Jessica Tong (GitHub: jessicatong43)
+- Neil Xia (GitHub: NeilLXia)
+
