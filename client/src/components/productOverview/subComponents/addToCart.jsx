@@ -7,6 +7,12 @@ import { renderCart, hideCart } from '@lib/cartRender';
 import Button from '@modular/Button';
 
 const addToCartStyle = 'grid grid-rows-2';
+const productSizesStyles = 'w-full h-14 p-2 text-sm font-semibold'
++ ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border'
++ ' dark:bg-black dark:text-primary-300 dark:hover:bg-primary-300/5 dark:standard-border-dark';
+const quantitySelectorStyle = 'w-full h-14 p-2 text-sm font-semibold'
++ ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border'
++ ' dark:bg-black dark:text-primary-300 dark:hover:bg-primary-300/5 dark:standard-border-dark';
 
 function AddToCart() {
   const dispatch = useDispatch();
@@ -23,31 +29,17 @@ function AddToCart() {
     }
   });
 
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   let favoriteIcon = 'text-md text-left font-semibold';
   let favoriteButton = 'w-full h-14 p-2 px-3 flex justify-center items-center';
-  let productSizesStyles = 'w-full h-14 p-2 text-sm font-semibold';
-  let quantitySelectorStyle = 'w-full h-14 p-2 text-sm font-semibold';
-  if (isDarkTheme) {
-    productSizesStyles += ' bg-black text-primary-300 hover:bg-primary-300/5 standard-border-dark';
-    quantitySelectorStyle += ' bg-black text-primary-300 hover:bg-primary-300/5 standard-border-dark';
-    if (isFavorited) {
-      favoriteIcon += ' text-gray-700';
-      favoriteButton += ' bg-primary-300 hover:bg-primary-300/95 standard-border-dark';
-    } else {
-      favoriteIcon += ' text-primary-300';
-      favoriteButton += ' bg-black hover:bg-primary-300/5 standard-border-dark';
-    }
+
+  if (isFavorited) {
+    favoriteIcon += ' text-gray-700 dark: text-gray-300';
+    favoriteButton += ' bg-secondary-300 hover:bg-secondary-300/95 standard-border'
+      + ' dark:bg-primary-300 dark:hover:bg-primary-300/95 dark:standard-border-dark';
   } else {
-    productSizesStyles += ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border';
-    quantitySelectorStyle += ' bg-white text-secondary-300 hover:bg-secondary-300/5 standard-border';
-    if (isFavorited) {
-      favoriteIcon += ' text-gray-300';
-      favoriteButton += ' bg-secondary-300 hover:bg-secondary-300/95 standard-border';
-    } else {
-      favoriteIcon += ' text-secondary-300';
-      favoriteButton += ' bg-white hover:bg-secondary-300/5 standard-border';
-    }
+    favoriteIcon += ' text-secondary-300 dark:text-primary-300';
+    favoriteButton += ' bg-white hover:bg-secondary-300/5 standard-border'
+      + ' dark:bg-black dark:hover:bg-primary-300/5 dark:standard-border-dark';
   }
 
   let listSKUs = [];
@@ -108,8 +100,8 @@ function AddToCart() {
           <Button
             content={(
               <>
-                <span className="text-sm text-left font-semibold">ADD TO CART</span>
-                <span className="text-sm text-left font-semibold">+</span>
+                <span>ADD TO CART</span>
+                <span>+</span>
               </>
             )}
             styleOverride=" flex justify-between items-center"

@@ -16,7 +16,7 @@ function RelatedItems() {
   }, [productID]);
 
   return (
-    <div className="p-10 max-w-[400px] md:max-w-[950px] mx-auto">
+    <div>
       <div className="text-md font-semibold">RELATED ITEMS</div>
       <ProductList items={itemsRelated} />
       <div className="text-md font-semibold">OUTFITS</div>

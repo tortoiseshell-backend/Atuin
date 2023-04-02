@@ -7,25 +7,22 @@ import RatingsReviews from './ratingsReviews';
 import QuestionsAnswers from './questionsAnswers';
 import RelatedItems from './relatedItems';
 
+const appStyles = 'min-w-[390px] max-w-[950px] grid grid-flow-row auto-rows-max mx-auto shadow-sm'
++ ' bg-primary-100 text-gray-700 dark:bg-secondary-100 dark:text-gray-300';
+const backgroundStyles = 'w-full h-full bg-slate-300 dark:bg-neutral-900';
+
 function App() {
   const rendered = useSelector((state) => state.modal.modalOpen);
 
-  let appStyles = 'max-w-[950px] grid grid-flow-row auto-rows-max mx-auto bg-primary-100';
-  let backgroundStyles = 'w-full h-full';
-
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
   if (isDarkTheme) {
-    appStyles += ' bg-secondary-100 text-gray-300';
-    backgroundStyles += ' bg-gray-800';
     document.body.style.backgroundColor = '#1f2937';
   } else {
-    appStyles += ' bg-primary-100 text-gray-700';
-    backgroundStyles += ' bg-gray-300';
     document.body.style.backgroundColor = '#d1d5db';
   }
 
   return (
-    <div className={isDarkTheme && 'dark'}>
+    <div className={isDarkTheme ? 'dark' : ''}>
       <div id="background" className={backgroundStyles}>
         <div id="app" className={appStyles}>
           <style>

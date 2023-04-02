@@ -10,21 +10,12 @@ function StyleSelector({ style }) {
   let styleSelectorStyle = 'rounded-full bg-gray-100 h-14 w-14 object-cover';
   let selectedMarker = 'invisible';
 
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-  if (isDarkTheme) {
-    if (selectedStyle === style.style_id) {
-      styleSelectorStyle += ' style-selected-dark';
-      selectedMarker = 'style-selected-dark visible absolute top-0 right-0 rounded-full bg-primary-300 h-4 w-4 z-10';
-    } else {
-      styleSelectorStyle += ' style-unselected-dark';
-    }
+  if (selectedStyle === style.style_id) {
+    styleSelectorStyle += ' style-selected dark:style-selected-dark';
+    selectedMarker = 'visible absolute top-0 right-0 rounded-full h-4 w-4 z-10'
+      + ' style-selected dark:style-selected-dark bg-secondary-300 dark:bg-primary-300';
   } else {
-    if (selectedStyle === style.style_id) {
-      styleSelectorStyle += ' style-selected';
-      selectedMarker = 'style-selected visible absolute top-0 right-0 rounded-full bg-secondary-300 h-4 w-4 z-10';
-    } else {
-      styleSelectorStyle += ' style-unselected';
-    }
+    styleSelectorStyle += ' style-unselected dark:style-unselected-dark';
   }
 
   function selectStyleHandler() {

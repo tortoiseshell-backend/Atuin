@@ -1,17 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import redirectionLink from '../scripts/redirectionLink';
 
+const socialMediaStyle = 'm-2 text-secondary-200 dark:text-primary-200';
+
 function SocialMedia() {
-  let socialMediaStyle = 'm-2';
-
-  const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
-  if (isDarkTheme) {
-    socialMediaStyle += ' text-primary-200';
-  } else {
-    socialMediaStyle += ' text-secondary-200';
-  }
-
   const domainName = 'https://www.facebook.com/adidasUS/?brand_redir=182162001806727';
 
   const emailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=""&su=Check out this product from Adidae!&body=${domainName}`;

@@ -26,9 +26,12 @@ function RatingsBreakdown() {
   });
 
   useEffect(() => {
-    console.log(filteredReviews);
     dispatch(setRenderedReviews(reviews));
   }, [reviews]);
+
+  useEffect(() => {
+    dispatch(setRenderedReviews(filteredReviews));
+  }, [filteredReviews]);
 
   // Handle filter clicks
   const handleFilterClick = (rating) => {
@@ -40,7 +43,6 @@ function RatingsBreakdown() {
     }
     setActiveFilters(newFilters);
     setFilteredReviews(reviews.filter((review) => newFilters.includes(review.rating)));
-    dispatch(setRenderedReviews(filteredReviews));
   };
 
   // Clear all filters
@@ -52,8 +54,8 @@ function RatingsBreakdown() {
   return (
     <div id="RatingsBreakdown">
       {/* Display average rating */}
-      <div className="md:ml-4 grid items-end grid-cols-1 justify-items-center pt-2 py-3 text-3xl lg:text-4xl" id="overallRating">
-        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs border p-1 rounded bg-stone-100 dark:bg-stone-700">
+      <div className="md:ml-4 grid items-end grid-cols-1 justify-items-center pt-2 py-3 text-xl" id="overallRating">
+        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs p-1 bg-stone-100 dark:bg-stone-700">
           <div className="flex flex-col items-center">
             <StarRatingView averageRating={avgRating} />
             <span className="mt-3">{`${reviews.length} reviews`}</span>
@@ -64,16 +66,15 @@ function RatingsBreakdown() {
 
       {/* Display rating breakdown */}
       <div>
-        <div className="grid grid-rows-5">
+        <div className="grid grid-rows-5 text-lg">
           {Object.entries(ratings).map(([rating, count]) => (
             <button
+              className="bg-white dark:bg-grey-500"
               type="button"
               key={rating}
               onClick={() => handleFilterClick(parseInt(rating, 10))}
               style={{
-                backgroundColor: activeFilters.includes(parseInt(rating, 10))
-                  ? 'green'
-                  : 'transparent',
+                backgroundColor: 'transparent',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -107,8 +108,12 @@ function RatingsBreakdown() {
                   />
                 </div>
                 <span className="pr-[10px]">{`${count}`}</span>
+                {activeFilters.includes(parseInt(rating, 10)) && (
+                  <i className="fa-solid fa-caret-left text-secondary-300 dark:bg-primary-300" style={{ backgroundColor: 'transparent' }} />
+                )}
               </div>
             </button>
+
           ))}
         </div>
 

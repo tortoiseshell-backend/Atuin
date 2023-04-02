@@ -53,7 +53,9 @@ function ReviewListTile({ review }) {
       data-testid="tile"
       className="flex-col w-full bg-white dark:bg-stone-950 p-4"
       style={{
-        margin: '0.25em', border: '1px solid grey',
+        margin: '0.25em',
+        border: '1px solid grey',
+        boxShadow: '1px 1px 3px rgb(40, 11, 135, 0.4)',
       }}
     >
 

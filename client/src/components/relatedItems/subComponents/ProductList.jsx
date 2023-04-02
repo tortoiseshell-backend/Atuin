@@ -7,7 +7,11 @@ export default function ProductList({ items }) {
   const itemsList = items;
   let itemsCarousel = <PlaceholderCard />;
   if (itemsList.length > 0) {
-    itemsCarousel = itemsList.map((item) => (<ProductCard item={item} key={item.id} />));
+    itemsCarousel = itemsList.map((i) => {
+      const item = { ...i };
+      item.default_price = Number(item.default_price);
+      return <ProductCard item={item} key={item.id} />;
+    });
   }
 
   return (

@@ -9,7 +9,7 @@ module.exports = {
   plugins: [],
   theme: {
     screens: {
-      sm: '640px',
+      sm: '575px',
       md: '800px',
       lg: '976px',
       xl: '1440px',
@@ -20,24 +20,24 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary': {
+        primary: {
           100: '#e5f4ff',
           200: '#c8e8ff',
           300: '#a4d8ff',
         },
-        'secondary': {
+        secondary: {
           100: '#110029',
           200: '#300e7f',
           300: '#6120d8',
         },
       },
       spacing: {
-        '128': '32rem',
-        '144': '36rem',
+        128: '32rem',
+        144: '36rem',
       },
       borderWidth: {
-        '1': '1px',
-        '3': '3px',
+        1: '1px',
+        3: '3px',
       },
       borderRadius: {
         '4xl': '2rem',

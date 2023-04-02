@@ -11,12 +11,12 @@ function ProductBreakdown() {
       <div className="grid grid-auto-rows">
         {/* Display rating breakdown */}
         {characteristics && Object.keys(characteristics).map((key) => (
-          <div className="grid grid-col-2 my-[0.5em]" key={`${key}-${characteristics[key].id}`}>
+          <div key={`${key}-${characteristics[key].id}`}>
             <span id="ratingsLabel" className="px-[10px]">{`${key}`}</span>
             <div id="ratingsContent">
 
               <span style={{
-                display: 'flex', flexFlow: 'row-reverse', fontSize: '15px', marginLeft: 'auto',
+                display: 'flex', flexFlow: 'row-reverse', fontSize: '12px', marginLeft: 'auto',
               }}
               >
                 {characteristicsMeaning[key][5]}
@@ -70,7 +70,7 @@ function ProductBreakdown() {
                 />
               </div>
               <div>
-                <span style={{ fontSize: '15px' }}>{characteristicsMeaning[key][1]}</span>
+                <span style={{ fontSize: '12px' }}>{characteristicsMeaning[key][1]}</span>
               </div>
             </div>
           </div>

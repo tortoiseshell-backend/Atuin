@@ -10,6 +10,17 @@ module.exports = {
   },
   plugins: ['import'],
   rules: {
+    camelcase: 'off',
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: [
+          'state',
+          'event',
+        ],
+      },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',
