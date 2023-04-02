@@ -47,19 +47,19 @@ function App() {
             }
             `}
           </style>
-          <div className="row-span-1 mx-auto min-w-[390px] md:max-w-[950]">
+          <div className="row-span-1 mx-auto max-w-[390px] md:max-w-[950]">
             <HeaderBar />
           </div>
-          <div className="row-span-1 mx-auto min-w-[390px] md:max-w-[950]">
+          <div className="row-span-1 mx-auto max-w-[390px] md:max-w-[950]">
             <ProductOverview />
           </div>
-          <div className="row-span-1 p-10 mx-auto min-w-[390px] md:max-w-[950]">
+          <div className="row-span-1 p-10 mx-auto max-w-[390px] md:max-w-[950]">
             <RatingsReviews />
           </div>
           <div className="row-span-1 p-5 mx-auto w-full md:max-w-[950]">
             <QuestionsAnswers />
           </div>
-          <div className="row-span-1 p-10mx-auto min-w-[390px] md:max-w-[950]">
+          <div className="row-span-1 p-10mx-auto max-w-[390px] md:max-w-[950]">
             <RelatedItems />
           </div>
           {rendered ? <Modal /> : null}
