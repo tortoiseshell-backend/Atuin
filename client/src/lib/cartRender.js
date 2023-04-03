@@ -1,5 +1,5 @@
 export function renderCart() {
-  document.getElementById('cart-list').style['max-height'] = '1000px';
+  document.getElementById('cart-list').style['max-height'] = '500px';
   document.getElementById('cart-list').style.visibility = 'visible';
 }
 
