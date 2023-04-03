@@ -61,7 +61,7 @@ function RatingsBreakdown() {
     <div id="RatingsBreakdown">
       {/* Display average rating */}
       <div className="md:ml-4 grid items-end grid-cols-1 justify-items-center pt-2 py-3 text-xl" id="overallRating">
-        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs p-1 bg-stone-100 dark:bg-stone-700">
+        <div className="flex md:inline-flex md:justify-self-start border rounded-md border-gray-500 font-xs p-1 bg-stone-100 dark:bg-stone-700 dark:border-gray-950">
           <div className="flex flex-col items-center">
             <StarRatingView averageRating={avgRating} />
             <span className="mt-3">{`${reviews.length} reviews`}</span>

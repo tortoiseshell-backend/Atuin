@@ -1,84 +1,82 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function ImageTile({ photo }) {
-  const [zoomValue, setZoomValue] = useState(1);
-  const [panValue, setPanValue] = useState({ x: 0, y: 0 });
-  const imgRef = useRef(null);
+  const rendered = useSelector((state) => state.modal.modalOpen);
+  const imageRef = useRef(null);
 
-  const handleZoom = (event) => {
-    const zoomDelta = event.deltaY > 0 ? -0.1 : 0.1;
-    setZoomValue(Math.max(0.1, Math.min(3, zoomValue + zoomDelta)));
-  };
+  useEffect(() => {
+    const zoomScreen = document.querySelector('#zoomable');
+    let zoom = 1;
+    const zoomingSpeed = 0.1;
+    document.addEventListener('wheel', (e) => {
+      if (e.deltaY > 0) {
+        zoomScreen.style.transform = `scale(${(zoom -= zoomingSpeed)})`;
+      } else {
+        zoomScreen.style.transform = `scale(${(zoom += zoomingSpeed)})`;
+      }
+    });
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    let x = 0;
+    let y = 0;
 
-  const handlePanStart = (event) => {
-    event.preventDefault();
-    const startX = event.clientX || event.touches[0].clientX;
-    const startY = event.clientY || event.touches[0].clientY;
-    const currentPanValue = { x: panValue.x, y: panValue.y };
+    const handleMouseDown = (e) => {
+      e.preventDefault();
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    };
+
     const handleMouseMove = (e) => {
-      const newX = e.clientX || e.touches[0].clientX;
-      const newY = e.clientY || e.touches[0].clientY;
-      const deltaX = newX - startX;
-      const deltaY = newY - startY;
-      const img = imgRef.current;
-      const imgWidth = img.offsetWidth * zoomValue;
-      const imgHeight = img.offsetHeight * zoomValue;
-      const containerWidth = img.parentNode.offsetWidth;
-      const containerHeight = img.parentNode.offsetHeight;
-      const minX = (containerWidth - imgWidth) / 2;
-      const maxX = containerWidth / 2;
-      const minY = (containerHeight - imgHeight) / 2;
-      const maxY = containerHeight / 2;
-      const newPanX = Math.min(Math.max(currentPanValue.x + deltaX, -maxX), -minX);
-      const newPanY = Math.min(Math.max(currentPanValue.y + deltaY, -maxY), -minY);
-      setPanValue({
-        x: newPanX,
-        y: newPanY,
-      });
+      e.preventDefault();
+      if (isDragging) {
+        x = x + e.clientX - lastX;
+        y = y + e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        imageRef.current.style.transform = `translate(${x / 2}px, ${y / 2}px)`;
+      }
     };
+
     const handleMouseUp = () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleMouseMove);
-      document.removeEventListener('touchend', handleMouseUp);
+      isDragging = false;
     };
-    document.addEventListener('mousemove', handleMouseMove, { passive: false });
-    document.addEventListener('mouseup', handleMouseUp, { passive: false });
-    document.addEventListener('touchmove', handleMouseMove, { passive: false });
-    document.addEventListener('touchend', handleMouseUp, { passive: false });
-  };
+
+    zoomScreen.addEventListener('mousedown', handleMouseDown);
+    zoomScreen.addEventListener('mousemove', handleMouseMove);
+    zoomScreen.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      zoomScreen.removeEventListener('mousedown', handleMouseDown);
+      zoomScreen.removeEventListener('mousemove', handleMouseMove);
+      zoomScreen.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [rendered]);
 
   return (
     <div
+      id="zoomable"
       style={{
         maxHeight: 'calc(95vh + 50px)',
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
         height: '100%',
       }}
     >
-      <button
-        type="button"
-        onWheel={handleZoom}
-        onMouseDown={handlePanStart}
-        onTouchStart={handlePanStart}
-      >
-        <img
-          ref={imgRef}
-          style={{
-            maxWidth: '100%',
-            maxHeight: '100%',
-            objectFit: 'contain',
-            transform: `translate(${panValue.x}px, ${panValue.y}px) scale(${zoomValue})`,
-            transition: 'transform 0.1s ease-out',
-            cursor: 'grab',
-          }}
-          src={photo.url}
-          alt={photo.id}
-        />
-      </button>
+      <img
+        ref={imageRef}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          objectFit: 'contain',
+        }}
+        src={photo.url}
+        alt={photo.id}
+      />
     </div>
   );
 }
