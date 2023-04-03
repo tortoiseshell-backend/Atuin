@@ -48,3 +48,12 @@
     @apply border-2 border-primary-300 border-solid ring-2 ring-primary-300/25;
   }
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

@@ -25,7 +25,8 @@ function ProductShopper() {
 
   function scrollToReviews(event) {
     event.preventDefault();
-    document.getElementById('ratingsReviews').scrollIntoView({ behavior: 'smooth' });
+    const scrollLocation = document.getElementById('ratingsReviewMark').getBoundingClientRect().top;
+    window.scrollTo({ top: scrollLocation - 50, behavior: 'smooth' });
   }
 
   const styleSelectorList = styles.map((style) => {

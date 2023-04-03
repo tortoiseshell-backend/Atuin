@@ -43,18 +43,16 @@ function ProductBreakdown() {
                   }}
                 >
                   <div
-                    className="bg-secondary-300 dark:bg-primary-200"
+                    className="text-secondary-300 dark:text-primary-200 fas fa-sharp fa-caret-down"
                     style={{
+                      fontSize: '40.5pt',
                       zIndex: '2',
                       display: 'inline-block',
                       position: 'absolute',
                       left: '95%',
                       top: '50%',
-                      transform: 'translateY(-50%)',
-                      width: '15px',
-                      height: '15px',
-                      borderRadius: '50%',
-                      border: '1px solid grey',
+                      transform: 'translateY(-53.8%)',
+                      backgroundColor: 'transparent',
                     }}
                   />
                 </div>
