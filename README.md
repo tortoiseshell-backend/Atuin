@@ -39,6 +39,9 @@ This project is an e-commerce storefront with four main components:
 - Modal forms allow users to add questions and answers.
 - Fits on one screen via dynamic sizing and scrollability.
 
+<img src="./readme-assets/Adidae_QA_searchbar.gif" alt= “searchbar” width="600">
+<img src="./readme-assets/Adidae_QA_modal.png" alt= “add_question_form” width="600">
+
 ## Related Items and Outfits
 
 - Add products to outfit list

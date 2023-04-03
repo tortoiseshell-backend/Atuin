@@ -53,16 +53,16 @@ function App() {
           <div className="row-span-1">
             <HeaderBar />
           </div>
-          <div className="row-span-1 mx-auto max-w-[500px] md:max-w-[950px]">
+          <div className="row-span-1 mx-auto min-w-[390px] md:max-w-[950]">
             <ProductOverview />
           </div>
-          <div id="ratingsReviewMark" className="row-span-1 p-10 mx-auto max-w-[500px] md:max-w-[950px]">
+          <div id="ratingsReviewMark" className="row-span-1 p-10 mx-auto max-w-[390px] md:max-w-[950px]">
             <RatingsReviews />
           </div>
-          <div className="row-span-1 p-10 mx-auto max-w-[500px] md:max-w-[950px]">
+          <div className="row-span-1 p-5 mx-auto w-full md:max-w-[950]">
             <QuestionsAnswers />
           </div>
-          <div className="row-span-1 p-10 max-w-[500px] md:max-w-[950px]">
+          <div className="row-span-1 p-10 mx-auto max-w-[390px] md:max-w-[950]">
             <RelatedItems />
           </div>
           {rendered ? <Modal /> : null}
