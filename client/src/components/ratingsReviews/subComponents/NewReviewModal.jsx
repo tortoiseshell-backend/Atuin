@@ -261,7 +261,7 @@ function NewReviewModal() {
         </div>
 
         {/* Summary */}
-        <div className="my-2  mx-3" id="summary">
+        <div className="my-2 mx-3" id="summary">
           <label htmlFor="summaryInput" className="block w-full border rounded-md border-gray-500 font-xs" style={{ padding: '4px' }} maxLength={60}>
             Summary:
             <input
@@ -367,7 +367,7 @@ function NewReviewModal() {
 
 
         <div className="flex justify-center my-5">
-          <button type="submit" className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Question</button>
+          <button type="submit" className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Review</button>
         </div>
       </form>
     </div>
