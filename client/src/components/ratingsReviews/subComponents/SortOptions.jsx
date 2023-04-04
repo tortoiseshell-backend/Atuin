@@ -6,7 +6,7 @@ function SortOptions() {
   const dispatch = useDispatch();
   const sortedBy = useSelector((state) => state.sort.sortedBy);
   const options = [
-    { label: 'Relevant', value: 'relevant' },
+    { label: 'Relevance', value: 'relevant' },
     { label: 'Newest', value: 'newest' },
     { label: 'Helpful', value: 'helpful' },
   ];
@@ -16,8 +16,7 @@ function SortOptions() {
   return (
     <div>
       <div>
-        {'Sort by: '}
-        <select className="bg-white dark:text-white dark:bg-stone-700" value={sortedBy} onChange={handleChange}>
+        <select className="bg-white dark:text-white dark:bg-stone-700 mb-[10px] p-[2px] rounded-md text-lg" value={sortedBy} onChange={handleChange}>
           {options.map((option) => (
             <option key={option.value} value={option.value}>{option.label}</option>
           ))}

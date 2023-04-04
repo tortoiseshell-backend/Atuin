@@ -11,16 +11,9 @@ function ProductBreakdown() {
       <div className="grid grid-auto-rows">
         {/* Display rating breakdown */}
         {characteristics && Object.keys(characteristics).map((key) => (
-          <div key={`${key}-${characteristics[key].id}`}>
+          <div className="mb-[10px]" key={`${key}-${characteristics[key].id}`}>
             <span id="ratingsLabel" className="px-[10px]">{`${key}`}</span>
             <div id="ratingsContent">
-
-              <span style={{
-                display: 'flex', flexFlow: 'row-reverse', fontSize: '12px', marginLeft: 'auto',
-              }}
-              >
-                {characteristicsMeaning[key][5]}
-              </span>
               <div
                 id="ratingBar"
                 style={{
@@ -28,7 +21,7 @@ function ProductBreakdown() {
                   alignItems: 'center',
                   marginLeft: '10px',
                   width: '200px',
-                  height: '20px',
+                  height: '15px',
                   border: '1px solid grey',
                   marginRight: '10px',
                 }}
@@ -43,7 +36,7 @@ function ProductBreakdown() {
                   }}
                 >
                   <div
-                    className="text-secondary-300 dark:text-primary-200 fas fa-sharp fa-caret-down"
+                    className="text-[#591cc0] dark:text-primary-200 fas fa-sharp fa-caret-down"
                     style={{
                       fontSize: '40.5pt',
                       zIndex: '2',
@@ -67,8 +60,14 @@ function ProductBreakdown() {
                   }}
                 />
               </div>
-              <div>
+              <div style={{ display: 'flex' }}>
                 <span style={{ fontSize: '12px' }}>{characteristicsMeaning[key][1]}</span>
+                <span style={{
+                  display: 'flex', fontSize: '12px', marginLeft: 'auto',
+                }}
+                >
+                  {characteristicsMeaning[key][5]}
+                </span>
               </div>
             </div>
           </div>

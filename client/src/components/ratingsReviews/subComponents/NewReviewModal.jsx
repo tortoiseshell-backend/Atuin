@@ -168,7 +168,7 @@ function NewReviewModal() {
   };
 
   return (
-    <div data-testid="newReviewModel" className="px-1 w-[min-content]">
+    <div data-testid="newReviewModel" className="px-1 w-[min-content] mx-3">
       <form onSubmit={(e) => { e.preventDefault(); handlePostNewReview(); }}>
 
         <div id="freeContent" className="grid grid-rows-3 gap-2 mt-4">
@@ -261,7 +261,7 @@ function NewReviewModal() {
         </div>
 
         {/* Summary */}
-        <div className="my-2" id="summary">
+        <div className="my-2 mx-3" id="summary">
           <label htmlFor="summaryInput" className="block w-full border rounded-md border-gray-500 font-xs" style={{ padding: '4px' }} maxLength={60}>
             Summary:
             <input
@@ -285,7 +285,7 @@ function NewReviewModal() {
         </div>
 
         {/* Review */}
-        <div className="my-4" id="body">
+        <div className="my-4 mx-3" id="body">
           <label htmlFor="bodyInput" className="block w-full border rounded-md border-gray-500 font-xs" style={{ padding: '4px' }} maxLength={1000}>
             Review:
             <textarea
@@ -318,7 +318,7 @@ function NewReviewModal() {
         </div>
 
         {/* Name */}
-        <div className="my-2" id="nickName">
+        <div className="my-2 mx-3" id="nickName">
           <label htmlFor="nickNameInput" className="block w-full border rounded-md border-gray-500 font-xs" style={{ padding: '4px' }} maxLength={60}>
             What is your nickname?
             <input
@@ -342,7 +342,7 @@ function NewReviewModal() {
         </div>
 
         {/* Email */}
-        <div className="my-2" id="email">
+        <div className="my-2 mx-3" id="email">
           <label htmlFor="emailInput" className="block w-full border rounded-md border-gray-500 font-xs" style={{ padding: '4px' }} maxLength={60}>
             What is your email?
             <input
@@ -366,8 +366,8 @@ function NewReviewModal() {
         </div>
 
 
-        <div className="flex justify-end mt-10">
-          <button type="submit" className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Question</button>
+        <div className="flex justify-center my-5">
+          <button type="submit" className="object-right-bottom bg-secondary-300 rounded text-white p-2">Submit Review</button>
         </div>
       </form>
     </div>

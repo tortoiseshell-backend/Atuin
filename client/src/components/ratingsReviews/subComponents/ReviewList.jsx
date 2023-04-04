@@ -22,7 +22,6 @@ function ReviewList() {
     document.getElementById('reviewList').scrollTo(0, 0);
     setDisplayMoreReviewsButton(true);
     dispatch(getReviewsAsync());
-    setRenderedReviews(reviews);
   }, [prodID]);
 
   useEffect(() => {

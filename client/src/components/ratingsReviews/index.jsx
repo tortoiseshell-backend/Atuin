@@ -30,7 +30,7 @@ function RatingsReviews() {
             </div>
           </div>
         </div>
-        <div id="reviews" className="w-full md:w-3/5  mr-1em">
+        <div id="reviews" className="w-full md:w-3/5  mr-1em sm:ml-[30px] ml-[0px]">
           <div className="flex justify-between">
             <SortOptions />
           </div>
