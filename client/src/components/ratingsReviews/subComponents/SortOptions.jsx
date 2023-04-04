@@ -18,7 +18,7 @@ function SortOptions() {
       <div>
         <select className="bg-white dark:text-white dark:bg-stone-700 mb-[10px] p-[2px] rounded-md text-lg" value={sortedBy} onChange={handleChange}>
           {options.map((option) => (
-            <option key={option.value} value={option.value} className="">{option.label}</option>
+            <option key={option.value} value={option.value}>{option.label}</option>
           ))}
         </select>
       </div>
