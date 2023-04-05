@@ -1,0 +1,29 @@
+{
+  "name": "miriel",
+  "version": "1.0.0",
+  "description": "A js-based database for managing ecommerse product data",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tortoiseshell-backend/Miriel.git"
+  },
+  "author": "Markus, Jake, and Noah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tortoiseshell-backend/Miriel/issues"
+  },
+  "homepage": "https://github.com/tortoiseshell-backend/Miriel#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.2.0",
+    "pg": "^8.10.0",
+    "postgresql": "^0.0.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
+}
