@@ -15,7 +15,7 @@ CREATE TABLE Questions (
   date_written BIGINT NOT NULL,
   asker_name VARCHAR(50) NOT NULL DEFAULT '', --name of the asker
   asker_email VARCHAR(50) NOT NULL DEFAULT '',
-  reported BOOLEAN NOT NULL DEFAULT '0',
+  reported BOOLEAN NOT NULL DEFAULT false,
   helpful INTEGER NULL DEFAULT '0'
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE Answers (
   date_written BIGINT NOT NULL,
   answerer_name VARCHAR(50) NOT NULL DEFAULT '', --name of the answerer
   answerer_email VARCHAR(50) NOT NULL DEFAULT '',
-  reported BOOLEAN NOT NULL DEFAULT '0',
+  reported BOOLEAN NOT NULL DEFAULT false,
   helpfulness INTEGER NULL DEFAULT '0'
 );
 
