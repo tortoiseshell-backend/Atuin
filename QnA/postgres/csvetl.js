@@ -13,9 +13,11 @@ db.none(blankdb).then(() => (
 )).then(() => (
   db.none(`ALTER TABLE answers_photos ADD CONSTRAINT ans FOREIGN KEY (answer_id) REFERENCES answers (id);`)
 ))
-// .then(() => (
-//   db.none(`CREATE INDEX QidIndex on answers (question_id);`)
-// ))
+.then(() => {
+  db.none(`CREATE INDEX questionIndex on answers (question_id);`)
+  db.none(`CREATE INDEX prodIndex on questions (product_id);`)
+  db.none(`CREATE INDEX answerIndex on answers_photos (answer_id);`)
+})
 .then(() => {
   console.log('process complete', (Date.now()-start) + ' ms taken')
 })
