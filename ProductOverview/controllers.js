@@ -4,7 +4,7 @@ exports.products = (req, res) => {
   const page = req.query.page || 1;
   const count = req.query.count || 5;
 
-  const products = db.any(`
+  db.any(`
   SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price
   FROM products.products p
   LIMIT $1 OFFSET $2
@@ -28,7 +28,7 @@ exports.products = (req, res) => {
 };
 
 exports.product = (req, res) => {
-  const product = db.any(`
+  db.any(`
   SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price, f.feature, f.value
   FROM products.products p
   LEFT JOIN products.features f ON p.id = f.product_id
@@ -56,20 +56,104 @@ exports.product = (req, res) => {
 
     res.send(product);
   })
-  .catch((error) => {
-    console.error(error);
-    res.status(500).send('Error getting product');
-  });
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error getting product');
+    });
 }
 exports.styles = (req, res) => {
-  const styles = db.any(`
+  db.task(async (task) => {
+    const styles = await task.any(`
+      SELECT s.id, s.name, s.original_price, s.sale_price, s.default_style,
+        json_agg(
+          json_build_object(
+            'thumbnail_url', p.thumbnail_url,
+            'url', p.url
+          )
+        ) AS photos,
+        json_object_agg(
+          sk.id::text,
+          json_build_object(
+            'size', sk.size,
+            'quantity', sk.quantity
+          )
+        ) AS skus
+      FROM products.styles s
+      LEFT JOIN products.photos p ON s.id = p.style_id
+      LEFT JOIN products.skus sk ON s.id = sk.style_id
+      WHERE s.product_id = $1
+      GROUP BY s.id
+    `, [req.params.product_id]);
 
-  `
-    , [req.query.product_id]).then((results) => { res.send(results) })
-}
+    const results = styles.map((style) => {
+      return {
+        style_id: style.id,
+        name: style.name,
+        original_price: style.original_price.toString(),
+        salePrice: style.sale_price ? style.sale_price.toString() : null,
+        "default?": style.default_style === '1',
+        photos: style.photos || [],
+        skus: style.skus || {}
+      };
+    });
+
+    res.send({
+      product_id: req.params.product_id,
+      results: results
+    });
+  })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error getting product');
+    });
+};
+
 exports.related = (req, res) => {
-  const related = db.any(`
+  db.any(`
+  SELECT json_agg(r.related_product_id) as "rpIDs"
+  FROM products.related as r
+  WHERE r.product_id = $1
+  `, [req.params.product_id])
+    .then((results) => {
+      res.send(results[0].rpIDs);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error getting products');
+    });
+}
 
-  `
-    , [req.query.product_id]).then((results) => { res.send(results) })
+exports.getCart = (req, res) => {
+  db.any(`
+  SELECT sku_id, COUNT(*) as count
+  FROM products.cart
+  WHERE user_session = $1
+  GROUP BY sku_id
+`, [req.query.user])
+    .then((results) => {
+      const formattedResults = results.map((result) => ({
+        sku_id: result.sku_id,
+        count: Number(result.count)
+      }));
+      res.send(formattedResults);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error getting products');
+    });
+}
+
+exports.postCart = (req, res) => {
+  const { user, sku_Id } = req.query;
+  db.none(`
+    INSERT INTO products.cart (user_session, sku_id, active)
+    VALUES ($1, $2, 1)
+  `, [user, sku_Id])
+    .then(() => {
+      res.status(201).send('Product added to cart');
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error adding product to cart');
+    });
 }

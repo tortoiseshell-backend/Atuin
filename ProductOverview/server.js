@@ -11,6 +11,8 @@ app.get('/api/products', controllers.products);
 app.get('/api/products/:product_id', controllers.product)
 app.get('/api/products/:product_id/styles', controllers.styles)
 app.get('/api/products/:product_id/related', controllers.related)
+app.get('/api/cart', controllers.getCart)
+app.post('/api/cart', controllers.postCart)
 const PORT = process.env.PORT || 3014;
 
 app.listen(PORT);

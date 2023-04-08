@@ -86,10 +86,10 @@ CREATE TABLE related (
 CREATE TABLE cart (
 	id SERIAL PRIMARY KEY,
 	user_session integer NOT NULL,
-	product_id integer NOT NULL,
+	sku_id integer NOT NULL,
 	active TEXT NOT NULL,
 	-- Add a foreign key constraint to reference the products table
-	CONSTRAINT cart_product_id_fk FOREIGN KEY (product_id) REFERENCES products(id)
+	CONSTRAINT cart_sku_id_fk FOREIGN KEY (sku_id) REFERENCES skus(id)
 ) WITH (
   OIDS=FALSE
 );
