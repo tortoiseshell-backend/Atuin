@@ -2,6 +2,7 @@ const fs = require('fs')
 const db = require('./db.js')
 
 setup = (start) => {
+  console.log('beginning key promises')
   Promise.all([
     db.none(`ALTER TABLE questions ADD PRIMARY KEY (id);`),
     db.none(`ALTER TABLE answers ADD PRIMARY KEY (id);`),
