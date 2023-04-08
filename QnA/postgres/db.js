@@ -9,7 +9,7 @@ const db = pgPromise({
   // host: 'localhost',
   // database: 'qna'
   user: 'qnauser',
-  host: 'ec2-54-209-182-101.compute-1.amazonaws.com',
+  host: 'localhost',
   database: 'qna',
   port: 5432,
   password: pw,
