@@ -1,24 +1,50 @@
 const db = require('./db.js')
 
+// exports.products = (req, res) => {
+//   const page = req.query.page || 1;
+//   const count = req.query.count || 5;
+
+//   db.any(`
+//   SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price
+//   FROM products.products p
+//   LIMIT $1 OFFSET $2
+//   `, [count, (page - 1) * count])
+//     .then((results) => {
+//       // Map the product information to the expected format
+//       const products = results.map((result) => ({
+//         id: result.id,
+//         name: result.name,
+//         slogan: result.slogan,
+//         description: result.description,
+//         category: result.category,
+//         default_price: result.default_price,
+//       }));
+//       res.send(products);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//       res.status(500).send('Error getting products');
+//     });
+// };
 exports.products = (req, res) => {
-  const page = req.query.page || 1;
-  const count = req.query.count || 5;
+  const page = parseInt(req.query.page) || 1;
+  const count = parseInt(req.query.count) || 5;
 
   db.any(`
-  SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price
-  FROM products.products p
-  LIMIT $1 OFFSET $2
-  `, [count, (page - 1) * count])
+    SELECT json_build_object(
+      'id', p.id,
+      'name', p.name,
+      'slogan', p.slogan,
+      'description', p.description,
+      'category', p.category,
+      'default_price', p.default_price
+    ) as product
+    FROM products.products p
+    WHERE p.id BETWEEN $1 AND $2
+  `, [(page - 1) * count + 1, page * count])
     .then((results) => {
       // Map the product information to the expected format
-      const products = results.map((result) => ({
-        id: result.id,
-        name: result.name,
-        slogan: result.slogan,
-        description: result.description,
-        category: result.category,
-        default_price: result.default_price,
-      }));
+      const products = results.map((result) => result.product);
       res.send(products);
     })
     .catch((error) => {
@@ -27,86 +53,133 @@ exports.products = (req, res) => {
     });
 };
 
-exports.product = (req, res) => {
-  db.any(`
-  SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price, f.feature, f.value
-  FROM products.products p
-  LEFT JOIN products.features f ON p.id = f.product_id
-  WHERE p.id = $1
-`, [req.params.product_id]).then((results) => {
-    // Group the features by feature name and map them to the expected format
-    const features = results.reduce((acc, cur) => {
-      acc.push({
-        feature: cur.feature,
-        value: cur.value
-      });
-      return acc;
-    }, []);
 
-    // Map the product information to the expected format
+// exports.product = (req, res) => {
+//   db.any(`
+//   SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price, f.feature, f.value
+//   FROM products.products p
+//   LEFT JOIN products.features f ON p.id = f.product_id
+//   WHERE p.id = $1
+// `, [req.params.product_id]).then((results) => {
+//     // Group the features by feature name and map them to the expected format
+//     const features = results.reduce((acc, cur) => {
+//       acc.push({
+//         feature: cur.feature,
+//         value: cur.value
+//       });
+//       return acc;
+//     }, []);
+
+//     // Map the product information to the expected format
+//     const product = {
+//       id: results[0].id,
+//       name: results[0].name,
+//       slogan: results[0].slogan,
+//       description: results[0].description,
+//       category: results[0].category,
+//       default_price: results[0].default_price,
+//       features: features
+//     };
+
+//     res.send(product);
+//   })
+//     .catch((error) => {
+//       console.error(error);
+//       res.status(500).send('Error getting product');
+//     });
+// }
+exports.product = (req, res) => {
+  db.task(async (t) => {
+    // Retrieve the product information
+    const productInfo = await t.one(`
+      SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price
+      FROM products.products p
+      WHERE p.id = $1
+    `, [req.params.product_id]);
+
+    // Retrieve the features
+    const features = await t.any(`
+      SELECT json_build_object(
+        'feature', f.feature,
+        'value', f.value
+      ) as feature
+      FROM products.features f
+      WHERE f.product_id = $1
+    `, [req.params.product_id]);
+
+    // Combine the product information and features into a single object
     const product = {
-      id: results[0].id,
-      name: results[0].name,
-      slogan: results[0].slogan,
-      description: results[0].description,
-      category: results[0].category,
-      default_price: results[0].default_price,
-      features: features
+      ...productInfo,
+      features,
     };
 
+    // Return the formatted product
+    return product;
+  })
+  .then((product) => {
     res.send(product);
   })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error getting product');
-    });
-}
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error getting product');
+  });
+};
+
 exports.styles = (req, res) => {
-  db.task(async (task) => {
-    const styles = await task.any(`
-      SELECT s.id, s.name, s.original_price, s.sale_price, s.default_style,
-        json_agg(
+  db.any(`
+    SELECT
+      s.id AS style_id,
+      s.name AS name,
+      s.original_price::text AS original_price,
+      s.sale_price::text AS sale_price,
+      s.default_style = '1' AS "default?",
+      (
+        SELECT COALESCE(json_agg(
           json_build_object(
             'thumbnail_url', p.thumbnail_url,
             'url', p.url
           )
-        ) AS photos,
-        json_object_agg(
+          ORDER BY p.id ASC
+        ), '[]')
+        FROM products.photos p
+        WHERE p.style_id = s.id
+      ) AS photos,
+      (
+        SELECT json_object_agg(
           sk.id::text,
           json_build_object(
             'size', sk.size,
             'quantity', sk.quantity
           )
-        ) AS skus
-      FROM products.styles s
-      LEFT JOIN products.photos p ON s.id = p.style_id
-      LEFT JOIN products.skus sk ON s.id = sk.style_id
-      WHERE s.product_id = $1
-      GROUP BY s.id
-    `, [req.params.product_id]);
-
-    const results = styles.map((style) => {
-      return {
-        style_id: style.id,
-        name: style.name,
-        original_price: style.original_price.toString(),
-        salePrice: style.sale_price ? style.sale_price.toString() : null,
-        "default?": style.default_style === '1',
-        photos: style.photos || [],
-        skus: style.skus || {}
-      };
-    });
-
-    res.send({
-      product_id: req.params.product_id,
-      results: results
-    });
-  })
+        )
+        FROM products.skus sk
+        WHERE sk.style_id = s.id
+      ) AS skus
+    FROM products.styles s
+    WHERE s.product_id = $1
+    GROUP BY s.id
+  `, [req.params.product_id])
+    .then((results) => {
+      const formattedResults = results.map((result) => ({
+        style_id: result.style_id,
+        name: result.name,
+        original_price: result.original_price,
+        sale_price: result.sale_price || null,
+        "default?": result.default_,
+        photos: result.photos,
+        skus: result.skus
+      }));
+      res.send({
+        product_id: req.params.product_id,
+        results: formattedResults
+      });
+    })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error getting product');
+      res.status(500).send('Error getting styles');
     });
 };
+
 
 exports.related = (req, res) => {
   db.any(`
