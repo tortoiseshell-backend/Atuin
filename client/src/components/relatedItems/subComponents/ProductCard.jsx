@@ -32,7 +32,7 @@ export default function ProductCard({ item }) {
       isFavorited = true;
     }
   });
-  let photoURL = item.results[0].photos[0].url;
+  let photoURL = item.results[0]?.photos[0]?.url;
 
   let starIconType = 'fa-sharp fa-regular fa-star';
   if (isFavorited) {

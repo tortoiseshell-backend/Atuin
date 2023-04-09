@@ -29,7 +29,6 @@ const db = require('./db.js')
 exports.products = (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const count = parseInt(req.query.count) || 5;
-
   db.any(`
     SELECT json_build_object(
       'id', p.id,
@@ -101,8 +100,8 @@ exports.product = (req, res) => {
     const features = await t.any(`
       SELECT json_build_object(
         'feature', f.feature,
-        'value', f.value
-      ) as feature
+        'value', NULLIF(f.value, 'null')
+      )
       FROM products.features f
       WHERE f.product_id = $1
     `, [req.params.product_id]);
@@ -110,7 +109,7 @@ exports.product = (req, res) => {
     // Combine the product information and features into a single object
     const product = {
       ...productInfo,
-      features,
+      features: features.map(feature => feature.json_build_object),
     };
 
     // Return the formatted product

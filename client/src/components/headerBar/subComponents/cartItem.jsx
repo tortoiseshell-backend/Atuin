@@ -15,7 +15,7 @@ export default function CartItem({ item }) {
     <div data-testid="cart-item" className="grid grid-flow-row grid-cols-6 grid-rows-3 gap-x-2 mb-4">
       <div className="row-span-1 col-span-6 text-md font-bold">{item.name}</div>
       <div className="row-span-2 col-span-1">
-        <img alt="" src={item.thumbnail_url} className="rounded-md bg-gray-100 h-12 w-12 object-cover" />
+        <img alt="" src={item?.thumbnail_url} className="rounded-md bg-gray-100 h-12 w-12 object-cover" />
       </div>
       <div className="row-span-2 col-span-2 text-xs">
         <div>Style:</div>

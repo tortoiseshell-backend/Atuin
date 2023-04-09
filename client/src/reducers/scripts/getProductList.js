@@ -7,7 +7,7 @@ const getConfig = {
 };
 
 async function getProductList(serverURL) {
-  const response = await axios.get(`${serverURL}/products/`, getConfig);
+  const response = await axios.get(`${serverURL}/products?page=1000&count=15`, getConfig);
   return response.data;
 }
 

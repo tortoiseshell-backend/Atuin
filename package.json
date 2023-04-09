@@ -4,6 +4,7 @@
   "description": "client-facing retail web-portal",
   "scripts": {
     "test": "jest",
+    "test_DB": "jest /home/jake_windows_11/SDC/Miriel/ProductOverview/test/ProductOverview.spec.js",
     "verify": "node ./verifyConnection/index.js",
     "start_po": "npx nodemon ProductOverview/server.js --watch",
     "dev": "webpack --mode development --watch & npx tailwindcss -i ./client/src/css/input.css -o ./client/dist/output.css --watch",
@@ -32,6 +33,7 @@
     "autoprefixer": "^10.4.14",
     "axios": "^1.3.5",
     "core-js": "^3.29.1",
+    "cors": "^2.8.5",
     "dompurify": "^3.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

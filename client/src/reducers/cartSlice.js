@@ -5,7 +5,7 @@ import addCartData from './scripts/addCartData';
 import getProductDetails from './scripts/getProductDetails';
 import getProductList from './scripts/getProductList';
 
-const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const API_URL = 'http://localhost:3034/api';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -40,7 +40,7 @@ export const initializeProductData = () => async (dispatch) => {
           style: style.name,
           original_price: style.original_price,
           sale_price: style.sale_price,
-          thumbnail_url: style.photos[0].thumbnail_url,
+          thumbnail_url: style.photos[0]?.thumbnail_url,
           size: style.skus[sku].size,
         };
       });

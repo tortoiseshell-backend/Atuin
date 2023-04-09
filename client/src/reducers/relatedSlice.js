@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import getRelatedProducts from './scripts/getRelatedProducts';
 import getProductDetails from './scripts/getProductDetails';
 
-const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const API_URL = 'http://localhost:3034/api';
 
 const relatedSlice = createSlice({
   name: 'related',

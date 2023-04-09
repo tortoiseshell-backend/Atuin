@@ -6,7 +6,7 @@ import { selectStyle, selectImage } from '@reducers/productSlice';
 function StyleSelector({ style }) {
   const dispatch = useDispatch();
   const selectedStyle = useSelector((state) => state.product.selectedStyleID);
-  const thumbnailURL = style.photos[0].thumbnail_url;
+  const thumbnailURL = style.photos[0]?.thumbnail_url;
   let styleSelectorStyle = 'rounded-full bg-gray-100 h-14 w-14 object-cover';
   let selectedMarker = 'invisible';
 
@@ -23,8 +23,8 @@ function StyleSelector({ style }) {
     dispatch(selectImage([
       style.style_id,
       0,
-      style.photos[0].thumbnail_url,
-      style.photos[0].url,
+      style.photos[0]?.thumbnail_url,
+      style.photos[0]?.url,
     ]));
   }
 

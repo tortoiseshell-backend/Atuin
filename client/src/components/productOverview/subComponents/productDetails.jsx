@@ -11,7 +11,6 @@ function ProductDetails() {
   const productFeatures = features.map((feature) => (
     <ProductFeature feature={feature} key={feature.feature} />
   ));
-
   return (
     <div className={productDetailsStyle}>
       <div className="col-span-1 mx-auto my-10 w-4/5">

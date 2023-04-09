@@ -8,7 +8,7 @@ function ThumbnailCarousel() {
   const thumbnailCarouselStyle = 'absolute top-4 left-2';
   useSelector((state) => state.product.styles).forEach((style) => {
     thumbnailList = thumbnailList.concat(style.photos.map((photo, index) => (
-      [style.style_id, index, photo.thumbnail_url, photo.url])));
+      [style.style_id, index, photo?.thumbnail_url, photo?.url])));
   });
   const galleryStyle = 'w-24 h-[435px] overflow-y-hidden snap-y p-2';
 

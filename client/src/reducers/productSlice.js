@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import getProductDetails from './scripts/getProductDetails';
 import getProductList from './scripts/getProductList';
 
-const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const API_URL = 'http://localhost:3034/api';
 
 const productSlice = createSlice({
   name: 'product',
   initialState: {
     value: {},
     productList: [],
-    id: 40435,
+    id: 5000,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
     default_price: 0,
@@ -41,7 +41,7 @@ const productSlice = createSlice({
       state.selectedSKU = Object.keys(state.styles[0].skus)[0];
       state.sale_price = state.styles[0].sale_price;
       const photo = state.styles[0].photos[0];
-      state.selectedImage = [state.selectedStyleID, 0, photo.thumbnail_url, photo.url];
+      state.selectedImage = [state.selectedStyleID, 0, photo?.thumbnail_url, photo?.url];
     },
     selectStyle(state, action) {
       const prevStyleData = state.styles
