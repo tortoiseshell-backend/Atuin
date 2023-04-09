@@ -15,9 +15,9 @@ setup = (start) => {
     })
   .then(() => {
     // index the foreign keys for speed
-    db.none(`CREATE INDEX questionIndex on answers (question_id);`)
-    db.none(`CREATE INDEX prodIndex on questions (product_id);`)
-    db.none(`CREATE INDEX answerIndex on answers_photos (answer_id);`)
+    db.none(`CREATE INDEX questionIndex on answers USING HASH (question_id);`)
+    db.none(`CREATE INDEX prodIndex on questions USING HASH (product_id);`)
+    db.none(`CREATE INDEX answerIndex on answers_photos USING HASH (answer_id);`)
     // set the ids to be correct
     db.any(`SELECT setval('questions_id_seq', (SELECT MAX(id) FROM questions)+1);`)
     db.any(`SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers)+1);`)

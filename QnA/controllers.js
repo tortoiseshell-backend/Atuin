@@ -5,35 +5,15 @@ const db = require('./postgres/db.js')
 exports.productQuestions = (req, res) => {
   /* faster version that is currently a rough draft */
   var questions = db.any(
-    // `SELECT
-    //   question.id as question_id,
-    //   question.body as question_body,
-    //   TO_TIMESTAMP((question.date_written/1000))::date as question_date,
-    //   question.asker_name,
-    //   question.helpful as question_helpfulness,
-    //   question.reported,
-    //   (SELECT json_object_agg(
-    //     answers.id,
-    //     json_build_object(
-    //       'id', answers.id,
-    //       'body', answers.body,
-    //       'date', answers.date_written,
-    //       'answerer_name', answers.answerer_name,
-    //       'helpfulness', answers.helpfulness,
-    //       'photos', (select ARRAY(select url from answers_photos where answers_photos.answer_id=answers.id))
-    //     )
-    //   ) FROM answers WHERE answers.question_id = questions.id) as answers
-    //   FROM questions WHERE product_id= $1`
-  `select question.id as question_id,
-  question.body as question_body,
-  TO_TIMESTAMP((question.date_written/1000))::date as question_date,
-  question.asker_name,
-  question.helpful as question_helpfulness,
-  question.reported,
-  case
-    when answers.id is null then '{}'::json
-    else
-      json_build_object(answers.id,
+    `SELECT
+      questions.id as question_id,
+      questions.body as question_body,
+      TO_TIMESTAMP((questions.date_written/1000))::date as question_date,
+      questions.asker_name,
+      questions.helpful as question_helpfulness,
+      questions.reported,
+      (SELECT json_object_agg(
+        answers.id,
         json_build_object(
           'id', answers.id,
           'body', answers.body,
@@ -42,10 +22,30 @@ exports.productQuestions = (req, res) => {
           'helpfulness', answers.helpfulness,
           'photos', (select ARRAY(select url from answers_photos where answers_photos.answer_id=answers.id))
         )
-      )
-    end as answers
-  from (select * from questions where product_id= $1) question
-  left join answers on question.id=question_id;`
+      ) FROM answers WHERE answers.question_id = questions.id) as answers
+      FROM questions WHERE product_id= $1;`
+  // `select question.id as question_id,
+  // question.body as question_body,
+  // TO_TIMESTAMP((question.date_written/1000))::date as question_date,
+  // question.asker_name,
+  // question.helpful as question_helpfulness,
+  // question.reported,
+  // case
+  //   when answers.id is null then '{}'::json
+  //   else
+  //     json_build_object(answers.id,
+  //       json_build_object(
+  //         'id', answers.id,
+  //         'body', answers.body,
+  //         'date', answers.date_written,
+  //         'answerer_name', answers.answerer_name,
+  //         'helpfulness', answers.helpfulness,
+  //         'photos', (select ARRAY(select url from answers_photos where answers_photos.answer_id=answers.id))
+  //       )
+  //     )
+  //   end as answers
+  // from (select * from questions where product_id= $1) question
+  // left join answers on question.id=question_id;`
     , [req.query.product_id]).then((results) => {res.send(results)})
 
     // var questions = db.any('select * from questions where product_id= $1;', [req.query.product_id])

@@ -17,7 +17,7 @@ const arrayForBatch = (n) => ({
 })
 
 const makeBatch = (n) => (
-  Array(n).keys().map((k, v) => (
+  [...Array(n).keys()].map((k, v) => (
     arrayForBatch(k)
   )))
 

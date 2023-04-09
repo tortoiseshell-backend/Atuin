@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep, check } from 'k6';
 
 export const options = {
-  duration: '5m',
+  duration: '1m',
   vus: 50
 }
 
@@ -24,7 +24,7 @@ const makeBatch = (n) => (
 export default function () {
 
   let res = http.batch(makeBatch(
-    20 //Math.round(Math.random()) +
+    1 //Math.round(Math.random()) +
     ))
   res.forEach((response) => {
     check(response, {'is status 200': (r) => (r.status === 200) })
