@@ -1,5 +1,4 @@
 csv
-node_modules
 .env# ignore ALL .log files
 *.log
 # ignore ALL files in ANY directory named temp
@@ -7,4 +6,3 @@ temp/
 # ignore .env
 *.env
 node_modules
-coverage
