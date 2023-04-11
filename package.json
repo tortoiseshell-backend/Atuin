@@ -3,10 +3,9 @@
   "version": "1.7.0",
   "description": "client-facing retail web-portal products database",
   "scripts": {
-    "test": "jest",
-    "test_DB": "jest /home/jake_windows_11/SDC/Miriel/ProductOverview/test/ProductOverview.spec.js",
-    "verify": "node ./verifyConnection/index.js",
-    "start_po": "npx nodemon ProductOverview/server.js --watch",
+    "test_DB": "./ProductOverviewAPI/tests/ProductOverviewAPI.spec.js",
+    "verify": "node ./ProductOverviewAPI/tests/verifyConnection.js",
+    "start_po": "npx nodemon ProductOverviewAPI/server/server.js --watch"
     },
   "repository": {
     "type": "git",

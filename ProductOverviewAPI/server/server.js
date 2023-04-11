@@ -14,7 +14,7 @@ app.get('/api/products/:product_id/styles', controllers.styles)
 app.get('/api/products/:product_id/related', controllers.related)
 app.get('/api/cart', controllers.getCart)
 app.post('/api/cart', controllers.postCart)
-const PORT = process.env.DB_PORT || 3014;
+const PORT = process.env.DB_PORT || 3141;
 
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);

@@ -12,4 +12,3 @@ pool.query('SELECT NOW()', (err, res) => {
     console.log('Connected to Postgres database at', res.rows[0].now);
   }
 });
-

@@ -8,7 +8,7 @@ const db = pgPromise({
 });
 
 const start = Date.now();
-const blankdb = fs.readFileSync('ProductOverview/db/ProductsModel.sql').toString();
+const blankdb = fs.readFileSync('ProductOverviewAPI/db/ProductsModel.sql').toString();
 db.none(blankdb)
   .then(() => {
     return db.none(`COPY products.products (id, name, slogan, description, category, default_price) FROM '/home/jake_windows_11/SDC/Miriel/csv/product.csv' CSV HEADER`);
