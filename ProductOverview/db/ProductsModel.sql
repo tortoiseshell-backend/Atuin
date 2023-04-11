@@ -95,8 +95,10 @@ CREATE TABLE cart (
 );
 
 -- Create the necessary indexes
-CREATE INDEX features_product_id_idx ON features(product_id);
-CREATE INDEX related_product_id_idx ON related(product_id);
-CREATE INDEX styles_product_id_idx ON styles(product_id);
-CREATE INDEX photos_style_id_idx ON photos(style_id);
-CREATE INDEX skus_style_id_idx ON skus(style_id);
+CREATE INDEX features_product_id_idx ON products.features USING hash (product_id);
+CREATE INDEX related_product_id_idx  ON products.related USING hash (product_id);
+CREATE INDEX styles_product_id_idx ON products.styles USING hash (product_id);
+CREATE INDEX photos_style_id_idx ON products.photos USING hash (style_id);
+CREATE INDEX skus_style_id_idx ON products.skus USING hash (style_id);
+CREATE INDEX styles_style_id_idx ON products.styles USING hash (id);
+CREATE INDEX products_id_idx ON products.products USING hash (id);

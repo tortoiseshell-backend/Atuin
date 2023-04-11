@@ -39,8 +39,9 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
   try {
     const state = getState();
     const prodId = state.product.id; // good products: 40435 40436
-
     const metaResponse = await axios.get(`${API_URL}/meta/?product_id=${prodId} `, API_CONFIG);
+    let responseTuple = [[], {}]
+    if (Object.keys(metaResponse.data.ratings).length > 0) {
     const reviewCount = Object.values(metaResponse.data.recommended).reduce(
       (trueR, falseR) => Number(falseR) + Number(trueR),
     );
@@ -53,9 +54,10 @@ export const getReviewsAsync = () => async (dispatch, getState) => {
     const averageRating = sumOfKeyValues / sumOfValues;
 
     const reviewResponse = await axios.get(`${API_URL}/?page=1&count=${reviewCount}&sort=${state.sort.sortedBy}&product_id=${prodId}`, API_CONFIG);
-    const responseTuple = [reviewResponse.data.results, {
+    responseTuple = [reviewResponse.data.results, {
       ratings, recommended, characteristics, averageRating,
     }];
+  }
     dispatch(getReviews(responseTuple));
   } catch (err) {
     throw new Error(err);

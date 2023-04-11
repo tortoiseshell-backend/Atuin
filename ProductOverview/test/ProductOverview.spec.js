@@ -8,7 +8,7 @@ test('get products', async () => {
 
 test('get a product', async () => {
   const results = await axios.get('http://localhost:3034/api/products/5000')
-  console.log(JSON.stringify(results.data, null, 2))
+  // console.log(results.data)
   expect(results.status).toEqual(200);
 });
 

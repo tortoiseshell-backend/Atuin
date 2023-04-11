@@ -71,68 +71,70 @@ function RatingsBreakdown() {
       </div>
 
       {/* Display rating breakdown */}
-      <div>
-        <div className="grid grid-rows-5 text-lg">
-          {Object.entries(ratings).map(([rating, count]) => (
-            <button
-              className="bg-white dark:bg-grey-500"
-              type="button"
-              key={rating}
-              onClick={() => handleFilterClick(parseInt(rating, 10))}
-              style={{
-                backgroundColor: 'transparent',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span className="pl-[10px] whitespace-pre">{`${rating} Stars`}</span>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    marginLeft: '10px',
-                    width: '100px',
-                    height: '10px',
-                    border: '1px solid grey',
-                    marginRight: '10px',
-                  }}
-                >
+      {reviews.length > 0 &&
+        <div>
+          <div className="grid grid-rows-5 text-lg">
+            {Object.entries(ratings).map(([rating, count]) => (
+              <button
+                className="bg-white dark:bg-grey-500"
+                type="button"
+                key={rating}
+                onClick={() => handleFilterClick(parseInt(rating, 10))}
+                style={{
+                  backgroundColor: 'transparent',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span className="pl-[10px] whitespace-pre">{`${rating} Stars`}</span>
                   <div
-                    className="bg-secondary-300 dark:bg-primary-300"
                     style={{
-                      display: 'inline-block',
-                      width: `${(count / reviews.length) * 100}%`,
-                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginLeft: '10px',
+                      width: '100px',
+                      height: '10px',
+                      border: '1px solid grey',
+                      marginRight: '10px',
                     }}
-                  />
-                  <div
-                    className="bg-primary-200 dark:bg-secondary-200"
-                    style={{
-                      display: 'inline-block',
-                      width: `${100 - (count / reviews.length) * 100}%`,
-                      height: '100%',
-                    }}
-                  />
+                  >
+                    <div
+                      className="bg-secondary-300 dark:bg-primary-300"
+                      style={{
+                        display: 'inline-block',
+                        width: `${(count / reviews.length) * 100}%`,
+                        height: '100%',
+                      }}
+                    />
+                    <div
+                      className="bg-primary-200 dark:bg-secondary-200"
+                      style={{
+                        display: 'inline-block',
+                        width: `${100 - (count / reviews.length) * 100}%`,
+                        height: '100%',
+                      }}
+                    />
+                  </div>
+                  <span className="pr-[10px]">{`${count}`}</span>
+                  {activeFilters.includes(parseInt(rating, 10)) && (
+                    <i className="fa-solid fa-caret-left text-secondary-300 dark:bg-primary-300" style={{ backgroundColor: 'transparent' }} />
+                  )}
                 </div>
-                <span className="pr-[10px]">{`${count}`}</span>
-                {activeFilters.includes(parseInt(rating, 10)) && (
-                  <i className="fa-solid fa-caret-left text-secondary-300 dark:bg-primary-300" style={{ backgroundColor: 'transparent' }} />
-                )}
-              </div>
-            </button>
+              </button>
 
-          ))}
-        </div>
-
-        {/* Display applied filters */}
-        {activeFilters.length > 0 && (
-          <div>
-            {`Filters applied: ${activeFilters
-              .map((filter) => `${filter} stars`)
-              .join(', ')}`}
-            <button type="button" onClick={clearFilters}>Remove all filters</button>
+            ))}
           </div>
-        )}
-      </div>
+
+          {/* Display applied filters */}
+          {activeFilters.length > 0 && (
+            <div>
+              {`Filters applied: ${activeFilters
+                .map((filter) => `${filter} stars`)
+                .join(', ')}`}
+              <button type="button" onClick={clearFilters}>Remove all filters</button>
+            </div>
+          )}
+        </div>
+      }
     </div>
   );
 }

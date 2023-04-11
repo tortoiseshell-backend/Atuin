@@ -7,9 +7,12 @@ const db = pgPromise({
   connectionString: process.env.PRODUCTS_DATABASE_URL,
 });
 
-// const blankdb = fs.readFileSync('ProductOverview/db/ProductsModel.sql').toString();
 const start = Date.now();
-db.none(`COPY products.products (id, name, slogan, description, category, default_price) FROM '/home/jake_windows_11/SDC/Miriel/csv/product.csv' CSV HEADER`)
+const blankdb = fs.readFileSync('ProductOverview/db/ProductsModel.sql').toString();
+db.none(blankdb)
+  .then(() => {
+    return db.none(`COPY products.products (id, name, slogan, description, category, default_price) FROM '/home/jake_windows_11/SDC/Miriel/csv/product.csv' CSV HEADER`);
+  })
   .then(() => {
     return db.none(`COPY products.features (id, product_id, feature, value) FROM '/home/jake_windows_11/SDC/Miriel/csv/features.csv' CSV HEADER`);
   })
@@ -26,7 +29,7 @@ db.none(`COPY products.products (id, name, slogan, description, category, defaul
     return db.none(`COPY products.photos (id, style_id, thumbnail_url, url) FROM '/home/jake_windows_11/SDC/Miriel/csv/photos.csv' CSV HEADER`);
   })
   .then(() => {
-    return db.none(`COPY products.cart (id, user_session, sku_id, active) FROM '/home/jake_windows_11/SDC/Miriel/csv/cart.csv' CSV HEADER`)
+    return db.none(`COPY products.cart (id, user_session, sku_id, active) FROM '/home/jake_windows_11/SDC/Miriel/csv/cart.csv' CSV HEADER`);
   })
   .then(() => {
     // Restarting the id_seq for all tables

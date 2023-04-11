@@ -9,7 +9,7 @@ const productSlice = createSlice({
   initialState: {
     value: {},
     productList: [],
-    id: 5000,
+    id: 40436,
     name: 'Nostrud Excepteur',
     category: 'Animtempor.',
     default_price: 0,

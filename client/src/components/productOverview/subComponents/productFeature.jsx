@@ -6,7 +6,6 @@ const productFeaturesStyle = 'grid grid-cols-2 text-sm mb-2';
 function ProductFeatures({ feature }) {
   const featureValue = feature.value || '';
 
-  console.log(JSON.stringify(feature, null, 2))
   return (
     <div className={productFeaturesStyle}>
       <div className="row-span-1 font-semibold">{`${feature.feature}`}</div>

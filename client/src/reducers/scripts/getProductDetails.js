@@ -27,8 +27,6 @@ async function appendProductPrimaryDetails(productID, serverURL, resultObject) {
 
 async function appendProductStylesDetails(productID, serverURL, resultObject) {
   const response = await axios.get(`${serverURL}/products/${productID}/styles`, getConfig);
-
-  console.log('Here',response.data)
   return {
     ...resultObject,
     ...objectDeconstructor(response.data, ['results']),
