@@ -1,8 +1,12 @@
-const { Pool } = require('pg');
 require('dotenv').config();
+const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.PRODUCTS_DATABASE_URL,
+  user: 'ubuntu',
+  host: 'ec2-18-188-148-36.us-east-2.compute.amazonaws.com',
+  database: 'products',
+  password: 'password',
+  port: 5432
 });
 
 pool.query('SELECT NOW()', (err, res) => {
