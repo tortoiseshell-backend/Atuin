@@ -24,7 +24,7 @@ const makeBatch = (n) => (
 export default function () {
 
   let res = http.batch(makeBatch(
-    3 // add Math.round(Math.random()) + to make a fractional request volume
+    1 // add Math.round(Math.random()) + to make a fractional request volume
     ))
   res.forEach((response) => {
     check(response, {'is status 200': (r) => (r.status === 200) })
