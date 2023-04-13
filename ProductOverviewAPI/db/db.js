@@ -7,7 +7,7 @@ const db = pgPromise({
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: DB_PORT
+  port: process.env.DB_PORT
 });
 
 module.exports = db;
