@@ -2,11 +2,11 @@ require('dotenv').config();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'ubuntu',
-  host: 'ec2-18-219-72-33.us-east-2.compute.amazonaws.com',
-  database: 'products',
-  password: 'password',
-  port: 5432
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: DB_PORT
 });
 
 pool.query('SELECT NOW()', (err, res) => {

@@ -17,7 +17,7 @@ app.post('/api/cart', controllers.postCart);
 app.get('/loaderio-eb23194a4feb4d296c9d78529d42f818', (req, res) =>
   res.send('loaderio-eb23194a4feb4d296c9d78529d42f818'));
 
-const PORT = process.env.DB_PORT || 3034;
+const PORT = process.env.PORT || 3034;
 
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
