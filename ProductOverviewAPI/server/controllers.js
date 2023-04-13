@@ -22,7 +22,7 @@ exports.products = (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error getting products');
+      res.status(500).send(error + '\nError getting products');
     });
 };
 
@@ -59,7 +59,7 @@ exports.product = (req, res) => {
   })
   .catch((error) => {
     console.error(error);
-    res.status(500).send('Error getting product');
+    res.status(500).send(error + '\nError getting products');
   });
 };
 
@@ -114,7 +114,7 @@ exports.styles = (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error getting styles');
+      res.status(500).send(error + '\nError getting styles');
     });
 };
 
@@ -130,7 +130,7 @@ exports.related = (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error getting products');
+      res.status(500).send('Error getting related');
     });
 }
 
@@ -150,7 +150,7 @@ exports.getCart = (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error getting products');
+      res.status(500).send(error + '\nError adding product to cart');
     });
 }
 
@@ -165,6 +165,6 @@ exports.postCart = (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send('Error adding product to cart');
+      res.status(500).send(error + '\nError adding product to cart');
     });
 }
