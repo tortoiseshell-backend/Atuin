@@ -5,7 +5,8 @@
   "scripts": {
     "test_DB": "jest ./ProductOverviewAPI/tests/ProductOverview.spec.js",
     "verify": "node ./ProductOverviewAPI/tests/verifyConnection.js",
-    "start_po": "npx nodemon ProductOverviewAPI/server/server.js --watch"
+    "start_po": "npx nodemon ProductOverviewAPI/server/server.js --watch",
+    "new_net": "node newNetwork.js"
     },
   "repository": {
     "type": "git",
