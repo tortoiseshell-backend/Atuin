@@ -50,7 +50,11 @@ exports.productQuestions = (req, res) => {
   //   end as answers
   // from (select * from questions where product_id= $1) question
   // left join answers on question.id=question_id;`
-    , [req.query.product_id]).then((results) => {res.send(results)})
+    , [req.query.product_id])
+    .then((results) => {res.send(results)})
+    .catch((err) => {
+      res.sendStatus(500)
+    })
 }
 
 // TODO: Add pagination, add photos
