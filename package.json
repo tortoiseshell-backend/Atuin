@@ -3,9 +3,9 @@
   "version": "1.7.0",
   "description": "client-facing retail web-portal products database",
   "scripts": {
-    "test_DB": "jest ./ProductOverviewAPI/tests/ProductOverview.spec.js",
+    "test": "jest ./ProductOverviewAPI/tests/ProductOverview.spec.js",
     "verify": "node ./ProductOverviewAPI/tests/verifyConnection.js",
-    "start_po": "npx nodemon ProductOverviewAPI/server/server.js --watch",
+    "start": "npx nodemon ProductOverviewAPI/server/server.js --watch",
     "new_net": "node newNetwork.js",
     "new_ip": "node newIP.js",
     "new_db": "node newDB.js"
