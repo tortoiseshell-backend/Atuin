@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const db = pgPromise({
   user: process.env.USER,
-  host: process.env.HOST,
+  host: '3.138.190.144',
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
   port: process.env.DB_PORT
