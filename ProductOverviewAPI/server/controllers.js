@@ -1,5 +1,4 @@
 const db = require('../db/db.js')
-const pgp = require('pg-promise')();
 
 exports.products = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -8,7 +7,7 @@ exports.products = async (req, res) => {
 
   try {
     // Define the prepared statement
-    const statement = pgp.prepare(`
+    const statement = db.prepare(`
       SELECT json_agg(
         json_build_object(
           'id', p.id,
@@ -36,7 +35,7 @@ exports.products = async (req, res) => {
 
 exports.product = async (req, res) => {
   try {
-    const statement = pgp.prepare(`
+    const statement = dn.prepare(`
     SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price,
           json_agg(
             json_build_object(
