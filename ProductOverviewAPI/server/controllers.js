@@ -6,8 +6,8 @@ exports.products = async (req, res) => {
   const offset = (page - 1) * count;
 
   try {
-    // Define the prepared statement
-    const statement = db.prepare(`
+    // Use `json_agg` to aggregate product information into a single JSON object
+    const results = await db.one(`
       SELECT json_agg(
         json_build_object(
           'id', p.id,
@@ -20,10 +20,7 @@ exports.products = async (req, res) => {
       ) AS products
       FROM products.products p
       WHERE p.id BETWEEN $1 AND $2
-    `);
-
-    // Execute the prepared statement with the given parameters
-    const results = await db.one(statement, [offset + 1, offset + count]);
+    `, [offset + 1, offset + count]);
 
     // Send the products JSON object
     res.send(results.products);
@@ -35,38 +32,45 @@ exports.products = async (req, res) => {
 
 exports.product = async (req, res) => {
   try {
-    const statement = dn.prepare(`
-    SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price,
+    const statement = {
+      name: 'get-product-details',
+      text: `
+        SELECT
+          p.id,
+          p.name,
+          p.slogan,
+          p.category,
+          p.description,
+          p.default_price,
           json_agg(
             json_build_object(
               'feature', f.feature,
               'value', NULLIF(f.value, 'null')
             )
           ) AS features
-    FROM products.products p
-    LEFT JOIN products.features f ON f.product_id = p.id
-    WHERE p.id = $1
-    GROUP BY p.id
-  `);
+        FROM
+          products.products p
+          LEFT JOIN products.features f ON p.id = f.product_id
+        WHERE
+          p.id = $1
+        GROUP BY
+          p.id
+      `,
+      values: [req.params.product_id]
+    };
 
-    const product = await db.oneOrNone(statement, [req.params.product_id]);
+    const result = await db.one(statement);
+    res.send(result);
 
-    if (!product) {
-      res.status(404).send(`Product with id ${req.params.product_id} not found`);
-      return;
-    }
-
-    product.features = product.features || [];
-    res.send(product);
   } catch (error) {
     console.error(error);
-    res.status(500).send(error + '\nError getting product');
+    res.status(500).send(error + '\nError getting product details');
   }
 };
 
-exports.styles = async (req, res) => {
-  try {
-    const stmt = await db.prepare(`
+
+exports.styles = (req, res) => {
+  db.any(`
       SELECT json_build_object(
         'product_id', $1,
         'results', json_agg(
@@ -105,16 +109,17 @@ exports.styles = async (req, res) => {
       FROM products.styles s
       WHERE s.product_id = $1
       GROUP BY s.product_id
-    `);
+  `, [req.params.product_id])
+    .then((results) => {
 
-    const results = await stmt.one(req.params.product_id);
-    res.send(results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error + '\nError getting styles');
-  }
+      res.send(results);
+
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send(error + '\nError getting styles');
+    });
 };
-
 
 
 exports.related = (req, res) => {
@@ -134,17 +139,15 @@ exports.related = (req, res) => {
 
 exports.getCart = (req, res) => {
   db.any(`
-  SELECT sku_id, COUNT(*) as count
+  SELECT sku_id, CAST(COUNT(*) AS INTEGER) as count
   FROM products.cart
   WHERE user_session = $1
   GROUP BY sku_id
 `, [req.query.user])
     .then((results) => {
-      const formattedResults = results.map((result) => ({
-        sku_id: result.sku_id,
-        count: Number(result.count)
-      }));
-      res.send(formattedResults);
+
+      res.send(results);
+
     })
     .catch((error) => {
       console.error(error);
