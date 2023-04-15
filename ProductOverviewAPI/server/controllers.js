@@ -63,8 +63,8 @@ exports.product = async (req, res) => {
 
 exports.styles = async (req, res) => {
   try {
-    const results = await db.one(`
-      SELECT json_build_object(
+    const results = await db.oneOrNone(`
+      SELECT COALESCE(json_build_object(
         'product_id', $1,
         'results', json_agg(
           json_build_object(
@@ -98,7 +98,7 @@ exports.styles = async (req, res) => {
           )
           ORDER BY s.id ASC
         )
-      ) AS styles
+      ), '{}') AS styles
       FROM products.styles s
       WHERE s.product_id = $1
       GROUP BY s.product_id
@@ -110,6 +110,7 @@ exports.styles = async (req, res) => {
     res.status(500).send(error + '\nError getting styles');
   }
 };
+
 
 
 exports.related = async (req, res) => {
